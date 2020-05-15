@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>operation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="ios">
+  <ion-segment mode="md" color="warning" [(ngModel)]="messageTable">
+    <ion-segment-button [value]="attention">
+      <ion-label>Need attention</ion-label>
+    </ion-segment-button>
+    <ion-segment-button [value]="order">
+      <ion-label>Order</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div *ngIf="messageTable == attention">
+    <ion-card color="light">
+      <ion-card-content>
+        <ion-label>
+          attention
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngIf="messageTable == order">
+    <ion-card color="light">
+      <ion-card-content>
+        <ion-label>
+          order
+        </ion-label>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
