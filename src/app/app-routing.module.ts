@@ -30,7 +30,23 @@ const routes: Routes = [
   {
     path: 'contract',
     loadChildren: () => import('./contract/contract.module').then( m => m.ContractPageModule)
+  },  {
+    path: 'biker-balance',
+    loadChildren: () => import('./biker-balance/biker-balance.module').then( m => m.BikerBalancePageModule)
+  },
+  {
+    path: 'biker-history',
+    loadChildren: () => import('./biker-history/biker-history.module').then( m => m.BikerHistoryPageModule)
+  },
+  {
+    path: 'restaurant-profile-history',
+    loadChildren: () => import('./restaurant-profile-history/restaurant-profile-history.module').then( m => m.RestaurantProfileHistoryPageModule)
+  },
+  {
+    path: 'finance-confirm',
+    loadChildren: () => import('./finance-confirm/finance-confirm.module').then( m => m.FinanceConfirmPageModule)
   }
+
 ];
 
 @NgModule({

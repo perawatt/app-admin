@@ -4,6 +4,63 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content mode="ios">
+
+  <ion-item lines="none" class="buttonSpace">
+    <ion-button slot="end" size="default" shape="round" color="success" class="buttonAddWidth">
+      <ion-icon name="add-outline" color="light"></ion-icon>
+      เพิ่มรายการ
+    </ion-button>
+  </ion-item>
+
+  <ion-card color="light">
+    <ion-item button color="light" class="ion-text-center">
+      <ion-col size="4">
+        <ion-text color="primary">
+          <p><b>OrderID : 8888</b></p>
+        </ion-text>
+      </ion-col>
+    </ion-item>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-item button color="light" class="ion-text-center">
+      <ion-col size="4">
+        <ion-text color="primary">
+          <p><b>OrderID : 8888</b></p>
+        </ion-text>
+      </ion-col>
+    </ion-item>
+  </ion-card>
+
+  <ion-card color="light" class="ion-text-center">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <ion-text class="ion-text-center" color="primary">
+      <h5>
+        <b>
+          ไม่มีรายการ
+        </b>
+      </h5>
+    </ion-text>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </ion-card>
 
 </ion-content>
+
+<ion-footer>
+  <ion-item lines="none" class="buttonSpace">
+    <ion-button slot="end" size="default" shape="round" color="success" class="buttonAddWidth" (click)="zzz()">
+      จ่ายเงิน
+    </ion-button>
+    <ion-avatar slot="end">
+    </ion-avatar>
+  </ion-item>
+</ion-footer>
