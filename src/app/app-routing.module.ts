@@ -30,7 +30,8 @@ const routes: Routes = [
   {
     path: 'contract',
     loadChildren: () => import('./contract/contract.module').then( m => m.ContractPageModule)
-  },  {
+  },
+  {
     path: 'restaurant-profile-menu',
     loadChildren: () => import('./restaurant-profile-menu/restaurant-profile-menu.module').then( m => m.RestaurantProfileMenuPageModule)
   },
@@ -53,6 +54,22 @@ const routes: Routes = [
   {
     path: 'biker-detail',
     loadChildren: () => import('./biker-detail/biker-detail.module').then( m => m.BikerDetailPageModule)
+  },
+  {
+    path: 'biker-balance',
+    loadChildren: () => import('./biker-balance/biker-balance.module').then( m => m.BikerBalancePageModule)
+  },
+  {
+    path: 'biker-history',
+    loadChildren: () => import('./biker-history/biker-history.module').then( m => m.BikerHistoryPageModule)
+  },
+  {
+    path: 'restaurant-profile-history',
+    loadChildren: () => import('./restaurant-profile-history/restaurant-profile-history.module').then( m => m.RestaurantProfileHistoryPageModule)
+  },
+  {
+    path: 'finance-confirm',
+    loadChildren: () => import('./finance-confirm/finance-confirm.module').then( m => m.FinanceConfirmPageModule)
   }
 
 ];
