@@ -45,6 +45,10 @@ const routes: Routes = [
   {
     path: 'restaurant-create-category',
     loadChildren: () => import('./restaurant-create-category/restaurant-create-category.module').then( m => m.RestaurantCreateCategoryPageModule)
+  },
+  {
+    path: 'restaurant-profile',
+    loadChildren: () => import('./restaurant-profile/restaurant-profile.module').then( m => m.RestaurantProfilePageModule)
   }
 
 ];
