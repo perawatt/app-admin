@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'restaurant-profile-menu-create',
     loadChildren: () => import('./restaurant-profile-menu-create/restaurant-profile-menu-create.module').then( m => m.RestaurantProfileMenuCreatePageModule)
+  },
+  {
+    path: 'restaurant-edit-category',
+    loadChildren: () => import('./restaurant-edit-category/restaurant-edit-category.module').then( m => m.RestaurantEditCategoryPageModule)
   }
 
 ];
