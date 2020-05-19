@@ -49,6 +49,10 @@ const routes: Routes = [
   {
     path: 'restaurant-profile',
     loadChildren: () => import('./restaurant-profile/restaurant-profile.module').then( m => m.RestaurantProfilePageModule)
+  },
+  {
+    path: 'biker-detail',
+    loadChildren: () => import('./biker-detail/biker-detail.module').then( m => m.BikerDetailPageModule)
   }
 
 ];
