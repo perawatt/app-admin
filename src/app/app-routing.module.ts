@@ -53,6 +53,10 @@ const routes: Routes = [
   {
     path: 'biker-detail',
     loadChildren: () => import('./biker-detail/biker-detail.module').then( m => m.BikerDetailPageModule)
+  },
+  {
+    path: 'restaurant-create-qr',
+    loadChildren: () => import('./restaurant-create-qr/restaurant-create-qr.module').then( m => m.RestaurantCreateQrPageModule)
   }
 
 ];
