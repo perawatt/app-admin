@@ -30,7 +30,23 @@ const routes: Routes = [
   {
     path: 'contract',
     loadChildren: () => import('./contract/contract.module').then( m => m.ContractPageModule)
+  },  {
+    path: 'restaurant-profile-menu',
+    loadChildren: () => import('./restaurant-profile-menu/restaurant-profile-menu.module').then( m => m.RestaurantProfileMenuPageModule)
+  },
+  {
+    path: 'restaurant-profile-menu-create',
+    loadChildren: () => import('./restaurant-profile-menu-create/restaurant-profile-menu-create.module').then( m => m.RestaurantProfileMenuCreatePageModule)
+  },
+  {
+    path: 'restaurant-edit-category',
+    loadChildren: () => import('./restaurant-edit-category/restaurant-edit-category.module').then( m => m.RestaurantEditCategoryPageModule)
+  },
+  {
+    path: 'restaurant-create-category',
+    loadChildren: () => import('./restaurant-create-category/restaurant-create-category.module').then( m => m.RestaurantCreateCategoryPageModule)
   }
+
 ];
 
 @NgModule({
