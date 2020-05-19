@@ -33,6 +33,10 @@ const routes: Routes = [
   },  {
     path: 'restaurant-profile-menu',
     loadChildren: () => import('./restaurant-profile-menu/restaurant-profile-menu.module').then( m => m.RestaurantProfileMenuPageModule)
+  },
+  {
+    path: 'restaurant-profile-menu-create',
+    loadChildren: () => import('./restaurant-profile-menu-create/restaurant-profile-menu-create.module').then( m => m.RestaurantProfileMenuCreatePageModule)
   }
 
 ];
