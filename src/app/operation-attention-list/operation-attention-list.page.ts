@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { OperationConfirmCancelOrderPage } from '../operation-confirm-cancel-order/operation-confirm-cancel-order.page';
 
 @Component({
   selector: 'app-operation-attention-list',
@@ -8,11 +10,22 @@ import { Component, OnInit } from '@angular/core';
 export class OperationAttentionListPage implements OnInit {
   public haveEmployee: boolean;
 
-  constructor() { 
+  constructor(private modalController: ModalController) { 
     this.haveEmployee = false
   }
 
   ngOnInit() {
+  }
+
+  async zzz() {
+    const modal = await this.modalController.create({
+      component: OperationConfirmCancelOrderPage,
+      cssClass: 'dialog-modal-4-order-cancels',
+      backdropDismiss: false
+    });
+    modal.onDidDismiss().then(data => {
+    })
+    modal.present();
   }
 
 }
