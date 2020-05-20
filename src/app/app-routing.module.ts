@@ -118,7 +118,11 @@ const routes: Routes = [
   {
     path: 'operation-order-detail',
     loadChildren: () => import('./operation-order-detail/operation-order-detail.module').then(m => m.OperationOrderDetailPageModule)
+  },  {
+    path: 'operation-order-cancel',
+    loadChildren: () => import('./operation-order-cancel/operation-order-cancel.module').then( m => m.OperationOrderCancelPageModule)
   }
+
 
 ]
 

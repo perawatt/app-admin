@@ -52,7 +52,7 @@ ion-header{
 
 .dialog-modal-4-order-success .modal-wrapper {
     width: 25%;
-    height: 28%;
+    height: 25%;
     border-radius: 8px;
 }
 
@@ -68,6 +68,12 @@ ion-header{
 .dialog-modal-4-order-cancel .modal-wrapper {
     width: 35%;
     height: 55%;
+    border-radius: 8px;
+}
+
+.dialog-modal-4-order-addcancel .modal-wrapper {
+    width: 35%;
+    height: 35%;
     border-radius: 8px;
 }
 
