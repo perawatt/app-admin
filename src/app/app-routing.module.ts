@@ -78,7 +78,11 @@ const routes: Routes = [
   {
     path: 'contract-detail',
     loadChildren: () => import('./contract-detail/contract-detail.module').then(m => m.ContractDetailPageModule)
+  },  {
+    path: 'operation-confirm-cancel-order',
+    loadChildren: () => import('./operation-confirm-cancel-order/operation-confirm-cancel-order.module').then( m => m.OperationConfirmCancelOrderPageModule)
   }
+
 
 ];
 
