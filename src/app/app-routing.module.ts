@@ -9,67 +9,75 @@ const routes: Routes = [
   },
   {
     path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule)
   },
   {
     path: 'operation',
-    loadChildren: () => import('./operation/operation.module').then( m => m.OperationPageModule)
+    loadChildren: () => import('./operation/operation.module').then(m => m.OperationPageModule)
   },
   {
     path: 'restaurant',
-    loadChildren: () => import('./restaurant/restaurant.module').then( m => m.RestaurantPageModule)
+    loadChildren: () => import('./restaurant/restaurant.module').then(m => m.RestaurantPageModule)
   },
   {
     path: 'biker',
-    loadChildren: () => import('./biker/biker.module').then( m => m.BikerPageModule)
+    loadChildren: () => import('./biker/biker.module').then(m => m.BikerPageModule)
   },
   {
     path: 'finance',
-    loadChildren: () => import('./finance/finance.module').then( m => m.FinancePageModule)
+    loadChildren: () => import('./finance/finance.module').then(m => m.FinancePageModule)
   },
   {
     path: 'contract',
-    loadChildren: () => import('./contract/contract.module').then( m => m.ContractPageModule)
+    loadChildren: () => import('./contract/contract.module').then(m => m.ContractPageModule)
   },
   {
     path: 'restaurant-profile-menu',
-    loadChildren: () => import('./restaurant-profile-menu/restaurant-profile-menu.module').then( m => m.RestaurantProfileMenuPageModule)
+    loadChildren: () => import('./restaurant-profile-menu/restaurant-profile-menu.module').then(m => m.RestaurantProfileMenuPageModule)
   },
   {
     path: 'restaurant-profile-menu-create',
-    loadChildren: () => import('./restaurant-profile-menu-create/restaurant-profile-menu-create.module').then( m => m.RestaurantProfileMenuCreatePageModule)
+    loadChildren: () => import('./restaurant-profile-menu-create/restaurant-profile-menu-create.module').then(m => m.RestaurantProfileMenuCreatePageModule)
   },
   {
     path: 'restaurant-edit-category',
-    loadChildren: () => import('./restaurant-edit-category/restaurant-edit-category.module').then( m => m.RestaurantEditCategoryPageModule)
+    loadChildren: () => import('./restaurant-edit-category/restaurant-edit-category.module').then(m => m.RestaurantEditCategoryPageModule)
   },
   {
     path: 'restaurant-create-category',
-    loadChildren: () => import('./restaurant-create-category/restaurant-create-category.module').then( m => m.RestaurantCreateCategoryPageModule)
+    loadChildren: () => import('./restaurant-create-category/restaurant-create-category.module').then(m => m.RestaurantCreateCategoryPageModule)
   },
   {
     path: 'restaurant-profile',
-    loadChildren: () => import('./restaurant-profile/restaurant-profile.module').then( m => m.RestaurantProfilePageModule)
+    loadChildren: () => import('./restaurant-profile/restaurant-profile.module').then(m => m.RestaurantProfilePageModule)
   },
   {
     path: 'biker-detail',
-    loadChildren: () => import('./biker-detail/biker-detail.module').then( m => m.BikerDetailPageModule)
+    loadChildren: () => import('./biker-detail/biker-detail.module').then(m => m.BikerDetailPageModule)
   },
   {
     path: 'biker-balance',
-    loadChildren: () => import('./biker-balance/biker-balance.module').then( m => m.BikerBalancePageModule)
+    loadChildren: () => import('./biker-balance/biker-balance.module').then(m => m.BikerBalancePageModule)
   },
   {
     path: 'biker-history',
-    loadChildren: () => import('./biker-history/biker-history.module').then( m => m.BikerHistoryPageModule)
+    loadChildren: () => import('./biker-history/biker-history.module').then(m => m.BikerHistoryPageModule)
   },
   {
     path: 'restaurant-profile-history',
-    loadChildren: () => import('./restaurant-profile-history/restaurant-profile-history.module').then( m => m.RestaurantProfileHistoryPageModule)
+    loadChildren: () => import('./restaurant-profile-history/restaurant-profile-history.module').then(m => m.RestaurantProfileHistoryPageModule)
   },
   {
     path: 'finance-confirm',
-    loadChildren: () => import('./finance-confirm/finance-confirm.module').then( m => m.FinanceConfirmPageModule)
+    loadChildren: () => import('./finance-confirm/finance-confirm.module').then(m => m.FinanceConfirmPageModule)
+  },
+  {
+    path: 'restaurant-create-qr',
+    loadChildren: () => import('./restaurant-create-qr/restaurant-create-qr.module').then(m => m.RestaurantCreateQrPageModule)
+  },
+  {
+    path: 'contract-detail',
+    loadChildren: () => import('./contract-detail/contract-detail.module').then(m => m.ContractDetailPageModule)
   }
 
 ];
@@ -80,4 +88,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

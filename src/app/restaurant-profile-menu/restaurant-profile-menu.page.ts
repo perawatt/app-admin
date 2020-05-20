@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { RestaurantCreateQrPage } from '../restaurant-create-qr/restaurant-create-qr.page';
 
 @Component({
   selector: 'app-restaurant-profile-menu',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantProfileMenuPage implements OnInit {
 
-  constructor() { }
+  constructor(public modalController: ModalController) { }
 
   ngOnInit() {
   }
 
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: RestaurantCreateQrPage
+    });
+    return await modal.present();
+  }
 }
