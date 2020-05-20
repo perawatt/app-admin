@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'restaurant-create-qr',
     loadChildren: () => import('./restaurant-create-qr/restaurant-create-qr.module').then( m => m.RestaurantCreateQrPageModule)
+  },
+  {
+    path: 'contract-detail',
+    loadChildren: () => import('./contract-detail/contract-detail.module').then( m => m.ContractDetailPageModule)
   }
 
 ];
