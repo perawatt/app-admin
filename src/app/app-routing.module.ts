@@ -118,7 +118,11 @@ const routes: Routes = [
   {
     path: 'operation-order-detail',
     loadChildren: () => import('./operation-order-detail/operation-order-detail.module').then(m => m.OperationOrderDetailPageModule)
+  },  {
+    path: 'biker-create',
+    loadChildren: () => import('./biker-create/biker-create.module').then( m => m.BikerCreatePageModule)
   }
+
 
 ]
 
