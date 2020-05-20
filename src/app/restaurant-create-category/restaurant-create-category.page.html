@@ -4,10 +4,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content mode="ios" class="ion-padding">
   <ion-card color="light">
     <ion-card-content>
-      <ion-list class="ion-no-padding" color="light">
+      <ion-list class="ion-no-padding" lines="inset" color="light">
         <ion-list-header lines="none" color="light" mode="md">
           <ion-label class="ion-margin-top">
             <h1><b>ตั้งชื่อหมวดหมู่</b></h1>
@@ -29,7 +29,7 @@
             <ion-label color="light">+ เพิ่ม</ion-label>
           </ion-button>
         </ion-item>
-        <ion-item color="light" lines="full">
+        <ion-item color="light" lines="none">
           <ion-grid>
             <ion-row class="ion-justify-content-between">
               <ion-col>
@@ -68,12 +68,12 @@
         </ion-item>
         <ion-item color="light" lines="none">
           <ion-label><b>เพิ่มหมายเหตุได้</b></ion-label>
-          <ion-checkbox slot="start"  mode="ios" color="dark"></ion-checkbox>
+          <ion-checkbox slot="start" color="dark"></ion-checkbox>
         </ion-item>
         <ion-item lines="none" color="light">
           <ion-button slot="end" color="success" shape="round" size="default" class="ion-margin-bottom">
             <ion-label color="light">
-                บันทึก
+              บันทึก
             </ion-label>
           </ion-button>
         </ion-item>
