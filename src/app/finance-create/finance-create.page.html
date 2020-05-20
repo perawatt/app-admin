@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>เพิ่มรายการ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="ios">
+  <ion-card color="light">
+    <ion-row>
+      <ion-col size="0.4"></ion-col>
+      <ion-col size="11" class="ion-margin-top">
+        <ion-item color="light" lines="none">
+          <ion-label slot="start">
+            <h1><b>รายการ</b></h1>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1" class="ion-no-padding"></ion-col>
+      <ion-col size="11" class="ion-no-padding">
+        <ion-item color="light">
+          <ion-input placeholder="รหัส Biker"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1" class="ion-no-padding"></ion-col>
+      <ion-col size="11" class="ion-no-padding">
+        <ion-item color="light">
+          <ion-input placeholder="จำนวนเงิน"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="1" class="ion-no-padding"></ion-col>
+      <ion-col size="11" class="ion-no-padding">
+        <ion-item color="light">
+          <ion-input placeholder="หมายเหตุ"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item color="light" lines="none" class="buttonSpace">
+      <ion-button slot="end" size="default" shape="round" color="danger" class="buttonWidth">ยกเลิก</ion-button>
+      <ion-button slot="end" size="default" shape="round" color="success" class="buttonWidth">ยืนยัน</ion-button>
+    </ion-item>
+
+  </ion-card>
+</ion-content>

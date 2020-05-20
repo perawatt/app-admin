@@ -81,6 +81,22 @@ const routes: Routes = [
   },  {
     path: 'operation-confirm-cancel-order',
     loadChildren: () => import('./operation-confirm-cancel-order/operation-confirm-cancel-order.module').then( m => m.OperationConfirmCancelOrderPageModule)
+  },
+  {
+    path: 'finance-create',
+    loadChildren: () => import('./finance-create/finance-create.module').then( m => m.FinanceCreatePageModule)
+  },
+  {
+    path: 'finance-detail',
+    loadChildren: () => import('./finance-detail/finance-detail.module').then( m => m.FinanceDetailPageModule)
+  },
+  {
+    path: 'contract-create',
+    loadChildren: () => import('./contract-create/contract-create.module').then( m => m.ContractCreatePageModule)
+  },
+  {
+    path: 'operation-attention-list',
+    loadChildren: () => import('./operation-attention-list/operation-attention-list.module').then( m => m.OperationAttentionListPageModule)
   }
 
 
