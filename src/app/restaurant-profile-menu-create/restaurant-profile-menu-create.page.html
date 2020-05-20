@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content mode="ios" class="ion-padding">
   <ion-card color="light">
     <ion-card-content>
       <ion-list color="light" class="ion-no-padding">
@@ -14,8 +14,7 @@
           </ion-label>
         </ion-list-header>
         <ion-item color="light">
-          <ion-label>เลือกหมวดหมู่</ion-label>
-          <ion-select placeholder="เลือกหมวดหมู่">
+          <ion-select interface="popover"  placeholder="เลือกหมวดหมู่">
             <ion-select-option value="f">Female</ion-select-option>
             <ion-select-option value="m">Male</ion-select-option>
           </ion-select>
@@ -26,6 +25,9 @@
           <ion-button shape="round" size="default" color="secondary">
             <ion-label color="light">เปลี่ยนรูป</ion-label>
           </ion-button>
+        </ion-item>
+        <ion-item color="light" lines="inset">
+          <ion-input placeholder="กรุณาตั้งชื่อเมนูของคุณ"></ion-input>
         </ion-item>
         <ion-item color="light" lines="inset">
           <ion-input placeholder="กรุณาระบุราคา"></ion-input>
