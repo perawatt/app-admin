@@ -97,6 +97,18 @@ const routes: Routes = [
   {
     path: 'operation-attention-list',
     loadChildren: () => import('./operation-attention-list/operation-attention-list.module').then( m => m.OperationAttentionListPageModule)
+  },
+  {
+    path: 'biker-history-detail',
+    loadChildren: () => import('./biker-history-detail/biker-history-detail.module').then( m => m.BikerHistoryDetailPageModule)
+  },
+  {
+    path: 'restaurant-profile-history-detail',
+    loadChildren: () => import('./restaurant-profile-history-detail/restaurant-profile-history-detail.module').then( m => m.RestaurantProfileHistoryDetailPageModule)
+  },
+  {
+    path: 'operation-order-detail',
+    loadChildren: () => import('./operation-order-detail/operation-order-detail.module').then( m => m.OperationOrderDetailPageModule)
   }
 
 
