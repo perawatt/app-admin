@@ -78,13 +78,21 @@ const routes: Routes = [
   {
     path: 'contract-detail',
     loadChildren: () => import('./contract-detail/contract-detail.module').then(m => m.ContractDetailPageModule)
-  },  {
+  },
+  {
     path: 'operation-confirm-cancel-order',
     loadChildren: () => import('./operation-confirm-cancel-order/operation-confirm-cancel-order.module').then( m => m.OperationConfirmCancelOrderPageModule)
+  },
+  {
+    path: 'operation-attention-detail',
+    loadChildren: () => import('./operation-attention-detail/operation-attention-detail.module').then( m => m.OperationAttentionDetailPageModule)
+  },
+  {
+    path: 'restaurant-create',
+    loadChildren: () => import('./restaurant-create/restaurant-create.module').then( m => m.RestaurantCreatePageModule)
   }
 
-
-];
+]
 
 @NgModule({
   imports: [
