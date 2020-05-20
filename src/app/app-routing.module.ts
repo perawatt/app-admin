@@ -70,6 +70,14 @@ const routes: Routes = [
   {
     path: 'finance-confirm',
     loadChildren: () => import('./finance-confirm/finance-confirm.module').then( m => m.FinanceConfirmPageModule)
+  },
+  {
+    path: 'operation-attention-detail',
+    loadChildren: () => import('./operation-attention-detail/operation-attention-detail.module').then( m => m.OperationAttentionDetailPageModule)
+  },
+  {
+    path: 'restaurant-create',
+    loadChildren: () => import('./restaurant-create/restaurant-create.module').then( m => m.RestaurantCreatePageModule)
   }
 
 ];
