@@ -20,27 +20,27 @@ export class AdminService implements IAdminService {
   }
 
   getCancelRequest(): Promise<any> {
-    let apiUrl = this.baseUrl + "GetCancelRequest/" +AdminInfo.deliveryId;
+    let apiUrl = this.baseUrl + "GetCancelRequest/" + AdminInfo.deliveryId;
     return this.http.get(apiUrl).toPromise();
   }
 
   getOrderDetail(orderId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "GetOrderDetail/" +AdminInfo.deliveryId + "/" + orderId;
+    let apiUrl = this.baseUrl + "GetOrderDetail/" + AdminInfo.deliveryId + "/" + orderId;
     return this.http.get(apiUrl).toPromise();
   }
 
   createSendCancelRequest(orderId: string, data: any): Promise<any> {
-    let apiUrl = this.baseUrl + "SendCancelRequest/" + AdminInfo.adminId + "/" +AdminInfo.deliveryId + "/" + orderId;
+    let apiUrl = this.baseUrl + "SendCancelRequest/" + AdminInfo.adminId + "/" + AdminInfo.deliveryId + "/" + orderId;
     return this.http.post(apiUrl, data).toPromise();
   }
 
   updateSendCancelComfirm(cancelId: string, data: any): Promise<any> {
-    let apiUrl = this.baseUrl + "SendCancelConfirm/" + AdminInfo.adminId + "/" +AdminInfo.deliveryId + "/" + cancelId;
+    let apiUrl = this.baseUrl + "SendCancelConfirm/" + AdminInfo.adminId + "/" + AdminInfo.deliveryId + "/" + cancelId;
     return this.http.put(apiUrl, data).toPromise();
   }
 
   updateSendCancelDeny(cancelId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "SendCancelDeny/" + AdminInfo.adminId + "/" +AdminInfo.deliveryId + "/" + cancelId;
+    let apiUrl = this.baseUrl + "SendCancelDeny/" + AdminInfo.adminId + "/" + AdminInfo.deliveryId + "/" + cancelId;
     return this.http.put(apiUrl, {}).toPromise();
   }
 
@@ -65,73 +65,78 @@ export class AdminService implements IAdminService {
   }
 
   getBiker(): Promise<any> {
-    let apiUrl = this.baseUrl + "GetBiker/" +AdminInfo.deliveryId;
+    let apiUrl = this.baseUrl + "GetBiker/" + AdminInfo.deliveryId;
     return this.http.get(apiUrl).toPromise();
   }
 
   getBikerById(bikerId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "GetBiker/" +AdminInfo.deliveryId + "/" + bikerId;
+    let apiUrl = this.baseUrl + "GetBiker/" + AdminInfo.deliveryId + "/" + bikerId;
     return this.http.get(apiUrl).toPromise();
   }
 
   createAddBiker(data: any): Promise<any> {
-    let apiUrl = this.baseUrl + "AddBiker/" +AdminInfo.deliveryId;
+    let apiUrl = this.baseUrl + "AddBiker/" + AdminInfo.deliveryId;
     return this.http.post(apiUrl, data).toPromise();
   }
 
   updateSuspendBiker(bikerId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "SuspendBiker/" +AdminInfo.deliveryId + "/" + bikerId;
+    let apiUrl = this.baseUrl + "SuspendBiker/" + AdminInfo.deliveryId + "/" + bikerId;
     return this.http.put(apiUrl, {}).toPromise();
   }
 
   updateUnsuspendBiker(bikerId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "UnsuspendBiker/" +AdminInfo.deliveryId + "/" + bikerId;
+    let apiUrl = this.baseUrl + "UnsuspendBiker/" + AdminInfo.deliveryId + "/" + bikerId;
     return this.http.put(apiUrl, {}).toPromise();
   }
 
   getBikerFinance(bikerId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "BikerFinance/" +AdminInfo.deliveryId + "/" + bikerId;
+    let apiUrl = this.baseUrl + "BikerFinance/" + AdminInfo.deliveryId + "/" + bikerId;
     return this.http.get(apiUrl).toPromise();
   }
 
   getBikerOrderHistory(bikerId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "BikerOrderHistory/" +AdminInfo.deliveryId + "/" + bikerId;
+    let apiUrl = this.baseUrl + "BikerOrderHistory/" + AdminInfo.deliveryId + "/" + bikerId;
     return this.http.get(apiUrl).toPromise();
   }
 
   getFinance(): Promise<any> {
-    let apiUrl = this.baseUrl + "GetFinance/" +AdminInfo.deliveryId;
+    let apiUrl = this.baseUrl + "GetFinance/" + AdminInfo.deliveryId;
     return this.http.get(apiUrl).toPromise();
   }
 
   createFinance(data: any): Promise<any> {
-    let apiUrl = this.baseUrl + "CreateFinance/" +AdminInfo.deliveryId;
+    let apiUrl = this.baseUrl + "CreateFinance/" + AdminInfo.deliveryId;
     return this.http.post(apiUrl, data).toPromise();
   }
 
   getFinanceById(financeId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "GetFinance/" +AdminInfo.deliveryId + "/" + financeId;
+    let apiUrl = this.baseUrl + "GetFinance/" + AdminInfo.deliveryId + "/" + financeId;
     return this.http.get(apiUrl).toPromise();
   }
 
   deleteFinance(financeId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "DeleteFinance/" +AdminInfo.deliveryId + "/" + financeId;
+    let apiUrl = this.baseUrl + "DeleteFinance/" + AdminInfo.deliveryId + "/" + financeId;
     return this.http.delete(apiUrl).toPromise();
   }
 
   getContractCondition(): Promise<any> {
-    let apiUrl = this.baseUrl + "GetContractCondition/" +AdminInfo.deliveryId;
+    let apiUrl = this.baseUrl + "GetContractCondition/" + AdminInfo.deliveryId;
     return this.http.get(apiUrl).toPromise();
   }
 
   createContractCondition(data: any): Promise<any> {
-    let apiUrl = this.baseUrl + "CreateContractCondition/" +AdminInfo.deliveryId;
+    let apiUrl = this.baseUrl + "CreateContractCondition/" + AdminInfo.deliveryId;
     return this.http.post(apiUrl, data).toPromise();
   }
 
   getContractConditionById(contractConditionId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "GetContractCondition/" +AdminInfo.deliveryId + "/" + contractConditionId;
+    let apiUrl = this.baseUrl + "GetContractCondition/" + AdminInfo.deliveryId + "/" + contractConditionId;
     return this.http.get(apiUrl).toPromise();
+  }
+
+  getSasToken(): Promise<any> {
+    let apiUrl = 'https://delivery-3rd-api.azurewebsites.net/api/Storage/Up2Cloud';
+    return this.http.post(apiUrl, {}).toPromise();
   }
 
   // TODO adminId

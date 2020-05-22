@@ -49,6 +49,9 @@ export interface IAdminService {
     createContractCondition(data: any): Promise<any>;
 
     getContractConditionById(contractConditionId: string): Promise<any>;
+    
+    getSasToken(): Promise<any>;
+
 
 
 

@@ -1,14 +1,18 @@
-import { Injectable, Inject } from '@angular/core';
-import { IBlobStorage, BLOB_STORAGE_TOKEN, ISasToken, IBlobService, ISpeedSummary } from './iblob-storage';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { distinctUntilChanged, startWith } from 'rxjs/operators';
+import {
+  BLOB_STORAGE_TOKEN,
+  IBlobService,
+  IBlobStorage,
+  ISasToken,
+  ISpeedSummary
+} from './azureStorage';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class BlobStorageService {
-
   constructor(@Inject(BLOB_STORAGE_TOKEN) private blobStorage: IBlobStorage) { }
+
   uploadToBlobStorage(sasToken: ISasToken, file: File): Observable<number> {
     const customBlockSize = this.getBlockSize(file);
     const options = { blockSize: customBlockSize };
