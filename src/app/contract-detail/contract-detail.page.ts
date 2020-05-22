@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-contract-detail',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractDetailPage implements OnInit {
 
-  constructor() { }
+  public contractConditionId:string;
+  contractConditionInfo$ = Promise.resolve([]);
+
+  constructor(private route:ActivatedRoute,private adminSvc:AdminService) { }
 
   ngOnInit() {
+    this.route.params.subscribe(param=>{this.contractConditionId = param['contractConditionId']});
+    this.contractConditionInfo$ = this.adminSvc.getContractConditionById(this.contractConditionId);
+    this.contractConditionInfo$.then((it:any)=>{
+      console.log(it);
+    });
   }
 
 }
