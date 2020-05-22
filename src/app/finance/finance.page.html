@@ -13,39 +13,37 @@
     </ion-button>
   </ion-item>
 
-  
   <ng-container *ngIf="financeInfo$ | async as data">
-  <ion-card color="light" *ngFor="let item of data">
-    <ion-item button color="light" class="ion-text-center">
-      <ion-col size="4">
-        <ion-text color="primary">
-          <p><b>{{item.name}}</b></p>
-        </ion-text>
-      </ion-col>
-    </ion-item>
-  </ion-card>
+    <ion-card color="light" *ngFor="let item of data">
+      <ion-item button color="light" class="ion-text-center" [routerLink]="['/finance-detail/', item._id]">
+        <ion-col size="4">
+          <ion-text color="primary">
+            <p><b>{{item.name}}</b></p>
+          </ion-text>
+        </ion-col>
+      </ion-item>
+    </ion-card>
 
-  <ion-card color="light" class="ion-text-center" *ngIf="data.length == 0">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <ion-text class="ion-text-center" color="primary">
-      <h5>
-        <b>
-          ไม่มีรายการ
-        </b>
-      </h5>
-    </ion-text>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </ion-card>
-</ng-container>
-
+    <ion-card color="light" class="ion-text-center" *ngIf="data.length == 0">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <ion-text class="ion-text-center" color="primary">
+        <h5>
+          <b>
+            ไม่มีรายการ
+          </b>
+        </h5>
+      </ion-text>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </ion-card>
+  </ng-container>
 
 </ion-content>
 

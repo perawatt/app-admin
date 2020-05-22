@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FinanceConfirmPage } from '../finance-confirm/finance-confirm.page';
 import { AdminService } from 'src/services/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-finance',
@@ -11,15 +12,16 @@ import { AdminService } from 'src/services/admin.service';
 export class FinancePage implements OnInit {
   financeInfo$ = Promise.resolve([]);
 
-  constructor(private modalController: ModalController, private adminSvc : AdminService) { }
+  constructor(private modalController: ModalController, private adminSvc : AdminService, public router: Router) { }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.financeInfo$ = this.adminSvc.getFinance();
     this.financeInfo$.then((it:any)=>{
       console.log(it);
     });
+  }
 
-
+  ngOnInit() {  
   }
 
   async zzz() {

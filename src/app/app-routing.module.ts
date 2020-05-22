@@ -100,6 +100,10 @@ const routes: Routes = [
     loadChildren: () => import('./finance-detail/finance-detail.module').then(m => m.FinanceDetailPageModule)
   },
   {
+    path: 'finance-detail/:_id',
+    loadChildren: () => import('./finance-detail/finance-detail.module').then(m => m.FinanceDetailPageModule)
+  },
+  {
     path: 'contract-create',
     loadChildren: () => import('./contract-create/contract-create.module').then(m => m.ContractCreatePageModule)
   },

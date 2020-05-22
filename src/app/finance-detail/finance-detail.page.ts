@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-finance-detail',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./finance-detail.page.scss'],
 })
 export class FinanceDetailPage implements OnInit {
-
-  constructor() { }
+  financeDetail$ = Promise.resolve([]);
+  public _id: string;
+  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private router: Router) { }
 
   ngOnInit() {
+    this._id = this.activatedRoute.snapshot.paramMap.get('_id');
+    console.log(this._id);
+
+    this.financeDetail$ = this.adminSvc.getFinanceById(this._id);
+    this.financeDetail$.then((it: any) => {
+      console.log(it);
+    });
   }
 
+  deleteFinanceDetail() {
+    this.adminSvc.deleteFinance(this._id).then((it: any) => {
+      this.router.navigate(['/finance']);
+      console.log(it);
+    });
+  }
 }
