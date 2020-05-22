@@ -76,7 +76,7 @@ const routes: Routes = [
     loadChildren: () => import('./restaurant-create-qr/restaurant-create-qr.module').then(m => m.RestaurantCreateQrPageModule)
   },
   {
-    path: 'contract-detail',
+    path: 'contract/contract-detail/:contractConditionId',
     loadChildren: () => import('./contract-detail/contract-detail.module').then(m => m.ContractDetailPageModule)
   },
   {
@@ -100,7 +100,7 @@ const routes: Routes = [
     loadChildren: () => import('./finance-detail/finance-detail.module').then(m => m.FinanceDetailPageModule)
   },
   {
-    path: 'contract-create',
+    path: 'contract/contract-create',
     loadChildren: () => import('./contract-create/contract-create.module').then(m => m.ContractCreatePageModule)
   },
   {
