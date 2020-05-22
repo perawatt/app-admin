@@ -50,32 +50,4 @@ export interface IAdminService {
 
     getContractConditionById(contractConditionId: string): Promise<any>;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
