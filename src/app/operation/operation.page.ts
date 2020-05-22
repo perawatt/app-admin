@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-operation',
@@ -10,9 +11,10 @@ export class OperationPage implements OnInit {
   messageTable: string;
   attention: string = 'attention';
   order: string = 'order';
-  constructor() { }
+  constructor(private adminSvc: AdminService) { }
 
   ngOnInit() {
+    this.adminSvc.getAdminInfo();
     this.messageTable = "attention";
   }
 
