@@ -6,7 +6,7 @@ export interface IAdminService {
 
     getCancelRequest(): Promise<any>;
 
-    getOrderDetial(orderId: string): Promise<any>;
+    getOrderDetail(orderId: string): Promise<any>;
 
     createSendCancelRequest(orderId: string, data: any): Promise<any>;
 

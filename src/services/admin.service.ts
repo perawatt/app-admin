@@ -24,7 +24,7 @@ export class AdminService implements IAdminService {
     return this.http.get(apiUrl).toPromise();
   }
 
-  getOrderDetial(orderId: string): Promise<any> {
+  getOrderDetail(orderId: string): Promise<any> {
     let apiUrl = this.baseUrl + "GetOrderDetail/" + this.deliveryId + "/" + orderId;
     return this.http.get(apiUrl).toPromise();
   }
