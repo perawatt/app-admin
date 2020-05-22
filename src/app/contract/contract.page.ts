@@ -15,6 +15,7 @@ export class ContractPage implements OnInit {
     this.contactInfo$ = this.adminSvc.getContractCondition();
     this.contactInfo$.then((it:any)=>{
       console.log(it);
+      console.log(JSON.stringify(it))
     });
 
   }
