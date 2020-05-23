@@ -1,15 +1,11 @@
 import { AdminService } from './../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { Observable, from } from 'rxjs';
 import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
 import { ISasToken } from 'src/services/blob-storage/azureStorage';
 import { map, combineAll } from 'rxjs/operators';
-declare var AzureStorage;
-interface IUploadProgress {
-  filename: string;
-  progress: number;
-}
+import { IUploadProgress } from 'src/services/iblob-storage';
+
 
 @Component({
   selector: 'app-restaurant-profile-menu-create',
@@ -21,17 +17,12 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   sas: any;
   config: any;
   uploadProgress$: Observable<IUploadProgress[]>;
-  filesSelected = false;
-  constructor(private admindSvc: AdminService, private alertCtrl: AlertController, private blobStorage: BlobStorageService) { }
+  constructor(private admindSvc: AdminService, private blobStorage: BlobStorageService) { }
 
   ngOnInit() {
-    this.admindSvc.getSasToken().then(it => {
-      this.sas = it;
-    })
   }
 
   selectPhoto(event) {
-    this.filesSelected = true;
     this.file = event.target.firstChild.files;
     var preview = document.querySelectorAll('img');
     var reader = new FileReader();
