@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contract-create',
@@ -10,7 +11,7 @@ import { AdminService } from 'src/services/admin.service';
 export class ContractCreatePage implements OnInit {
   public fg:FormGroup;
   
-  constructor(private fb:FormBuilder,private adminSvc : AdminService) { 
+  constructor(private fb:FormBuilder,private adminSvc : AdminService,private route:Router) { 
     this.fg = this.fb.group({
       'name':null,
       'commissionPercent':null,
@@ -22,9 +23,10 @@ export class ContractCreatePage implements OnInit {
   }
 
   handleSubmit(){
-    console.log(this.fg.value);
     if(this.fg.valid){
-     // this.adminSvc.createContractCondition(this.fg.value).then((it:any)=>{});
+      this.adminSvc.createContractCondition(this.fg.value).then((it:any)=>{
+        this.route.navigate(['/contract']);
+      });
     }
   }
 }

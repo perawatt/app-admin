@@ -11,6 +11,7 @@ export class ContractDetailPage implements OnInit {
 
   public contractConditionId:string;
   contractConditionInfo$ = Promise.resolve([]);
+  title:string;
 
   constructor(private route:ActivatedRoute,private adminSvc:AdminService) { }
 
@@ -18,7 +19,7 @@ export class ContractDetailPage implements OnInit {
     this.route.params.subscribe(param=>{this.contractConditionId = param['contractConditionId']});
     this.contractConditionInfo$ = this.adminSvc.getContractConditionById(this.contractConditionId);
     this.contractConditionInfo$.then((it:any)=>{
-      console.log(it);
+     this.title = it.name;
     });
   }
 
