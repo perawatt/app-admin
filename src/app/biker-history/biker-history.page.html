@@ -1,31 +1,51 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
     <ion-title>bikerHistory</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content  mode="ios" class="ion-padding">
-  <ion-card color="light">
-    <ion-item button color="light" class="ion-text-center">
+  <ng-container *ngIf="bikerHistory$ | async as datas">
+    <ng-container *ngFor="let data of datas">
+    <ion-card color="light" >
+      <ion-item button color="light" class="ion-text-center" [routerLink]="['biker-history-detail',data._id]">
+        <ion-col size="4">
+          <ion-text color="primary">
+            <p><b>OrderID : {{ data._id }}</b></p>
+          </ion-text>
+        </ion-col>
+        <ng-container *ngIf="data.doneDate">
+           <ion-col size="4">
+            <ion-text color="success">
+                <p><b>สถานะ : จัดส่งสำเร็จ </b></p>
+            </ion-text> 
+          </ion-col>
+        <ion-col size="4">
+          <ion-text color="primary">
+            <p><b>{{ data.doneDate | date : 'dd MMM yyyy (hh.mm น.)' }}</b></p>
+          </ion-text>
+        </ion-col>
+      </ng-container> 
+      <ng-container *ngIf="data.cancelDate">
+        <ion-col size="4">
+          <ion-text color="danger">
+              <p><b>สถานะ : ยกเลิก </b></p>
+          </ion-text> 
+        </ion-col>
       <ion-col size="4">
         <ion-text color="primary">
-          <p><b>OrderID : 8888</b></p>
+          <p><b>{{ data.cancelDate | date : 'dd MMM yyyy (hh.mm น.)'}}</b></p>
         </ion-text>
       </ion-col>
-      <ion-col size="4">
-        <ion-text color="success">
-          <p><b>สถานะ : จัดส่งสำเร็จ </b></p>
-        </ion-text>  
-      </ion-col>
-      <ion-col size="4">
-        <ion-text color="primary">
-          <p><b>15 พ.ค. 2563 (10.30น.)</b></p>
-        </ion-text>
-      </ion-col>
-    </ion-item>
-  </ion-card>
-
-  <ion-card color="light">
+   </ng-container> 
+      </ion-item>
+    </ion-card>
+  </ng-container>
+</ng-container>
+  <!-- <ion-card color="light">
     <ion-item button color="light" class="ion-text-center">
       <ion-col size="4">
         <ion-text color="primary">
@@ -63,7 +83,7 @@
         </ion-text>
       </ion-col>
     </ion-item>
-  </ion-card>
+  </ion-card> -->
   
 </ion-content>
 
