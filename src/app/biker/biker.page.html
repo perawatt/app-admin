@@ -6,13 +6,13 @@
 
 <ion-content  mode="ios">
   <ion-item lines="none" class="ion-margin-top">
-    <ion-button slot="end" size="default" shape="round" color="success" >
+    <ion-button slot="end" size="default" shape="round" color="success" [routerLink]="['biker-create']">
       <ion-icon name="add-outline" color="light"></ion-icon>
       เพิ่มคำขอ
     </ion-button>
   </ion-item>
 
-  <ion-card color="light">
+  <!-- <ion-card color="light">
     <ion-item button color="light" class="ion-text-center">
       <ion-avatar slot="start">
       </ion-avatar>
@@ -34,50 +34,47 @@
           </ion-text>
         </ion-col>
     </ion-item>
-  </ion-card>
+  </ion-card> -->
 
-  <ion-card color="light">
-    <ion-item button color="light" class="ion-text-center">
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-          <img src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
+  <ng-container *ngIf="bikerListInfo$  | async as datas">
+    <ion-card color="light" *ngFor="let data of datas" [routerLink]="['biker-detail',data._id]">
+      <ion-item button color="light" class="ion-text-center">
+        <ion-avatar slot="start">
         </ion-avatar>
-        <ion-col size="7" class="ion-text-left">
-          <ion-text color="primary">
-            <p><b> สมเกียรต์  หอมนาน</b></p>
-          </ion-text>
-        </ion-col>
-        <ion-col size="5">
-          <ion-text color="danger">
-            <p><b> กำลังพิจารณา </b></p>
-          </ion-text>
-        </ion-col>
-    </ion-item>
-  </ion-card>
-
-  <ion-card color="light" class="ion-text-center">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <ion-text class="ion-text-center" color="primary">
-      <h5>
-        <b>
-          ไม่มีรายการ
-        </b>
-      </h5>
-    </ion-text>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </ion-card>
-
+        <ion-avatar slot="start">
+        </ion-avatar>
+        <ion-avatar slot="start">
+        </ion-avatar>
+        <ion-avatar slot="start">
+            <img src="{{data.logoImage}}" />
+          </ion-avatar>
+          <ion-col size="7" class="ion-text-left">
+            <ion-text color="primary">
+              <p><b> {{data .name}}</b></p>
+            </ion-text>
+          </ion-col>
+          <ion-col size="5">
+            <ng-container *ngIf="data.acceptContractDate">
+            <ion-text color="success">
+              <p><b> สถานะ : เปิดรับงาน </b></p>
+            </ion-text>
+          </ng-container>
+          <ng-container *ngIf="!data.acceptContractDate">
+            <ion-text color="danger">
+              <p><b> สถานะ : กำลังพิจารณา </b></p>
+            </ion-text>
+          </ng-container>
+          </ion-col>
+      </ion-item>
+    </ion-card>
+    <ng-container *ngIf="!bikerListInfo$">
+      <ion-card color="light" class="ion-text-center">
+        <br><br><br><br><br>
+        <ion-text class="ion-text-center" color="primary">
+          <h5><b>ไม่มีรายการ</b></h5>
+        </ion-text>
+        <br><br><br><br><br>
+      </ion-card>
+    </ng-container>
+  </ng-container>
 </ion-content>

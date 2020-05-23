@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-biker',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BikerPage implements OnInit {
 
-  constructor() { }
+  bikerListInfo$ : Promise<any>;
+
+  constructor(private adminSvc:AdminService) { }
 
   ngOnInit() {
+    this. bikerListInfo$ = this.adminSvc.getBiker();
+    this. bikerListInfo$.then((it:any)=>{
+      console.log(it);
+    });
   }
 
 }
