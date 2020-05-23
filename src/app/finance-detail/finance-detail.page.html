@@ -27,7 +27,7 @@
           <ion-item color="light">
             <ion-label>
               <b>วันที่สร้าง : </b>
-              <b>{{item.createDate | date}}</b>
+              <b>{{item.createDate | date:'d MMM y'}}</b>
             </ion-label>
           </ion-item>
         </ion-col>
@@ -63,7 +63,7 @@
           <ion-item color="light">
             <ion-label>
               <b>จำนวนเงิน : </b>
-              <b>{{item.amount}}</b>
+              <b>{{item.amount | number}}</b>
             </ion-label>
           </ion-item>
         </ion-col>

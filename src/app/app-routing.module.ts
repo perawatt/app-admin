@@ -104,15 +104,11 @@ const routes: Routes = [
     loadChildren: () => import('./restaurant-create/restaurant-create.module').then(m => m.RestaurantCreatePageModule)
   },
   {
-    path: 'finance-create',
+    path: 'finance/finance-create',
     loadChildren: () => import('./finance-create/finance-create.module').then(m => m.FinanceCreatePageModule)
   },
   {
-    path: 'finance-detail',
-    loadChildren: () => import('./finance-detail/finance-detail.module').then(m => m.FinanceDetailPageModule)
-  },
-  {
-    path: 'finance-detail/:_id',
+    path: 'finance/finance-detail/:_id',
     loadChildren: () => import('./finance-detail/finance-detail.module').then(m => m.FinanceDetailPageModule)
   },
   {
@@ -124,7 +120,7 @@ const routes: Routes = [
     loadChildren: () => import('./restaurant-profile-history-detail/restaurant-profile-history-detail.module').then(m => m.RestaurantProfileHistoryDetailPageModule)
   },
   {
-    path: 'operation-order-detail',
+    path: 'operation/operation-order-detail/:_id',
     loadChildren: () => import('./operation-order-detail/operation-order-detail.module').then(m => m.OperationOrderDetailPageModule)
   },
   {

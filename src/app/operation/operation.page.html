@@ -13,209 +13,140 @@
       <ion-label>Order</ion-label>
     </ion-segment-button>
   </ion-segment>
+
   <div *ngIf="messageTable == attention">
-    <ion-card color="light">
-      <ion-item button color="light" class="ion-text-center">
-        <ion-col size="4">
-          <ion-text color="primary">
-            <p><b>OrderID : 8888</b></p>
-          </ion-text>
-        </ion-col>
-        <ion-col size="4" class="ion-text-left">
-          <ion-text color="success">
-            <p><b>สถานะ :</b></p>
-          </ion-text>  
-        </ion-col>
-        <ion-col size="4">
-          <ion-text color="primary">
-            <p><b>12 พ.ค. 2563 (10.00น.)</b></p>
-          </ion-text>
-        </ion-col>
-      </ion-item>
-    </ion-card>
+    <ng-container *ngIf="cancelRequestOrderinfo$ | async as data">
+      <ion-card color="light" *ngFor="let item of data">
+        <ion-item button color="light" class="ion-text-center">
+          <ion-col size="4">
+            <ion-text color="primary">
+              <p><b>OrderID : {{item._id}}</b></p>
+            </ion-text>
+          </ion-col>
+          <ion-col size="4" class="ion-text-left">
+            <ion-text color="success">
+              <p><b>สถานะ : ยังไม่ได้ binding</b></p>
+            </ion-text>
+          </ion-col>
+          <ion-col size="4">
+            <ion-text color="primary">
+              <p><b>{{item.createDate | date:'d MMM y (H:mm)'}}</b></p>
+            </ion-text>
+          </ion-col>
+        </ion-item>
+      </ion-card>
 
-    <ion-card color="light">
-      <ion-item button color="light" class="ion-text-center">
-        <ion-col size="4">
-          <ion-text color="primary">
-            <p><b>OrderID : 2412</b></p>
-          </ion-text>
-        </ion-col>
-        <ion-col size="4" class="ion-text-left">
-          <ion-text color="success">
-            <p><b>สถานะ :</b></p>
-          </ion-text>  
-        </ion-col>
-        <ion-col size="4">
-          <ion-text color="primary">
-            <p><b>12 พ.ค. 2563 (10.00น.)</b></p>
-          </ion-text>
-        </ion-col>
-      </ion-item>
-    </ion-card>
-
-    <ion-card color="light" class="ion-text-center">
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <ion-text class="ion-text-center" color="primary">
-        <h5>
-          <b>
-            ไม่มีรายการ
-          </b>
-        </h5>
-      </ion-text>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </ion-card>
+      <ion-card color="light" class="ion-text-center" *ngIf="!data || data.length == 0">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <ion-text class="ion-text-center" color="primary">
+          <h5>
+            <b>
+              ไม่มีรายการ
+            </b>
+          </h5>
+        </ion-text>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </ion-card>
+    </ng-container>
   </div>
 
   <div *ngIf="messageTable == order">
-    <ion-card color="light">
-      <ion-card-header class="ion-no-padding ion-padding-horizontal ion-margin-top">
-        <ion-label>
-          <ion-item lines="none" color="light">
+    <ng-container *ngIf="unFinishedOrderinfo$ | async as data">
+      <ion-card color="light" *ngFor="let item of data"  [routerLink]="['operation-order-detail', item._id]">
+        <ion-card-header class="ion-no-padding ion-padding-horizontal ion-margin-top">
+          <ion-label>
+            <ion-item lines="none" color="light">
+              <ion-label>
+                <h1><b>OrderID : {{item._id}}</b></h1>
+                <ion-text color="warning">
+                  <h3>{{item.commissionPrice.currency}}{{item.commissionPrice.amountUnit}} (2 รายการ ยังไม่ได้ binding)
+                  </h3>
+                </ion-text>
+              </ion-label>
+              <ion-label>
+                <ion-note slot="end" class="ion-text-end">
+                  <ion-text color="dark">
+                    <h3>
+                      <ion-icon name="time-outline"></ion-icon> {{ item.createDate | date:'d MMM y (H:mm)' }}
+                    </h3>
+                    <br>
+                  </ion-text>
+                </ion-note>
+              </ion-label>
+            </ion-item>
+          </ion-label>
+        </ion-card-header>
+        <ion-list>
+          <ion-item color="light">
+            <ion-avatar slot="start">
+              <img
+                src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
+            </ion-avatar>
             <ion-label>
-              <h1><b>OrderID : 4563</b></h1>
-              <ion-text color="warning">
-                <h3>B120 (2 รายการ)</h3>
+              <h3><b>{{item.restaurant.name}}</b></h3>
+              <ion-text color="secondary">
+                <p class="ion-text-wrap">{{item.restaurant.address}}</p>
               </ion-text>
             </ion-label>
-            <ion-label>
-              <ion-note slot="end" class="ion-text-end">
-                <ion-text color="dark">
-                  <h3>
-                    <ion-icon name="time-outline"></ion-icon> 15 พ.ค. 2563(11.40 น.)
-                  </h3>
-                  <br>
-                </ion-text>
-              </ion-note>
-            </ion-label>
           </ion-item>
-        </ion-label>
-      </ion-card-header>
-      <ion-list>
-        <ion-item color="light">
-          <ion-avatar slot="start">
-            <img
-              src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
-          </ion-avatar>
-          <ion-label>
-            <h3><b>ร้าน Wib cafe</b></h3>
-            <ion-text color="secondary">
-              <p class="ion-text-wrap"> 147/2 นะจ๊ะ เเเเเเเเเเเเเเเเเเเเเเเเ เเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเ</p>
-            </ion-text>
-          </ion-label>
-        </ion-item>
 
-        <ion-item color="light">
-          <ion-avatar slot="start">
-            <img
-              src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
-          </ion-avatar>
-          <ion-label>
-            <h3><b>เอร์นไง</b></h3>
-            <ion-text color="secondary">
-              <p class="ion-text-wrap"> 147/2 นะจ๊ะ เเเเเเเเเเเเเเเเเเเเเเเเ เเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเ</p>
-            </ion-text>
-          </ion-label>
-        </ion-item>
-        <ion-item color="light" lines="none">
-          <ion-avatar slot="start">
-          </ion-avatar>
-          <ion-avatar slot="start">
-            <img
-              src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
-          </ion-avatar>
-          <ion-label>
-            <ion-text>
-              <h3><b>Driver Namexxx</b></h3>
-              <h3><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
-            </ion-text>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-      <br>
-    </ion-card>
-
-    <ion-card color="light">
-      <ion-card-header class="ion-no-padding ion-padding-horizontal ion-margin-top">
-        <ion-label>
-          <ion-item lines="none" color="light">
+          <ion-item color="light">
+            <ion-avatar slot="start">
+              <img
+                src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
+            </ion-avatar>
             <ion-label>
-              <h1><b>OrderID : 1452</b></h1>
-              <ion-text color="warning">
-                <h3>B120 (2 รายการ)</h3>
+              <h3><b>{{item.customer.name}}</b></h3>
+              <ion-text color="secondary">
+                <p class="ion-text-wrap">{{item.customer.address}}</p>
               </ion-text>
             </ion-label>
+          </ion-item>
+          <ion-item color="light" lines="none">
+            <ion-avatar slot="start">
+            </ion-avatar>
+            <ion-avatar slot="start">
+              <img
+                src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
+            </ion-avatar>
             <ion-label>
-              <ion-note slot="end" class="ion-text-end">
-                <ion-text color="dark">
-                  <h3>
-                    <ion-icon name="time-outline"></ion-icon> 15 พ.ค. 2563(11.40 น.)
-                  </h3>
-                  <br>
-                </ion-text>
-              </ion-note>
+              <ion-text>
+                <h3><b>Driver Name {{item.delivery.name}}</b></h3>
+                <h3><b>สถานะ : ยังไม่ได้ binding</b></h3>
+              </ion-text>
             </ion-label>
           </ion-item>
-        </ion-label>
-      </ion-card-header>
-      <ion-list>
-        <ion-item color="light">
-          <ion-avatar slot="start">
-            <img
-              src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
-          </ion-avatar>
-          <ion-label>
-            <h3><b>ร้าน Wib cafe</b></h3>
-            <ion-text color="secondary">
-              <p class="ion-text-wrap"> 147/2 นะจ๊ะ เเเเเเเเเเเเเเเเเเเเเเเเ เเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเ</p>
-            </ion-text>
-          </ion-label>
-        </ion-item>
+        </ion-list>
+        <br>
+      </ion-card>
 
-        <ion-item color="light">
-          <ion-avatar slot="start">
-            <img
-              src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
-          </ion-avatar>
-          <ion-label>
-            <h3><b>เอร์นไง</b></h3>
-            <ion-text color="secondary">
-              <p class="ion-text-wrap"> 147/2 นะจ๊ะ เเเเเเเเเเเเเเเเเเเเเเเเ เเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเ</p>
-            </ion-text>
-          </ion-label>
-        </ion-item>
-        <ion-item color="light" lines="none">
-          <ion-avatar slot="start">
-          </ion-avatar>
-          <ion-avatar slot="start">
-            <img
-              src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
-          </ion-avatar>
-          <ion-label>
-            <ion-text>
-              <h3><b>Driver Namexxx</b></h3>
-              <h3><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
-            </ion-text>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-      <br>
-    </ion-card>
+      <ion-card color="light" class="ion-text-center" *ngIf="!data || data.length == 0">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <ion-text class="ion-text-center" color="primary">
+          <h5>
+            <b>
+              ไม่มีรายการ
+            </b>
+          </h5>
+        </ion-text>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </ion-card>
+    </ng-container>
   </div>
 </ion-content>

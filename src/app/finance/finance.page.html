@@ -7,7 +7,7 @@
 <ion-content mode="ios">
 
   <ion-item lines="none" class="ion-margin-top">
-    <ion-button slot="end" size="default" shape="round" color="success" routerLink="/finance-create">
+    <ion-button slot="end" size="default" shape="round" color="success" [routerLink]="['finance-create']">
       <ion-icon name="add-outline" color="light"></ion-icon>
       เพิ่มรายการ
     </ion-button>
@@ -15,7 +15,7 @@
 
   <ng-container *ngIf="financeInfo$ | async as data">
     <ion-card color="light" *ngFor="let item of data">
-      <ion-item button color="light" class="ion-text-center" [routerLink]="['/finance-detail/', item._id]">
+      <ion-item button color="light" class="ion-text-center" [routerLink]="['finance-detail', item._id]">
         <ion-col size="4">
           <ion-text color="primary">
             <p><b>{{item.name}}</b></p>
