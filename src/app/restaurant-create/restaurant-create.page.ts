@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-restaurant-create',
@@ -7,9 +9,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantCreatePage implements OnInit {
 
-  constructor() { }
+  public fg: FormGroup;
+  public contactInfo$ = Promise.resolve([]);
+  public commissionPercent: number;
+  public deliveryPricePerOrder: number;
+
+  constructor(private fb: FormBuilder, private adminSvc: AdminService) {
+    this.fg = this.fb.group({
+      'tel': null,
+      'manaCode': null,
+      'note': null,
+      'contractConditionId': null,
+    });
+  }
 
   ngOnInit() {
+    this.contactInfo$ = this.adminSvc.getContractCondition();
+    this.contactInfo$.then((it: any) => {
+      console.log(it);
+    });
+  }
+
+  getContractDetail() {
+    console.log(this.fg.get('contractConditionId').value);
+    this.adminSvc.getContractConditionById(this.fg.get('contractConditionId').value).then(it => {
+      console.log(it);
+      this.commissionPercent = it.commissionPercent;
+      this.deliveryPricePerOrder = it.deliveryPricePerOrder;
+      console.log(this.commissionPercent );
+      
+    });
+  }
+
+  handleSubmit() {
+    console.log(this.fg.value);
+    this.adminSvc.createAddRestaurant(this.fg.value);
   }
 
 }

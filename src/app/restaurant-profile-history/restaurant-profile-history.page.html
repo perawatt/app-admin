@@ -1,69 +1,57 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>restaurantProfileHistory</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>ประวัติการรับงาน</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content  mode="ios" class="ion-padding">
-  <ion-card color="light">
-    <ion-item button color="light" class="ion-text-center">
-      <ion-col size="4">
-        <ion-text color="primary">
-          <p><b>OrderID : 8888</b></p>
-        </ion-text>
-      </ion-col>
-      <ion-col size="4">
-        <ion-text color="success">
-          <p><b>สถานะ : จัดส่งสำเร็จ </b></p>
-        </ion-text>  
-      </ion-col>
-      <ion-col size="4">
-        <ion-text color="primary">
-          <p><b>15 พ.ค. 2563</b></p>
-        </ion-text>
-      </ion-col>
-    </ion-item>
-  </ion-card>
+<ion-content mode="ios" class="ion-padding">
+  <ng-container *ngIf="shopHistory$ | async as data">
+    <ion-card color="light" *ngFor="let item of data" [routerLink]="['restaurant-profile-history-detail', item._id]">
+      <ion-item button color="light" class="ion-text-center">
+        <ion-col size="4">
+          <ion-text color="primary">
+            <p><b>OrderID : {{ item._id }} </b></p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="4" *ngIf="item.doneDate">
+          <ion-text color="success">
+            <p><b>สถานะ : จัดส่งสำเร็จ </b></p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="4" *ngIf="!item.doneDate">
+          <ion-text color="danger">
+            <p><b>สถานะ : ยกเลิก </b></p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="4">
+          <ion-text color="primary">
+            <p><b> {{ item.createDate | date:'d MMM y'}} </b></p>
+          </ion-text>
+        </ion-col>
+      </ion-item>
+    </ion-card>
 
-  <ion-card color="light">
-    <ion-item button color="light" class="ion-text-center">
-      <ion-col size="4">
-        <ion-text color="primary">
-          <p><b>OrderID : 5555</b></p>
-        </ion-text>
-      </ion-col>
-      <ion-col size="4">
-        <ion-text color="success">
-          <p><b>สถานะ : จัดส่งสำเร็จ </b></p>
-        </ion-text>  
-      </ion-col>
-      <ion-col size="4">
-        <ion-text color="primary">
-          <p><b>12 พ.ค. 2563</b></p>
-        </ion-text>
-      </ion-col>
-    </ion-item>
-  </ion-card>
-
-  <ion-card color="light">
-    <ion-item button color="light" class="ion-text-center">
-      <ion-col size="4">
-        <ion-text color="primary">
-          <p><b>OrderID : 8898</b></p>
-        </ion-text>
-      </ion-col>
-      <ion-col size="4">
-        <ion-text color="danger">
-          <p><b>สถานะ : ยกเลิก </b></p>
-        </ion-text>  
-      </ion-col>
-      <ion-col size="4">
-        <ion-text color="primary">
-          <p><b>12 พ.ค. 2563</b></p>
-        </ion-text>
-      </ion-col>
-    </ion-item>
-  </ion-card>
-  
+    <ion-card color="light" class="ion-text-center" *ngIf="!data">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <ion-text class="ion-text-center" color="primary">
+        <h5>
+          <b>
+            ไม่มีรายการ
+          </b>
+        </h5>
+      </ion-text>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </ion-card>
+  </ng-container>
 </ion-content>
-

@@ -1,83 +1,60 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>restaurant</ion-title>
+    <ion-title>Restaurant Management</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content mode="ios">
   <ion-item lines="none" class="ion-margin-top">
-    <ion-button slot="end" size="default" shape="round" color="success">
+    <ion-button slot="end" size="default" shape="round" color="success" [routerLink]="['restaurant-create']">
       <ion-icon name="add-outline" color="light"></ion-icon>
       เพิ่มคำขอ
     </ion-button>
   </ion-item>
 
-  <ion-card color="light">
-    <ion-item button  color="light" class="ion-text-center">
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-          <img src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
+  <ng-container *ngIf="getRestaurant$ | async as data">
+    <ion-card color="light" *ngFor="let item of data" [routerLink]="['restaurant-profile', item._id, item.name]">
+      <ion-item button color="light" class="ion-text-center">
+        <ion-avatar slot="start">
+        </ion-avatar>
+        <ion-avatar slot="start">
+        </ion-avatar>
+        <ion-avatar slot="start">
+        </ion-avatar>
+        <ion-avatar slot="start">
+          <img [src]="item.logoImage !=null ? item.logoImage : ''">
         </ion-avatar>
         <ion-col size="7" class="ion-text-left">
           <ion-text color="primary">
-            <p><b> Wib Cafe</b></p>
+            <p><b> {{ item.name }} </b></p>
           </ion-text>
         </ion-col>
         <ion-col size="5">
-          <ion-text color="primary" >
-            <p><b> 12 พ.ค. 2563 </b></p>
-          </ion-text>
-        </ion-col>
-    </ion-item>
-  </ion-card>
-
-  <ion-card color="light">
-    <ion-item  button color="light" class="ion-text-center">
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-      </ion-avatar>
-      <ion-avatar slot="start">
-          <img src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
-        </ion-avatar>
-        <ion-col size="7" class="ion-text-left">
           <ion-text color="primary">
-            <p><b> Kindee</b></p>
+            <p><b> {{ item.acceptContractDate | date:'d MMM y' }} </b></p>
           </ion-text>
         </ion-col>
-        <ion-col size="5">
-          <ion-text color="warning">
-            <p><b> กำลังพิจารณา </b></p>
-          </ion-text>
-        </ion-col>
-    </ion-item>
-  </ion-card>
+      </ion-item>
+    </ion-card>
 
-  <ion-card color="light" class="ion-text-center">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <ion-text class="ion-text-center" color="primary">
-      <h5>
-        <b>
-          ไม่มีรายการ
-        </b>
-      </h5>
-    </ion-text>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </ion-card>
-
+    <ion-card color="light" class="ion-text-center" *ngIf="!data">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <ion-text class="ion-text-center" color="primary">
+        <h5>
+          <b>
+            ไม่มีรายการ
+          </b>
+        </h5>
+      </ion-text>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </ion-card>
+  </ng-container>
 </ion-content>
