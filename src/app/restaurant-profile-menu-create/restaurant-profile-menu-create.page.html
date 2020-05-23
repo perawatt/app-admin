@@ -20,17 +20,13 @@
           </ion-select>
         </ion-item>
         <ion-item color="light" lines="none">
-          <img class="ion-margin-vertical" [src]="displayPhoto()">
+          <img class="ion-margin-vertical"
+            src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
           <ion-button shape="round" size="default" color="secondary">
             <!-- <ion-label color=" light">เปลี่ยนรูป</ion-label> -->
             <ion-input type="file" accept="photo" multiple="true" (ionChange)="selectPhoto($event)">
             </ion-input>
           </ion-button>
-        </ion-item>
-
-        <ion-item *ngIf="filesSelected" color=" light" lines="inset">
-          <h2>Upload Progress</h2>
-          <pre>{{uploadProgress$ | async | json}}</pre>
         </ion-item>
         <ion-item color=" light" lines="inset">
           <ion-input placeholder="กรุณาตั้งชื่อเมนูของคุณ"></ion-input>
@@ -53,8 +49,7 @@
               ยกเลิก
             </ion-label>
           </ion-button>
-          <ion-button slot="end" color="success" shape="round" class="buttonWidth" (click)="uploadFile()"
-            size="default">
+          <ion-button slot="end" color="success" shape="round" class="buttonWidth" (click)="submit()" size="default">
             <ion-label color="light">
               บันทึก
             </ion-label>
