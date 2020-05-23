@@ -7,10 +7,13 @@ import { AdminService } from 'src/services/admin.service';
   styleUrls: ['./operation.page.scss'],
 })
 export class OperationPage implements OnInit {
+  unFinishedOrderinfo$ = Promise.resolve([]);
+  cancelRequestOrderinfo$ = Promise.resolve([]);
 
   messageTable: string;
   attention: string = 'attention';
   order: string = 'order';
+
   constructor(private adminSvc: AdminService) { }
 
   ngOnInit() {
@@ -18,4 +21,15 @@ export class OperationPage implements OnInit {
     this.messageTable = "attention";
   }
 
+  ionViewDidEnter() {
+      this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
+      this.cancelRequestOrderinfo$.then((it: any) => {
+        console.log(it);
+      });
+      
+      this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
+      this.unFinishedOrderinfo$.then((it: any) => {
+        console.log(it);
+      });
+    }
 }
