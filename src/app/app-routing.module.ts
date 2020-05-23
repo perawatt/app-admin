@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./finance/finance.module').then(m => m.FinancePageModule)
   },
   {
-    path: 'contract',
-    loadChildren: () => import('./contract/contract.module').then(m => m.ContractPageModule)
-  },
-  {
     path: 'restaurant-profile-menu',
     loadChildren: () => import('./restaurant-profile-menu/restaurant-profile-menu.module').then(m => m.RestaurantProfileMenuPageModule)
   },
@@ -76,8 +72,16 @@ const routes: Routes = [
     loadChildren: () => import('./restaurant-create-qr/restaurant-create-qr.module').then(m => m.RestaurantCreateQrPageModule)
   },
   {
+    path: 'contract',
+    loadChildren: () => import('./contract/contract.module').then(m => m.ContractPageModule)
+  },
+  {
     path: 'contract/contract-detail/:contractConditionId',
     loadChildren: () => import('./contract-detail/contract-detail.module').then(m => m.ContractDetailPageModule)
+  },
+  {
+    path: 'contract/contract-create',
+    loadChildren: () => import('./contract-create/contract-create.module').then(m => m.ContractCreatePageModule)
   },
   {
     path: 'operation-confirm-cancel-order',
@@ -102,10 +106,6 @@ const routes: Routes = [
   {
     path: 'finance-detail/:_id',
     loadChildren: () => import('./finance-detail/finance-detail.module').then(m => m.FinanceDetailPageModule)
-  },
-  {
-    path: 'contract-create',
-    loadChildren: () => import('./contract-create/contract-create.module').then(m => m.ContractCreatePageModule)
   },
   {
     path: 'operation-attention-list',
