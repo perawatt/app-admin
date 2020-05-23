@@ -1,88 +1,101 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>อานนท์ บางสาน</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content mode="ios" class="ion-padding">
-  <ion-card color="light" class="ion-padding">
-    <ion-card-header>
-      <ion-avatar class="avatar center">
-        <img src="https://cf.shopee.co.th/file/c0f005d6a465eb0813d6062467c9cd12_tn">
-      </ion-avatar>
-      <ion-item color="light" lines="none">
-        <ion-col class="ion-no-padding" color="light" size="0.5">
-        </ion-col>
-        <ion-col class="ion-no-padding" color="light">
-          <ion-item color="light" class="ion-margin-top">
-            <ion-label>
-              <h1><b>ชื่อ : อานนท์ บางสาน</b></h1>
-              <h1><b>Biker ID : 1234</b></h1>
-              <h1><b>Rating 4.7</b></h1>
-            </ion-label>
-            <ion-button slot="end" shape="round"  class="buttonWidth" size="default">
+  <ng-container *ngIf="bikerInfo$ | async as data">
+    <ion-card color="light" class="ion-padding">
+      <ion-card-header>
+        <ion-avatar class="avatar center">
+          <img src="{{data.profileImage}}">
+        </ion-avatar>
+        <ion-item color="light" lines="none">
+          <ion-col class="ion-no-padding" color="light" size="0.5">
+          </ion-col>
+          <ion-col class="ion-no-padding" color="light">
+            <ion-item color="light" class="ion-margin-top">
               <ion-label>
-                พักงาน
+                <h1><b>ชื่อ : {{ data.name }}</b></h1>
+                <h1><b>Biker ID : {{ data._id }}</b></h1>
+                <h1><b>Rating : ยังไม่เปิดบริการ</b></h1>
               </ion-label>
-            </ion-button>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h1><b>สถานะ</b></h1>
-            </ion-label>
-            <ion-note slot="end" class="ion-text-end">
-              <ion-label color="success">
-                <h2>
-                  <b>
-                    เปิดรับร้าน
-                  </b>
-                </h2>
-              </ion-label>
-            </ion-note>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h2><b>ติดต่อ</b></h2>
-              <p>085-632-1478</p>
-            </ion-label>
-            <ion-note slot="end" class="ion-text-end">
-              <ion-label color="success">
-                <h2>
-                  <ion-icon name="call"></ion-icon>
-                  <b>ติดต่อ</b>
-                </h2>
-                <ion-text color="dark">
-                  <p><b>&nbsp;</b></p>
-                </ion-text>
-              </ion-label>
-            </ion-note>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h2><b>ที่อยู่</b></h2>
-              <p class="ion-text-wrap">147/2 พิมานคอนโดพาร์ค, ตำบล ศิลา, อำเภอเมืองขอนแก่น, ขอนแก่น, 40000</p>
-            </ion-label>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h2><b>บันทึกเพิ่มเติม</b></h2>
-              <p>....</p>
-            </ion-label>
-          </ion-item>
-          <ion-item lines="none" color="light" class="ion-margin-top">
-            <ion-button slot="start" color="danger" shape="round" size="default">
+              <ion-button slot="end" shape="round" class="buttonWidth" size="default">
+                <ion-label> พักงาน</ion-label>
+              </ion-button>
+            </ion-item>
+            <ion-item color="light">
               <ion-label>
-                ประวัติการรับงาน
+                <h1><b>สถานะ</b></h1>
               </ion-label>
-            </ion-button>
-            <ion-button slot="start" color="danger"  class="buttonWidth" shape="round" size="default">
+              <ion-note slot="end" class="ion-text-end">
+                <ng-container *ngIf="data.onWorkStatus">
+                  <ion-label color="success">
+                    <h2><b>เปิดรับงาน</b></h2>
+                  </ion-label>
+                </ng-container>
+                <ng-container *ngIf="!data.onWorkStatus">
+                  <ion-label color="danger">
+                    <h2><b>ปิดรับงาน</b></h2>
+                  </ion-label>
+                </ng-container>
+              </ion-note>
+            </ion-item>
+            <ion-item color="light">
               <ion-label>
-                การเงิน
+                <h2><b>ติดต่อ</b></h2>
+                <p>{{ data.tel }}</p>
               </ion-label>
-            </ion-button>
-          </ion-item>
-        </ion-col>
-      </ion-item>
-    </ion-card-header>
-  </ion-card>
+              <ion-note slot="end" class="ion-text-end">
+                <ion-label color="success">
+                  <h2>
+                    <ion-icon name="call"></ion-icon><b>ติดต่อ</b>
+                  </h2>
+                  <ion-text color="dark">
+                    <p><b>&nbsp;</b></p>
+                  </ion-text>
+                </ion-label>
+              </ion-note>
+            </ion-item>
+            <ion-item color="light">
+              <ion-label>
+                <h2><b>ที่อยู่</b></h2>
+                <ng-container *ngIf="data.address">
+                  <p class="ion-text-wrap">{{ data.address }}</p>
+                </ng-container>
+                <ng-container *ngIf="!data.address">
+                  <ion-label>
+                    <p class="ion-text-wrap">-</p>
+                  </ion-label>
+                </ng-container>
+              </ion-label>
+            </ion-item>
+            <ion-item color="light">
+              <ion-label>
+                <h2><b>บันทึกเพิ่มเติม</b></h2>
+                <ng-container *ngIf="data.note">
+                  <p>{{ data.note }}</p>
+                </ng-container>
+                <ng-container *ngIf="!data.note">
+                  <p>-</p>
+                </ng-container>
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none" color="light" class="ion-margin-top">
+              <ion-button slot="start" color="danger" shape="round" size="default" [routerLink]="['biker-history',data._id]">
+                <ion-label>ประวัติการรับงาน</ion-label>
+              </ion-button>
+              <ion-button slot="start" color="danger" class="buttonWidth" shape="round" size="default" [routerLink]="['biker-balance']">
+                <ion-label>การเงิน</ion-label>
+              </ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-item>
+      </ion-card-header>
+    </ion-card>
+  </ng-container>
 </ion-content>
