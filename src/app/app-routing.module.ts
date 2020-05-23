@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./restaurant/restaurant.module').then(m => m.RestaurantPageModule)
   },
   {
-    path: 'biker',
-    loadChildren: () => import('./biker/biker.module').then(m => m.BikerPageModule)
-  },
-  {
     path: 'finance',
     loadChildren: () => import('./finance/finance.module').then(m => m.FinancePageModule)
   },
@@ -48,16 +44,28 @@ const routes: Routes = [
     loadChildren: () => import('./restaurant-profile/restaurant-profile.module').then(m => m.RestaurantProfilePageModule)
   },
   {
-    path: 'biker-detail',
+    path: 'biker',
+    loadChildren: () => import('./biker/biker.module').then(m => m.BikerPageModule)
+  },
+  {
+    path: 'biker/biker-detail/:bikerId',
     loadChildren: () => import('./biker-detail/biker-detail.module').then(m => m.BikerDetailPageModule)
   },
   {
-    path: 'biker-balance',
+    path: 'biker/biker-detail/:bikerId/biker-balance',
     loadChildren: () => import('./biker-balance/biker-balance.module').then(m => m.BikerBalancePageModule)
   },
   {
-    path: 'biker-history',
+    path: 'biker/biker-detail/:bikerId/biker-history/:bikerId',
     loadChildren: () => import('./biker-history/biker-history.module').then(m => m.BikerHistoryPageModule)
+  },
+  {
+    path: 'biker/biker-detail/:bikerId/biker-history/:bikerId/biker-history-detail/:orderId',
+    loadChildren: () => import('./biker-history-detail/biker-history-detail.module').then(m => m.BikerHistoryDetailPageModule)
+  },
+  { 
+    path: 'biker/biker-create',
+    loadChildren: () => import('./biker-create/biker-create.module').then( m => m.BikerCreatePageModule)
   },
   {
     path: 'restaurant-profile-history',
@@ -112,20 +120,12 @@ const routes: Routes = [
     loadChildren: () => import('./operation-attention-list/operation-attention-list.module').then(m => m.OperationAttentionListPageModule)
   },
   {
-    path: 'biker-history-detail',
-    loadChildren: () => import('./biker-history-detail/biker-history-detail.module').then(m => m.BikerHistoryDetailPageModule)
-  },
-  {
     path: 'restaurant-profile-history-detail',
     loadChildren: () => import('./restaurant-profile-history-detail/restaurant-profile-history-detail.module').then(m => m.RestaurantProfileHistoryDetailPageModule)
   },
   {
     path: 'operation-order-detail',
     loadChildren: () => import('./operation-order-detail/operation-order-detail.module').then(m => m.OperationOrderDetailPageModule)
-  },
-  {
-    path: 'biker-create',
-    loadChildren: () => import('./biker-create/biker-create.module').then( m => m.BikerCreatePageModule)
   },
   {
     path: 'operation-order-cancel',
