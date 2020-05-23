@@ -4,7 +4,7 @@ import { Observable, from } from 'rxjs';
 import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
 import { ISasToken } from 'src/services/blob-storage/azureStorage';
 import { map, combineAll } from 'rxjs/operators';
-import { IUploadProgress } from 'src/services/iblob-storage';
+import { IUploadProgress } from 'src/services/blob-storage/iblob-storage';
 
 
 @Component({

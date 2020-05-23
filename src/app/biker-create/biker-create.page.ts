@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUploadProgress, ISasToken } from 'src/services/iblob-storage';
+import { IUploadProgress, ISasToken } from 'src/services/blob-storage/iblob-storage';
 import { AdminService } from 'src/services/admin.service';
 import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
 import { Observable, from } from 'rxjs';
