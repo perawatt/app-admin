@@ -13,6 +13,47 @@ export class AdminService implements IAdminService {
     let apiUrl = this.baseUrl + "GetAdminInfo/" + AdminInfo.adminId;
     return this.http.get(apiUrl).toPromise();
   }
+  //Restaurant
+  getRestaurant(): Promise<any> {
+    let apiUrl = this.baseUrl + "GetRestaurant/" + AdminInfo.deliveryId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  getRestaurantById(restaurantId: string): Promise<any> {
+    let apiUrl = this.baseUrl + "GetRestaurant/" + AdminInfo.deliveryId + "/" + restaurantId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  getRestaurantMenu(restaurantId: string): Promise<any> {
+    let apiUrl = this.baseUrl + "GetRestaurantMenu/" + AdminInfo.deliveryId + '/' + restaurantId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  getCategoryList(restaurantId: string): Promise<any> {
+    let apiUrl = this.baseUrl + "GetCategory/" + AdminInfo.deliveryId + '/' + restaurantId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  getRestaurantOrderHistory(restaurantId: string): Promise<any> {
+    let apiUrl = this.baseUrl + "RestaurantOrderHistory/" + AdminInfo.deliveryId + "/" + restaurantId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  createAddRestaurant(data: any): Promise<any> {
+    let apiUrl = this.baseUrl + "AddRestaurant/" + AdminInfo.deliveryId;
+    return this.http.post(apiUrl, data).toPromise();
+  }
+
+  createCategory(restaurantId: string, data: any): Promise<any> {
+    let apiUrl = this.baseUrl + "CreateCategory/" + AdminInfo.deliveryId + '/' + restaurantId;
+    return this.http.post(apiUrl, data).toPromise();
+  }
+
+  createProduct(restaurantId: string, data: any): Promise<any> {
+    let apiUrl = this.baseUrl + "createProduct/" + AdminInfo.deliveryId + '/' + restaurantId;
+    return this.http.post(apiUrl, data).toPromise();
+  }
+  //
 
   getUnfinishedOrder(): Promise<any> {
     let apiUrl = this.baseUrl + "GetUnfinishedOrder/" + AdminInfo.deliveryId;
@@ -42,26 +83,6 @@ export class AdminService implements IAdminService {
   updateSendCancelDeny(cancelId: string): Promise<any> {
     let apiUrl = this.baseUrl + "SendCancelDeny/" + AdminInfo.adminId + "/" + AdminInfo.deliveryId + "/" + cancelId;
     return this.http.put(apiUrl, {}).toPromise();
-  }
-
-  getRestaurant(): Promise<any> {
-    let apiUrl = this.baseUrl + "GetRestaurant/" + AdminInfo.deliveryId;
-    return this.http.get(apiUrl).toPromise();
-  }
-
-  getRestaurantById(restaurantId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "GetRestaurant/" + AdminInfo.deliveryId + "/" + restaurantId;
-    return this.http.get(apiUrl).toPromise();
-  }
-
-  createAddRestaurant(data: any): Promise<any> {
-    let apiUrl = this.baseUrl + "AddRestaurant/" + AdminInfo.deliveryId;
-    return this.http.post(apiUrl, data).toPromise();
-  }
-
-  getRestaurantOrderHistory(restaurantId: string): Promise<any> {
-    let apiUrl = this.baseUrl + "RestaurantOrderHistory/" + AdminInfo.deliveryId + "/" + restaurantId;
-    return this.http.get(apiUrl).toPromise();
   }
 
   getBiker(): Promise<any> {
