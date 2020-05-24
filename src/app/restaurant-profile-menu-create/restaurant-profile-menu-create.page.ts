@@ -5,6 +5,8 @@ import { BlobStorageService } from 'src/services/blob-storage/blob-storage.servi
 import { ISasToken } from 'src/services/blob-storage/azureStorage';
 import { map, combineAll } from 'rxjs/operators';
 import { IUploadProgress } from 'src/services/blob-storage/iblob-storage';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,13 +15,25 @@ import { IUploadProgress } from 'src/services/blob-storage/iblob-storage';
   styleUrls: ['./restaurant-profile-menu-create.page.scss'],
 })
 export class RestaurantProfileMenuCreatePage implements OnInit {
+  fg: FormGroup;
+  restaurantId: string;
   file: any;
   sas: any;
   config: any;
+  catagory$ = Promise.resolve([]);
   uploadProgress$: Observable<IUploadProgress[]>;
-  constructor(private admindSvc: AdminService, private blobStorage: BlobStorageService) { }
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private admindSvc: AdminService, private blobStorage: BlobStorageService) {
+    this.fg = this.fb.group({
+      'name': [null, Validators.required],
+      "categoryName": [null, Validators.required],
+      "previewImageId": '',
+      "price": [0, Validators.required],
+      "note": ''
+    });
+  }
 
   ngOnInit() {
+    this.catagory$ = this.admindSvc.getCategoryList('1');
   }
 
   selectPhoto(event) {
@@ -33,13 +47,19 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   submit() {
-    this.admindSvc.getSasToken().then(it => {
-      this.sas = it;
-      this.uploadProgress$ = from(this.file as FileList).pipe(
-        map(file => this.uploadFile(file)),
-        combineAll(),
-      );
-    })
+    console.log(this.fg);
+
+    if (this.fg.valid) {
+      this.admindSvc.createProduct('1', this.fg.value).then(_ => {
+        this.admindSvc.getSasToken().then(it => {
+          this.sas = it;
+          this.uploadProgress$ = from(this.file as FileList).pipe(
+            map(file => this.uploadFile(file)),
+            combineAll(),
+          );
+        })
+      });
+    }
   }
 
   uploadFile(file: File): Observable<IUploadProgress> {
