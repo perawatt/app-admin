@@ -1,4 +1,5 @@
 <ion-content color="light">
+  <form [formGroup]="fg" (ngSubmit)="handleSubmit()">
   <ion-card-header class="ion-no-padding ion-padding-horizontal ion-margin-top">
     <ion-list-header color="light">
       <ion-label class="ion-margin-top">
@@ -11,9 +12,9 @@
       <ion-col size="11" class="padding">
         <ion-item color="light">
           <ion-label color="dark">สาเหตุการยกเลิก</ion-label>
-          <ion-select interface="popover">
-            <ion-select-option value="1">1</ion-select-option>
-            <ion-select-option value="2">2</ion-select-option>
+          <ion-select formControlName="heading" interface="action-sheet" slot="end">
+            <ion-select-option value="รถเสีย">รถเสีย</ion-select-option>
+            <ion-select-option value="น้ำท่วม">น้ำท่วม</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
@@ -24,20 +25,20 @@
       <ion-label class="ion-margin-top">
         <h1><b>บันทึกเพิ่มเติม</b></h1>
         <ion-item color="light" class="ion-padding-top">
-          <ion-input type=""></ion-input>
+          <ion-input formControlName="info" type=""></ion-input>
         </ion-item>
       </ion-label>
     </ion-list-header>
 
     <ion-item lines="none" color="light" class="ion-padding-top">
-      <ion-button slot="end" color="danger" shape="round" size="default">
+      <ion-button slot="end" color="danger" shape="round" size="default" (click)="cancalModal()">
         <ion-label color="light">
           <h2>
             ยกเลิก
           </h2>
         </ion-label>
       </ion-button>
-      <ion-button slot="end" color="success" shape="round" size="default">
+      <ion-button type="submit" slot="end" color="success" shape="round" size="default">
         <ion-label color="light">
           <h2>
             ตกลง
@@ -46,4 +47,6 @@
       </ion-button>
     </ion-item>
   </ion-card-header>
+</form>
+
 </ion-content>
