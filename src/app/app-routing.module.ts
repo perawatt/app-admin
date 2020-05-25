@@ -56,11 +56,11 @@ const routes: Routes = [
     loadChildren: () => import('./biker-balance/biker-balance.module').then(m => m.BikerBalancePageModule)
   },
   {
-    path: 'biker/biker-detail/:bikerId/biker-history/:bikerId',
+    path: 'biker/biker-detail/:bikerId/biker-history',
     loadChildren: () => import('./biker-history/biker-history.module').then(m => m.BikerHistoryPageModule)
   },
   {
-    path: 'biker/biker-detail/:bikerId/biker-history/:bikerId/biker-history-detail/:orderId',
+    path: 'biker/biker-detail/:bikerId/biker-history/biker-history-detail/:orderId',
     loadChildren: () => import('./biker-history-detail/biker-history-detail.module').then(m => m.BikerHistoryDetailPageModule)
   },
   { 
