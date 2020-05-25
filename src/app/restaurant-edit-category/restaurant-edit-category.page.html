@@ -6,36 +6,26 @@
 
 <ion-content mode="ios" class="ion-padding">
   <ion-card color="light" class="ion-padding-bottom">
-    <ion-card-content >
+    <ion-card-content>
+
       <ion-list class="ion-no-padding" color="light" lines="inset">
         <ion-item lines="none" color="light">
-          <ion-button class="buttonWidth" slot="end" color="success" shape="round" size="default">
+          <ion-button class="buttonWidth" slot="end" (click)="createCategoty()" color="success" shape="round"
+            size="default">
             <ion-label color="light">
-                เพิ่มหมวดหมู่
+              เพิ่มหมวดหมู่
             </ion-label>
           </ion-button>
         </ion-item>
-        <ion-item color="light" >
-          <ion-label>
-            <h2><b>เครื่องดื่มเย็น</b></h2>
-          </ion-label>
-          <ion-button expand="full" fill="clear" slot="end"><b>เปลี่ยนชื่อ</b></ion-button>
-          <ion-button expand="full" fill="clear" slot="end"><b>ลบ</b></ion-button>
-        </ion-item>
-        <ion-item color="light">
-          <ion-label>
-            <h2><b>เครื่องดื่มร้อน</b></h2>
-          </ion-label>
-          <ion-button expand="full" fill="clear" slot="end"><b>เปลี่ยนชื่อ</b></ion-button>
-          <ion-button expand="full" fill="clear" slot="end"><b>ลบ</b></ion-button>
-        </ion-item>
-        <ion-item color="light">
-          <ion-label>
-            <h2><b>เครื่องดื่มปั่น</b></h2>
-          </ion-label>
-          <ion-button expand="full" fill="clear" slot="end"><b>เปลี่ยนชื่อ</b></ion-button>
-          <ion-button expand="full" fill="clear" slot="end"><b>ลบ</b></ion-button>
-        </ion-item>
+        <ng-container *ngIf="data$ |async as item ">
+          <ion-item *ngFor="let data of item" color="light">
+            <ion-label>
+              <h2><b>{{data.categoryName}}</b></h2>
+            </ion-label>
+            <ion-button expand="full" fill="clear" slot="end"><b>เปลี่ยนชื่อ</b></ion-button>
+            <ion-button expand="full" fill="clear" slot="end"><b>ลบ</b></ion-button>
+          </ion-item>
+        </ng-container>
       </ion-list>
     </ion-card-content>
   </ion-card>
