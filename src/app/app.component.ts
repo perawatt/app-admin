@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   flows: Array<any> = [
     { name: 'Operation', path: '/operation' },
-    { name: 'Restaurant', path: '/restaurant' },
-    { name: 'Biker', path: '/biker' },
+    { name: 'Restaurant Management', path: '/restaurant' },
+    { name: 'Biker Management', path: '/biker' },
     { name: 'Finance', path: '/finance' },
     { name: 'Contract', path: '/contract' },
   ]
