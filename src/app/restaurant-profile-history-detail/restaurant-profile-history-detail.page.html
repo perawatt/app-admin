@@ -16,7 +16,7 @@
             <h1><b>OrderID : {{ data.orderDetail?._id }} </b></h1>
             <br>
             <ion-text color="warning">
-              <h3>B120 (2 รายการ)</h3>
+              <h3>฿{{ data.orderDetail?.totalPrice }} ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
             </ion-text>
           </ion-label>
 
@@ -74,13 +74,9 @@
           </ion-label>
         </ion-item>
 
-
-        
-
          <ion-row class="boxStepProgressBar">
           <ion-col size="1.1"></ion-col>
           <div>
-           
             <li *ngIf="data.orderDetail.createDate"><div class="nodeSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
             <li *ngIf="!data.orderDetail.createDate"><div class="nodeUnSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
 
