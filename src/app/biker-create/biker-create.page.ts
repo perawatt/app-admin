@@ -5,6 +5,8 @@ import { BlobStorageService } from 'src/services/blob-storage/blob-storage.servi
 import { Observable, from } from 'rxjs';
 import { combineAll, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-biker-create',
@@ -12,12 +14,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./biker-create.page.scss'],
 })
 export class BikerCreatePage implements OnInit {
+
   fg: FormGroup;
   file: any;
   sas: any;
   config: any;
   uploadProgress$: Observable<IUploadProgress[]>;
-  constructor(private fb: FormBuilder, private admindSvc: AdminService, private blobStorage: BlobStorageService) {
+
+  constructor(private navCtrl: NavController,private route: Router,private fb: FormBuilder, private admindSvc: AdminService, private blobStorage: BlobStorageService) {
     this.fg = this.fb.group({
       'manaCode': [null, Validators.required],
       'name': [null, Validators.required],
@@ -51,6 +55,7 @@ export class BikerCreatePage implements OnInit {
             combineAll(),
           );
         })
+        this.route.navigate(['/biker']);
       })
     }
   }
@@ -71,5 +76,9 @@ export class BikerCreatePage implements OnInit {
       filename: file.name,
       progress: progress
     };
+  }
+
+  Back(){
+    this.navCtrl.back();
   }
 }
