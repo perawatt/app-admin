@@ -100,7 +100,11 @@ const routes: Routes = [
     loadChildren: () => import('./operation-confirm-cancel-order/operation-confirm-cancel-order.module').then(m => m.OperationConfirmCancelOrderPageModule)
   },
   {
-    path: 'operation/operation-order-detail/:_id/operation-attention-detail',
+    path: 'operation/operation-order-detail/:orderId/operation-attention-detail',
+    loadChildren: () => import('./operation-attention-detail/operation-attention-detail.module').then(m => m.OperationAttentionDetailPageModule)
+  },
+  {
+    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-history/restaurant-profile-history-detail/:orderId/operation-attention-detail',
     loadChildren: () => import('./operation-attention-detail/operation-attention-detail.module').then(m => m.OperationAttentionDetailPageModule)
   },
   {
