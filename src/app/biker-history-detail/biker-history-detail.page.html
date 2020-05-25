@@ -26,10 +26,10 @@
         <ion-col size="10" class="ion-no-padding">
           <ion-item color="light">
             <ion-label position="fixed"><b>ผู้แจ้ง : </b></ion-label>
-            <ion-input value="">{{ data.cancelRequest.request.senderName }} ({{ data.cancelRequest.request.senderType }})</ion-input>
+            <ion-input value="">{{ data.cancelRequest.request.senderName }}</ion-input>
             <ion-label slot="end" color="dark" enabled>
               <ion-icon name="time-outline"></ion-icon>
-              {{data.cancelRequest.confirmDate | date : 'dd MMM yyyy (hh:mm น.)'}}
+              {{data.orderDetail.acceptRequestDate | date : 'dd MMM yyyy (hh:mm น.)'}}
             </ion-label>
           </ion-item>
         </ion-col>
@@ -134,14 +134,14 @@
       <ion-item color="light" lines="none"></ion-item>
     </ion-card>
 
-    <ion-card color="light" class="ion-no-margin ion-margin-horizontal ion-margin-top" *ngIf="!data.orderDetail.cancelDate">
+    <ion-card color="light" class="ion-no-margin ion-margin-horizontal ion-margin-top" >
       <ion-card-header class="ion-no-padding ion-padding-horizontal ion-margin-top ion-margin-bottom">
         <ion-item color="light" lines="none">
           <ion-label>
             <h1><b>OrderID : {{ data.orderDetail._id }}</b></h1>
             <br>
             <ion-text color="warning">
-              <h3>B120 (2 รายการ)</h3>
+              <h3>฿{{ data.orderDetail.totalPrice }} ({{ data.orderDetail.totalQuantity }} รายการ)</h3>
             </ion-text>
           </ion-label>
 
@@ -149,7 +149,7 @@
             <ion-label>
               <ion-text color="dark">
                 <ion-icon name="time-outline"></ion-icon>
-                {{ data.orderDetail.createDate | date : 'dd MMM yyyy (hh:mm น.)' }}
+                {{ data.orderDetail.acceptRequestDate | date : 'dd MMM yyyy (hh:mm น.)' }}
               </ion-text>
             </ion-label>
             <br>
@@ -195,8 +195,8 @@
           <ion-col size="0.75"></ion-col>
           <ion-label>
             <ion-text>
-              <h3>เวลาประเมิน : 20 นาที</h3>
-              <h3>เวลาประเมิน : 25 นาที</h3>
+              <h3>เวลาประเมิน : 20 นาที (ยังไม่ได้ binding)</h3>
+              <h3>เวลาที่ใช้จริง : 25 นาที (ยังไม่ได้ binding)</h3>
             </ion-text>
           </ion-label>
         </ion-item>
@@ -233,8 +233,8 @@
         <ion-item color="light">
           <ion-col size="0.75"></ion-col>
           <ion-note class="ion-margin">
-            <ion-button shape="round" color="medium" type="submit">
-              <ion-label color="dark">
+            <ion-button shape="round" color="medium" [routerLink]="['biker-history-detail-order-list']" >
+              <ion-label color="">
                 <h3>รายการสั่งซื้อ</h3>
               </ion-label>
             </ion-button>
@@ -306,9 +306,7 @@
               <ion-col size="2">
                 <ion-text>
                   <ion-label color="success">
-                    <h2>
-                      <ion-icon color="success" slot="start" name="call"></ion-icon>&nbsp;ติดต่อ
-                    </h2>
+                    <h2><ion-icon color="success" slot="start" name="call"></ion-icon>&nbsp;ติดต่อ</h2>
                   </ion-label>
                 </ion-text>
               </ion-col>

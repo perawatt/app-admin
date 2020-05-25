@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>bikerHistory</ion-title>
+    <ion-title>ประวัติการรับงาน</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +24,7 @@
             </ion-col>
             <ion-col size="4">
               <ion-text color="primary">
-                <p><b>{{ data.doneDate | date : 'dd MMM yyyy (hh.mm น.)' }}</b></p>
+                <p><b>{{ data.acceptRequestDate | date : 'dd MMM yyyy (hh.mm น.)' }}</b></p>
               </ion-text>
             </ion-col>
           </ng-container> 
