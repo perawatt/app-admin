@@ -14,15 +14,16 @@ export class BikerHistoryDetailPage implements OnInit {
   orderId:string;
   orderInfo$:Promise<any>;
   title:string;
-  constructor(private route:ActivatedRoute,private adminSvc:AdminService) { 
+  constructor(private activedRoute:ActivatedRoute,private adminSvc:AdminService) { 
     this.haveEmployee = false
   }
 
   ngOnInit() {
-    this.route.params.subscribe(param => { this.orderId = param['orderId']});
+    this.orderId = this.activedRoute.snapshot.paramMap.get('orderId');
     this.orderInfo$ = this.adminSvc.getOrderDetail(this.orderId);
     this.orderInfo$.then((it)=>{
         this.title = it?.orderDetail?._id;
+        console.log(it);
     });
     
   }

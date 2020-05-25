@@ -26,7 +26,7 @@
         <ion-col size="10" class="ion-no-padding">
           <ion-item color="light">
             <ion-label position="fixed"><b>ผู้แจ้ง : </b></ion-label>
-            <ion-input value="">{{ data.cancelRequest.request.senderName }}</ion-input>
+            <ion-input value="">{{ data.cancelRequest.request.senderName }} ({{ data.cancelRequest.request.senderType }})</ion-input>
             <ion-label slot="end" color="dark" enabled>
               <ion-icon name="time-outline"></ion-icon>
               {{data.cancelRequest.confirmDate | date : 'dd MMM yyyy (hh:mm น.)'}}
@@ -71,8 +71,8 @@
         <ion-col size="0.8" class="ion-no-padding">
           <ion-item color="light" lines="none">
             <ion-note slot="end"><b>
-                <ion-icon color="success" name="checkmark-sharp"></ion-icon>
-              </b></ion-note>
+              <ion-icon   color="success" name="checkmark-sharp"></ion-icon>
+            </b></ion-note>
           </ion-item>
         </ion-col>
         <ion-col size="10" class="ion-no-padding">
@@ -86,7 +86,7 @@
         <ion-col size="2.2" class="ion-no-padding"></ion-col>
         <ion-col size="9" class="ion-no-padding">
           <ion-item color="light">
-              <ion-icon  *ngIf="data.cancelRequest.compensate" color="success" name="checkmark-sharp"></ion-icon>
+              <ion-icon *ngIf="data.cancelRequest.compensate" color="success" name="checkmark-sharp"></ion-icon>
               <ion-icon *ngIf="!data.cancelRequest.compensate" color="success"></ion-icon>
             <ion-label>
               <ion-note>
@@ -137,9 +137,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
-
       <ion-item color="light" lines="none"></ion-item>
-
     </ion-card>
 
     <ion-card color="light" class="ion-no-margin ion-margin-horizontal ion-margin-top" *ngIf="!data.orderDetail.cancelDate">
@@ -280,12 +278,12 @@
                   <h2>คนส่งอาหาร</h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="haveEmployee == true">
+              <ion-col size="3.5" *ngIf="data.orderDetail.biker.name">
                 <ion-label>
                   <h2>{{ data.orderDetail.biker.name }}</h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="haveEmployee == false">
+              <ion-col size="3.5" *ngIf="!data.orderDetail.biker.name">
                 <ion-label>
                   <h2>ยังไม่มีผู้รับงาน</h2>
                 </ion-label>
