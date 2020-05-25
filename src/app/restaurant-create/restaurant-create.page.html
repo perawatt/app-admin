@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button mode="md"></ion-back-button>
     </ion-buttons>
     <ion-title>เพิ่มคำขอ</ion-title>
   </ion-toolbar>
@@ -90,7 +90,7 @@
       </ion-row>
 
       <ion-item color="light" lines="none" class="ion-padding">
-        <ion-button slot="end" size="default" shape="round" color="danger" [routerLink]="['/restaurant/']">ยกเลิก</ion-button>
+        <ion-button slot="end" size="default" shape="round" color="danger" (click)="cancel()">ยกเลิก</ion-button>
         <ion-button slot="end" size="default" shape="round" color="success" type="submit">ยืนยัน</ion-button>
       </ion-item>
     </ion-card>

@@ -12,12 +12,12 @@ export class RestaurantProfileHistoryDetailPage implements OnInit {
   public orderId: string;
   public orderDetail$ = Promise.resolve([]);
 
-  constructor(private route: ActivatedRoute, private adminSvc: AdminService) {
+  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
     this.haveEmployee = false
   }
 
   ngOnInit() {
-    this.route.params.subscribe(param => { this.orderId = param["orderId"] });
+    this.orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
     console.log(this.orderId);
     this.getOrderDetail()
   }
