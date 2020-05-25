@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IAzureStorage, BLOB_STORAGE_TOKEN } from 'src/services/blob-storage/azureStorage';
 import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
 import { OperationOrderCancelPageModule } from './operation-order-cancel/operation-order-cancel.module';
+import { OperationConfirmCancelOrderPageModule } from './operation-confirm-cancel-order/operation-confirm-cancel-order.module';
 
 declare var AzureStorage: IAzureStorage;
 @NgModule({
@@ -22,6 +23,7 @@ declare var AzureStorage: IAzureStorage;
     IonicModule.forRoot(),
     HttpClientModule,
     OperationOrderCancelPageModule,
+    OperationConfirmCancelOrderPageModule,
     AppRoutingModule
   ],
   providers: [
