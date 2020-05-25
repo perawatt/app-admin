@@ -24,9 +24,22 @@
             </ion-text>
           </ion-col>
           <ion-col size="4" class="ion-text-left">
-            <ion-text color="success">
-              <p><b>สถานะ : ยังไม่ได้ binding</b></p>
-            </ion-text>
+            <!-- <ion-text color="success">
+              <p *ngIf="(!item?.acceptRequestDate) && (!item?.shippingDate) && (!item?.destinationDate) && (!item?.doneDate)"><b>สถานะ : ลูกค้าสั่งอาหาร</b></p>
+              <p *ngIf="(item?.acceptRequestDate) && (item?.createDate)"><b>สถานะ : รับออเดอร์ </b></p>
+              <p *ngIf="(item?.acceptRequestDate) && (item?.createDate) && (item?.shippingDate)"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></p>
+              <p *ngIf="(item?.acceptRequestDate) && (item?.createDate) && (item?.shippingDate) && (item?.destinationDate)"><b>สถานะ : ของถึงแล้ว </b></p>
+              <p *ngIf="(item?.acceptRequestDate) && (item?.createDate) && (item?.shippingDate) && (item?.destinationDate) && (item?.doneDate)"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
+            </ion-text> -->
+
+               <ion-text color="success">
+                <p><b>Driver Name {{item.delivery.name}}</b></p>
+                <p *ngIf="status = 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></p>
+                <p *ngIf="status = 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></p>
+                <p *ngIf="status = 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></p>
+                <p *ngIf="status = 'destinationDate'"><b>สถานะ : ของถึงแล้ว </b></p>
+                <p *ngIf="status = 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
+              </ion-text>
           </ion-col>
           <ion-col size="4">
             <ion-text color="primary">
@@ -118,9 +131,22 @@
                 src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
             </ion-avatar>
             <ion-label>
+              <!-- <ion-text>
+                <h3><b>Driver Name {{item.delivery.name}}</b></h3>
+                <h3 *ngIf="(!item?.acceptRequestDate) && (!item?.shippingDate) && (!item?.destinationDate) && (!item?.doneDate)"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
+                <h3 *ngIf="(item?.acceptRequestDate) && (item?.createDate)"><b>สถานะ : รับออเดอร์ </b></h3>
+                <h3 *ngIf="(item?.acceptRequestDate) && (item?.createDate) && (item?.shippingDate)"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
+                <h3 *ngIf="(item?.acceptRequestDate) && (item?.createDate) && (item?.shippingDate) && (item?.destinationDate)"><b>สถานะ : ของถึงแล้ว </b></h3>
+                <h3 *ngIf="(item?.acceptRequestDate) && (item?.createDate) && (item?.shippingDate) && (item?.destinationDate) && (item?.doneDate)"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></h3>
+              </ion-text> -->
+
               <ion-text>
                 <h3><b>Driver Name {{item.delivery.name}}</b></h3>
-                <h3><b>สถานะ : ยังไม่ได้ binding</b></h3>
+                <h3 *ngIf="status = 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
+                <h3 *ngIf="status = 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></h3>
+                <h3 *ngIf="status = 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
+                <h3 *ngIf="status = 'destinationDate'"><b>สถานะ : ของถึงแล้ว </b></h3>
+                <h3 *ngIf="status = 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></h3>
               </ion-text>
             </ion-label>
           </ion-item>
