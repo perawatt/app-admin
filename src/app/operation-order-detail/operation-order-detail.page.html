@@ -80,7 +80,7 @@
               </ion-text>
             </ion-label>
             <br>
-            <ion-button shape="round" color="secondary" type="submit" (click)="goOrderCancelModal()">
+            <ion-button *ngIf="!data.orderDetail.cancelRequestId" shape="round" color="secondary" type="submit" (click)="goOrderCancelModal()">
               <ion-text color="light">
                 ยกเลิกคำสั่งซื้อ
               </ion-text>
@@ -155,7 +155,7 @@
             </ion-button>
           </ion-note>
           <ion-note class="ion-margin">
-            <ion-button shape="round" color="medium" type="submit">
+            <ion-button shape="round" color="medium"  [routerLink]="['operation-attention-detail']">
               <ion-label color="dark">
                 <h3>รายการสั่งซื้อ</h3>
               </ion-label>

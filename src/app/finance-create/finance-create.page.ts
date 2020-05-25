@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-finance-create',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class FinanceCreatePage implements OnInit {
   public fg: FormGroup;
 
-  constructor(private adminSvc: AdminService, private fb: FormBuilder, private router: Router) {
+  constructor(private adminSvc: AdminService, private fb: FormBuilder, private router: Router, private navCtrl: NavController) {
     this.fg = this.fb.group({
       'destinationId': null,
       "amount": null,
@@ -31,8 +32,12 @@ export class FinanceCreatePage implements OnInit {
     if (this.fg.valid) {
       this.adminSvc.createFinance(this.fg.value).then((it: any) => {
         console.log("xxx: " + JSON.stringify(it));     
-        this.router.navigate(['/finance']);
+        this.navCtrl.back();
       })
     }
+  }
+
+  cancel(){
+    this.navCtrl.back();
   }
 }
