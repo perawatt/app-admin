@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { OperationOrderCancelPage } from '../operation-order-cancel/operation-order-cancel.page';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
+import { OperationConfirmCancelOrderPage } from '../operation-confirm-cancel-order/operation-confirm-cancel-order.page';
 
 @Component({
   selector: 'app-operation-order-detail',
@@ -14,8 +15,11 @@ export class OperationOrderDetailPage implements OnInit {
   public _id: string;
   orderdetail$ = Promise.resolve([]);
 
-  constructor(private modalController: ModalController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
+  constructor(private modalController: ModalController, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
     this.haveEmployee = false
+  }
+
+  ionViewDidEnter() {
   }
 
   ngOnInit() {
@@ -25,11 +29,9 @@ export class OperationOrderDetailPage implements OnInit {
     this.orderdetail$.then((it: any) => {
       console.log(it);
     });
-
   }
 
   async goOrderCancelModal() {
-    let a
     const modal = await this.modalController.create({
       component: OperationOrderCancelPage,
       // cssClass: 'dialog-modal-4-order-addcancel',
@@ -46,6 +48,31 @@ export class OperationOrderDetailPage implements OnInit {
       });
     })
     modal.present();
+  }
+
+  async goConfirmCancelOrder(cancelRequestId: string) {
+    const modal = await this.modalController.create({
+      component: OperationConfirmCancelOrderPage,
+      // cssClass: 'dialog-modal-4-order-addcancel',
+      componentProps: { 'cancelRequestId': cancelRequestId },
+      backdropDismiss: false
+    });
+    modal.onDidDismiss().then(data => {
+      this.navCtrl.back();
+
+    })
+    modal.present();
+  }
+
+  goDenyCancelOrder(cancelRequestId: string){
+    console.log(cancelRequestId);
+    if(cancelRequestId){
+      this.adminSvc.updateSendCancelDeny(cancelRequestId).then((it: any) => {
+        console.log(it);
+        this.navCtrl.back();
+
+      })
+    }
   }
 
 }

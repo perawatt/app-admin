@@ -56,8 +56,8 @@
       </ion-row>
   
       <ion-item color="light" lines="none" class="ion-padding">
-        <ion-button slot="end" size="default" shape="round" color="success" (click)="zzz()">อนุมัติการขอยกเลิก</ion-button>
-        <ion-button slot="end" size="default" shape="round" color="primary">ปฏิเสธการขอยกเลิก</ion-button>
+        <ion-button slot="end" size="default" shape="round" color="success" (click)="goConfirmCancelOrder(data.orderDetail.cancelRequestId)">อนุมัติการขอยกเลิก</ion-button>
+        <ion-button slot="end" size="default" shape="round" color="primary" (click)="goDenyCancelOrder(data.orderDetail.cancelRequestId)">ปฏิเสธการขอยกเลิก</ion-button>
       </ion-item>
     </ion-card>
   
