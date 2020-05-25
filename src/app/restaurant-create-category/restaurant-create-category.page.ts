@@ -1,7 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-create-category',
@@ -15,7 +16,7 @@ export class RestaurantCreateCategoryPage implements OnInit {
   price = 0;
   _id: string;
   canNote = false;
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService) {
+  constructor(private navCtrl: NavController, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService) {
     this.fg = this.fb.group({
       'name': [null, Validators.required],
       'canNote': false,
@@ -24,7 +25,7 @@ export class RestaurantCreateCategoryPage implements OnInit {
   }
 
   ngOnInit() {
-    this._id = this.route.snapshot.paramMap.get('_id');
+    this._id = this.route.snapshot.paramMap.get('shopId');
   }
 
   addOptions() {
@@ -44,9 +45,12 @@ export class RestaurantCreateCategoryPage implements OnInit {
   submit() {
     this.fg.get('options').patchValue(this.lstOptions);
     this.fg.get('canNote').patchValue(this.canNote);
+    console.log(this.fg.value);
 
     if (this.fg.valid) {
-      this.adminSvc.createCategory(this._id, this.fg.value);
+      this.adminSvc.createCategory(this._id, this.fg.value).then(_ => {
+        this.navCtrl.back();
+      });
     }
   }
 }

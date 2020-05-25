@@ -16,7 +16,7 @@ export class RestaurantProfileMenuPage implements OnInit {
   constructor(private route: ActivatedRoute, private admindSvc: AdminService, public modalController: ModalController) { }
 
   ngOnInit() {
-    this._id = this.route.snapshot.paramMap.get('_id');
+    this._id = this.route.snapshot.paramMap.get('shopId');
   }
 
   ionViewDidEnter() {

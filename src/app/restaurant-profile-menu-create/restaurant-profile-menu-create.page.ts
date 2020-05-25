@@ -35,7 +35,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   ngOnInit() {
-    this._id = this.route.snapshot.paramMap.get('_id');
+    this._id = this.route.snapshot.paramMap.get('shopId');
     this.catagory$ = this.adminSvc.getCategoryList(this._id);
   }
 
