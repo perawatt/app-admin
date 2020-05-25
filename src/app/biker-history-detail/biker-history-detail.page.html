@@ -70,9 +70,7 @@
         <ion-col size="0.5" class="ion-no-padding"></ion-col>
         <ion-col size="0.8" class="ion-no-padding">
           <ion-item color="light" lines="none">
-            <ion-note slot="end"><b>
-              <ion-icon   color="success" name="checkmark-sharp"></ion-icon>
-            </b></ion-note>
+            <ion-icon *ngIf="data.cancelRequest.refund=='All'" color="success" name="checkmark-sharp"></ion-icon>
           </ion-item>
         </ion-col>
         <ion-col size="10" class="ion-no-padding">
@@ -110,9 +108,7 @@
         <ion-col size="0.5" class="ion-no-padding"></ion-col>
         <ion-col size="0.8" class="ion-no-padding">
           <ion-item color="light" lines="none">
-            <ion-note slot="end" class="ion-text-right"><b>
-                <ion-icon color="success" name="checkmark-sharp"></ion-icon>
-              </b></ion-note>
+            <ion-icon *ngIf="data.cancelRequest.refund=='FoodPrice'" color="success" name="checkmark-sharp"></ion-icon>
           </ion-item>
         </ion-col>
         <ion-col size="10" class="ion-no-padding">
@@ -126,9 +122,7 @@
         <ion-col size="0.5" class="ion-no-padding"></ion-col>
         <ion-col size="0.8" class="ion-no-padding">
           <ion-item color="light" lines="none">
-            <ion-note slot="end" class="ion-text-right"><b>
-                <ion-icon color="success" name="checkmark-sharp"></ion-icon>
-              </b></ion-note>
+            <ion-icon *ngIf="data.cancelRequest.refund=='Nothing'" color="success" name="checkmark-sharp"></ion-icon>
           </ion-item>
         </ion-col>
         <ion-col size="10" class="ion-no-padding">
@@ -207,18 +201,34 @@
           </ion-label>
         </ion-item>
 
-        <ion-item color="light" lines="none">
-          <ion-col size="0.75"></ion-col>
-          <ion-label>
-            <ion-text>
-              <h3>ลูกค้าสั่งอาหาร</h3>
-              <h3>รับออเดอร์</h3>
-              <h3>อยู่ระหว่างจัดส่ง</h3>
-              <h3>ของถึงแล้ว</h3>
-              <h3>ลูกค้าได้รับของแล้ว</h3>
-            </ion-text>
-          </ion-label>
-        </ion-item>
+    
+        <ion-row class="boxStepProgressBar">
+          <ion-col size="1.1"></ion-col>
+          <div>
+            <li *ngIf="data.orderDetail.createDate"><div class="nodeSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.createDate"><div class="nodeUnSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
+
+            <li *ngIf="data.orderDetail.acceptRequestDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail.acceptRequestDate"><div class="nodeSuccess"></div><p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.acceptRequestDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail.acceptRequestDate"><div class="nodeUnSuccess"></div><p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p></li>
+
+            <li *ngIf="data.orderDetail.shippingDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail.shippingDate"><div class="nodeSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.shippingDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail.shippingDate"><div class="nodeUnSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p></li>
+
+            <li *ngIf="data.orderDetail.destinationDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail.destinationDate"><div class="nodeSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.destinationDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail.destinationDate"><div class="nodeUnSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p></li>
+
+            <li *ngIf="data.orderDetail.doneDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail.doneDate"><div class="nodeSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.doneDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail.doneDate"><div class="nodeUnSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p></li>
+          </div>
+        </ion-row>
 
         <ion-item color="light">
           <ion-col size="0.75"></ion-col>
