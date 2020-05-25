@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>เพิ่มหมวดหมู่</ion-title>
-    <ion-back-button mode="md"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button mode="md"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -55,8 +57,7 @@
           <ion-checkbox [(ngModel)]="canNote" slot="start" color="dark"></ion-checkbox>
         </ion-item>
         <ion-item lines="none" color="light">
-          <ion-button [routerLink]="['restaurant-profile-menu-create']" (click)="submit()" class="buttonWidth"
-            slot="end" color="success" shape="round" size="default">
+          <ion-button (click)="submit()" class="buttonWidth" slot="end" color="success" shape="round" size="default">
             <ion-label color="light">
               บันทึก
             </ion-label>
