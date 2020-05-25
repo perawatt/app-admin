@@ -33,16 +33,12 @@
                 <h1><b>สถานะ</b></h1>
               </ion-label>
               <ion-note slot="end" class="ion-text-end">
-                <ng-container *ngIf="data.onWorkStatus">
-                  <ion-label color="success">
+                  <ion-label color="success" *ngIf="data.onWorkStatus">
                     <h2><b>เปิดรับงาน</b></h2>
                   </ion-label>
-                </ng-container>
-                <ng-container *ngIf="!data.onWorkStatus">
-                  <ion-label color="danger">
+                  <ion-label color="danger" *ngIf="!data.onWorkStatus">
                     <h2><b>ปิดรับงาน</b></h2>
                   </ion-label>
-                </ng-container>
               </ion-note>
             </ion-item>
             <ion-item color="light">
@@ -64,29 +60,19 @@
             <ion-item color="light">
               <ion-label>
                 <h2><b>ที่อยู่</b></h2>
-                <ng-container *ngIf="data.address">
-                  <p class="ion-text-wrap">{{ data.address }}</p>
-                </ng-container>
-                <ng-container *ngIf="!data.address">
-                  <ion-label>
-                    <p class="ion-text-wrap">-</p>
-                  </ion-label>
-                </ng-container>
+                  <p class="ion-text-wrap" *ngIf="data.address">{{ data.address }}</p>
+                  <p class="ion-text-wrap" *ngIf="!data.address">-</p>
               </ion-label>
             </ion-item>
             <ion-item color="light">
               <ion-label>
                 <h2><b>บันทึกเพิ่มเติม</b></h2>
-                <ng-container *ngIf="data.note">
-                  <p>{{ data.note }}</p>
-                </ng-container>
-                <ng-container *ngIf="!data.note">
-                  <p>-</p>
-                </ng-container>
+                  <p *ngIf="data.note">{{ data.note }}</p>
+                  <p *ngIf="!data.note">-</p>
               </ion-label>
             </ion-item>
             <ion-item lines="none" color="light" class="ion-margin-top">
-              <ion-button slot="start" color="danger" shape="round" size="default" [routerLink]="['biker-history',data._id]">
+              <ion-button slot="start" color="danger" shape="round" size="default" [routerLink]="['biker-history']">
                 <ion-label>ประวัติการรับงาน</ion-label>
               </ion-button>
               <ion-button slot="start" color="danger" class="buttonWidth" shape="round" size="default" [routerLink]="['biker-balance']">
