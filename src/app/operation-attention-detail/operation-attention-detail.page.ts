@@ -8,7 +8,7 @@ import { AdminService } from 'src/services/admin.service';
   styleUrls: ['./operation-attention-detail.page.scss'],
 })
 export class OperationAttentionDetailPage implements OnInit {
-  public _id: string;
+  public orderId: string;
   productList$ = Promise.resolve([]);
 
 
@@ -16,13 +16,14 @@ export class OperationAttentionDetailPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService) { }
 
   ngOnInit() {
-    this._id = this.activatedRoute.snapshot.paramMap.get('_id');
-    console.log(this._id);
+    this.orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
+    console.log(this.orderId);
 
-    this.productList$ = this.adminSvc.getOrderDetail(this._id);
+    this.productList$ = this.adminSvc.getOrderDetail(this.orderId);
     this.productList$.then((it: any) => {
       console.log(it);
     });
+    
 
 
   }

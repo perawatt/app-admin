@@ -14,10 +14,7 @@ export class RestaurantEditCategoryPage implements OnInit {
   constructor(private route: ActivatedRoute, private adminSvc: AdminService) { }
 
   ngOnInit() {
-    this._id = this.route.snapshot.paramMap.get('_id');
+    this._id = this.route.snapshot.paramMap.get('shopId');
     this.data$ = this.adminSvc.getCategoryList(this._id);
-  }
-
-  createCategoty() {
   }
 }
