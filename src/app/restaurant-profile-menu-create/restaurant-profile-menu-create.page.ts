@@ -47,8 +47,6 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   submit() {
-    console.log(this.fg);
-
     if (this.fg.valid) {
       this.admindSvc.createProduct('1', this.fg.value).then(_ => {
         this.admindSvc.getSasToken().then(it => {
