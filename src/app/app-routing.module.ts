@@ -134,7 +134,12 @@ const routes: Routes = [
   {
     path: 'operation-order-cancel:_id',
     loadChildren: () => import('./operation-order-cancel/operation-order-cancel.module').then(m => m.OperationOrderCancelPageModule)
+  },
+  {
+    path: 'biker/biker-detail/:bikerId/biker-history/biker-history-detail/:orderId/biker-history-detail-order-list',
+    loadChildren: () => import('./biker-history-detail-order-list/biker-history-detail-order-list.module').then( m => m.BikerHistoryDetailOrderListPageModule)
   }
+
 
 
 ]
