@@ -16,7 +16,7 @@
 
   <div *ngIf="messageTable == attention">
     <ng-container *ngIf="cancelRequestOrderinfo$ | async as data">
-      <ion-card color="light" *ngFor="let item of data">
+      <ion-card color="light" *ngFor="let item of data" [routerLink]="['operation-order-detail', item._id]">
         <ion-item button color="light" class="ion-text-center">
           <ion-col size="4">
             <ion-text color="primary">
@@ -67,7 +67,7 @@
               <ion-label>
                 <h1><b>OrderID : {{item._id}}</b></h1>
                 <ion-text color="warning">
-                  <h3>{{item.commissionPrice.currency}}{{item.commissionPrice.amountUnit}} (2 รายการ ยังไม่ได้ binding)
+                  <h3>{{item.commissionPrice.number}}{{item.commissionPrice.amountUnit}} (2 รายการ ยังไม่ได้ binding)
                   </h3>
                 </ion-text>
               </ion-label>

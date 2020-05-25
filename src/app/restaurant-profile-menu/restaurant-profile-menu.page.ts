@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { RestaurantCreateQrPage } from '../restaurant-create-qr/restaurant-create-qr.page';
 import { AdminService } from 'src/services/admin.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant-profile-menu',
@@ -11,13 +12,15 @@ import { AdminService } from 'src/services/admin.service';
 export class RestaurantProfileMenuPage implements OnInit {
   data$ = Promise.resolve([]);
   segmentValue: any;
-  constructor(private admindSvc: AdminService, public modalController: ModalController) { }
+  _id: string;
+  constructor(private route: ActivatedRoute, private admindSvc: AdminService, public modalController: ModalController) { }
 
   ngOnInit() {
+    this._id = this.route.snapshot.paramMap.get('_id');
   }
 
   ionViewDidEnter() {
-    this.data$ = this.admindSvc.getRestaurantMenu('1');
+    this.data$ = this.admindSvc.getRestaurantMenu(this._id);
     this.data$.then(it => {
       console.log(JSON.stringify(it));
     })

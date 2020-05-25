@@ -80,7 +80,7 @@
               </ion-text>
             </ion-label>
             <br>
-            <ion-button shape="round" color="secondary" type="submit" (click)="goOrderCancelModal()">
+            <ion-button *ngIf="!data.orderDetail.cancelRequestId" shape="round" color="secondary" type="submit" (click)="goOrderCancelModal()">
               <ion-text color="light">
                 ยกเลิกคำสั่งซื้อ
               </ion-text>
@@ -125,7 +125,7 @@
           <ion-label>
             <ion-text>
               <h3>เวลาประเมิน : ยังไม่ได้ binding</h3>
-              <h3>เวลาประจริง : -</h3>
+              <h3>เวลาที่ใช้จริง : -</h3>
             </ion-text>
           </ion-label>
         </ion-item>
@@ -155,7 +155,7 @@
             </ion-button>
           </ion-note>
           <ion-note class="ion-margin">
-            <ion-button shape="round" color="medium" type="submit">
+            <ion-button shape="round" color="medium"  [routerLink]="['operation-attention-detail']">
               <ion-label color="dark">
                 <h3>รายการสั่งซื้อ</h3>
               </ion-label>
@@ -212,12 +212,12 @@
                   <h2>คนส่งอาหาร</h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="data.orderDetail.delivery.name != null">
+              <ion-col size="3.5" *ngIf="data.orderDetail.delivery.name">
                 <ion-label>
                   <h2>{{ data.orderDetail.delivery.name }}</h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="data.orderDetail.delivery.name == null">
+              <ion-col size="3.5" *ngIf="!data.orderDetail.delivery.name">
                 <ion-label>
                   <h2>ยังไม่มีผู้รับงาน</h2>
                 </ion-label>

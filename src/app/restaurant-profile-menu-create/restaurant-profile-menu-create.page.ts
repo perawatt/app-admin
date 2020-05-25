@@ -7,6 +7,7 @@ import { map, combineAll } from 'rxjs/operators';
 import { IUploadProgress } from 'src/services/blob-storage/iblob-storage';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 
 @Component({
@@ -20,9 +21,10 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   file: any;
   sas: any;
   config: any;
+  _id: string;
   catagory$ = Promise.resolve([]);
   uploadProgress$: Observable<IUploadProgress[]>;
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
+  constructor(private navCtrl: NavController, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
     this.fg = this.fb.group({
       'name': [null, Validators.required],
       "categoryName": [null, Validators.required],
@@ -33,7 +35,8 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   ngOnInit() {
-    this.catagory$ = this.adminSvc.getCategoryList('1');
+    this._id = this.route.snapshot.paramMap.get('_id');
+    this.catagory$ = this.adminSvc.getCategoryList(this._id);
   }
 
   selectPhoto(event) {
@@ -46,6 +49,10 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
     reader.readAsDataURL(this.file[0]);
   }
 
+  goBack() {
+    this.navCtrl.back();
+  }
+
   submit() {
     if (this.fg.valid) {
       this.adminSvc.createProduct('1', this.fg.value).then(_ => {
@@ -56,6 +63,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
             combineAll(),
           );
         })
+        this.navCtrl.back();
       });
     }
   }

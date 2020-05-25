@@ -1,107 +1,110 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button mode="md"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ shopName }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content mode="ios" class="ion-padding">
- <ng-container *ngIf="shopInfo$ | async as data">
-  <ion-card color="light">
-    <ion-card-header>
-      <ion-avatar class="avatar center">
-        <img [src]="data.restaurant?.logoImage != null ? data.restaurant?.logoImage : ''">
-      </ion-avatar>
-      <ion-item color="light" lines="none">
-        <ion-col class="ion-no-padding" color="light" size="0.5">
-        </ion-col>
-        <ion-col class="ion-no-padding" color="light">
-          <ion-item color="light" class="ion-margin-top">
-            <ion-label>
-              <h1><b> {{ data.restaurant?.name }} </b></h1>
-              <h1><b>Restaurant ID: {{ data.restaurant?._id }} </b></h1>
-              <h1><b>Rating 4.7</b></h1>
-            </ion-label>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h1><b>สถานะ</b></h1>
-            </ion-label>
-            <ion-note slot="end" class="ion-text-end">
-              <ion-label color="success">
-                <h2>
-                  <b>
-                    เปิดร้าน
-                  </b>
-                </h2>
-              </ion-label>
-            </ion-note>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h2><b>ติดต่อ</b></h2>
-              <p> {{ data.restaurant?.tel }} </p>
-            </ion-label>
-            <ion-note slot="end" class="ion-text-end">
-              <ion-label color="success">
-                <h2>
-                  <ion-icon name="call"></ion-icon>
-                  <b>ติดต่อ</b>
-                </h2>
-                <ion-text color="dark">
-                  <p><b>&nbsp;</b></p>
-                </ion-text>
-              </ion-label>
-            </ion-note>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h2><b>ที่อยู่</b></h2>
-              <p class="ion-text-wrap"> {{ data.restaurant?.address }} </p>
-            </ion-label>
-            <ion-button slot="end" color="medium" shape="round" size="default">
+  <ng-container *ngIf="shopInfo$ | async as data">
+    <ion-card color="light">
+      <ion-card-header>
+        <ion-avatar class="avatar center">
+          <img [src]="data.restaurant?.logoImage != null ? data.restaurant?.logoImage : ''">
+        </ion-avatar>
+        <ion-item color="light" lines="none">
+          <ion-col class="ion-no-padding" color="light" size="0.5">
+          </ion-col>
+          <ion-col class="ion-no-padding" color="light">
+            <ion-item color="light" class="ion-margin-top">
               <ion-label>
-                ตำแหน่งร้าน
+                <h1><b> {{ data.restaurant?.name }} </b></h1>
+                <h1><b>Restaurant ID: {{ data.restaurant?._id }} </b></h1>
+                <h1><b>Rating 4.7</b></h1>
               </ion-label>
-            </ion-button>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h2><b>สัญญา</b></h2>
-              <p>วันเริ่มต้นสัญญา : {{ data.contractDetail?.createDate | date:'d MMM y' }} </p>
-              <p>สัญญา : {{ data.contractDetail?.name }}</p>
-              <p>เปอร์เซ็นที่หักจากร้านอาหาร : {{ data.contractDetail?.commissionPercent }} </p>
-              <p>ค่าส่ง :  {{ data.contractDetail?.deliveryPricePerOrder?.amountUnit }} {{ data.contractDetail?.deliveryPricePerOrder?.currency }}</p>
-            </ion-label>
-            <ion-button slot="end" color="medium" shape="round" size="default">
+            </ion-item>
+            <ion-item color="light">
               <ion-label>
-                เปลี่ยนสัญญา
+                <h1><b>สถานะ</b></h1>
               </ion-label>
-            </ion-button>
-          </ion-item>
-          <ion-item color="light">
-            <ion-label>
-              <h2><b>บันทึกเพิ่มเติม</b></h2>
-              <p> {{ data.restaurant?.note }} </p>
-            </ion-label>
-          </ion-item>
-          <ion-item lines="none" color="light" class="ion-margin-top">
-            <ion-button slot="start" color="medium" shape="round" size="default" [routerLink]="['restaurant-profile-history', data.restaurant._id]">
+              <ion-note slot="end" class="ion-text-end">
+                <ion-label color="success">
+                  <h2>
+                    <b>
+                      เปิดร้าน
+                    </b>
+                  </h2>
+                </ion-label>
+              </ion-note>
+            </ion-item>
+            <ion-item color="light">
               <ion-label>
-                ประวัติการรับงาน
+                <h2><b>ติดต่อ</b></h2>
+                <p> {{ data.restaurant?.tel }} </p>
               </ion-label>
-            </ion-button>
-            <ion-button slot="start" class="buttonWidth" color="medium" shape="round" size="default">
+              <ion-note slot="end" class="ion-text-end">
+                <ion-label color="success">
+                  <h2>
+                    <ion-icon name="call"></ion-icon>
+                    <b>ติดต่อ</b>
+                  </h2>
+                  <ion-text color="dark">
+                    <p><b>&nbsp;</b></p>
+                  </ion-text>
+                </ion-label>
+              </ion-note>
+            </ion-item>
+            <ion-item color="light">
               <ion-label>
-                เมนู
+                <h2><b>ที่อยู่</b></h2>
+                <p class="ion-text-wrap"> {{ data.restaurant?.address }} </p>
               </ion-label>
-            </ion-button>
-          </ion-item>
-        </ion-col>
-      </ion-item>
-    </ion-card-header>
-  </ion-card>
-</ng-container>
+              <ion-button slot="end" color="medium" shape="round" size="default">
+                <ion-label>
+                  ตำแหน่งร้าน
+                </ion-label>
+              </ion-button>
+            </ion-item>
+            <ion-item color="light">
+              <ion-label>
+                <h2><b>สัญญา</b></h2>
+                <p>วันเริ่มต้นสัญญา : {{ data.contractDetail?.createDate | date:'d MMM y' }} </p>
+                <p>สัญญา : {{ data.contractDetail?.name }}</p>
+                <p>เปอร์เซ็นที่หักจากร้านอาหาร : {{ data.contractDetail?.commissionPercent }} </p>
+                <p>ค่าส่ง : {{ data.contractDetail?.deliveryPricePerOrder?.amountUnit }}
+                  {{ data.contractDetail?.deliveryPricePerOrder?.number }}</p>
+              </ion-label>
+              <ion-button slot="end" color="medium" shape="round" size="default">
+                <ion-label>
+                  เปลี่ยนสัญญา
+                </ion-label>
+              </ion-button>
+            </ion-item>
+            <ion-item color="light">
+              <ion-label>
+                <h2><b>บันทึกเพิ่มเติม</b></h2>
+                <p> {{ data.restaurant?.note }} </p>
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none" color="light" class="ion-margin-top">
+              <ion-button slot="start" color="medium" shape="round" size="default"
+                [routerLink]="['restaurant-profile-history']">
+                <ion-label>
+                  ประวัติการรับงาน
+                </ion-label>
+              </ion-button>
+              <ion-button slot="start" class="buttonWidth" color="medium"
+                [routerLink]="['restaurant-profile-menu']" shape="round" size="default">
+                <ion-label>
+                  เมนู
+                </ion-label>
+              </ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-item>
+      </ion-card-header>
+    </ion-card>
+  </ng-container>
 </ion-content>

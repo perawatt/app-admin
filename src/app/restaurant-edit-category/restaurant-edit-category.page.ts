@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantEditCategoryPage implements OnInit {
   data$ = Promise.resolve([]);
+  _id: string;
 
-  constructor(private adminSvc: AdminService) { }
+  constructor(private route: ActivatedRoute, private adminSvc: AdminService) { }
 
   ngOnInit() {
-    this.data$ = this.adminSvc.getCategoryList('1');
+    this._id = this.route.snapshot.paramMap.get('_id');
+    this.data$ = this.adminSvc.getCategoryList(this._id);
   }
 
   createCategoty() {

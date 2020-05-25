@@ -1,14 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>เมนู</ion-title>
+    <ion-back-button mode="md"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content mode="ios" class="ion-padding">
   <ion-item lines="none" class="ion-margin-top">
-    <ion-button slot="end" shape="round" size="default" class="buttonWidth" color="success">แก้ไขหมวดหมู่
+    <ion-button slot="end" shape="round" size="default" class="buttonWidth" color="success"
+      [routerLink]="['restaurant-edit-category']">แก้ไขหมวดหมู่
     </ion-button>
-    <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="success">เพิ่มเมนู
+    <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="success"
+      [routerLink]="['restaurant-profile-menu-create']">เพิ่มเมนู
     </ion-button>
     <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="success" (click)="presentModal()">
       สร้าง QR
@@ -29,7 +32,7 @@
             <ng-container *ngIf="data.categoryId == segmentValue">
               <ion-list-header color="light" mode="md">
                 <ion-label class="ion-margin-top">
-                  <h1><b>{{data.categoryName}}({{item.length}})</b></h1>
+                  <h1><b>{{data.categoryName}}({{data.products?.length}})</b></h1>
                 </ion-label>
               </ion-list-header>
               <ion-item color="light" lines="none">
@@ -43,7 +46,7 @@
                     <ion-text>
                       <ion-label color="dark">
                         <h2><b>{{menu.name}}</b></h2>
-                        <h3><b>฿{{menu.price |currency}}</b></h3>
+                        <h3><b>฿{{menu.price |number}}</b></h3>
                       </ion-label>
                       <ion-label color="danger">
                         <p></p>
