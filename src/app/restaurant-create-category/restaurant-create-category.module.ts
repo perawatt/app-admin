@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,9 @@ import { RestaurantCreateCategoryPage } from './restaurant-create-category.page'
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     RestaurantCreateCategoryPageRoutingModule
   ],
   declarations: [RestaurantCreateCategoryPage]
 })
-export class RestaurantCreateCategoryPageModule {}
+export class RestaurantCreateCategoryPageModule { }

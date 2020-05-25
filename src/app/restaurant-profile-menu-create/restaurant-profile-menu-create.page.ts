@@ -22,7 +22,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   config: any;
   catagory$ = Promise.resolve([]);
   uploadProgress$: Observable<IUploadProgress[]>;
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private admindSvc: AdminService, private blobStorage: BlobStorageService) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
     this.fg = this.fb.group({
       'name': [null, Validators.required],
       "categoryName": [null, Validators.required],
@@ -33,7 +33,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   ngOnInit() {
-    this.catagory$ = this.admindSvc.getCategoryList('1');
+    this.catagory$ = this.adminSvc.getCategoryList('1');
   }
 
   selectPhoto(event) {
@@ -47,11 +47,9 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   submit() {
-    console.log(this.fg);
-
     if (this.fg.valid) {
-      this.admindSvc.createProduct('1', this.fg.value).then(_ => {
-        this.admindSvc.getSasToken().then(it => {
+      this.adminSvc.createProduct('1', this.fg.value).then(_ => {
+        this.adminSvc.getSasToken().then(it => {
           this.sas = it;
           this.uploadProgress$ = from(this.file as FileList).pipe(
             map(file => this.uploadFile(file)),

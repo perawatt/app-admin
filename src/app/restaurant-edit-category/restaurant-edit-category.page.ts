@@ -1,3 +1,4 @@
+import { AdminService } from 'src/services/admin.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant-edit-category.page.scss'],
 })
 export class RestaurantEditCategoryPage implements OnInit {
+  data$ = Promise.resolve([]);
 
-  constructor() { }
+  constructor(private adminSvc: AdminService) { }
 
   ngOnInit() {
+    this.data$ = this.adminSvc.getCategoryList('1');
   }
 
+  createCategoty() {
+  }
 }

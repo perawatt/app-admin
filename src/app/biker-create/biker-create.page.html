@@ -5,57 +5,59 @@
 </ion-header>
 
 <ion-content mode="ios" class="ion-padding">
-  <ion-card color="light">
-    <ion-card-content>
-      <ion-list color="light" class="ion-no-padding">
-        <ion-list-header color="light" mode="md">
-          <ion-label class="ion-margin-top">
-            <h1><b>คำขอสมัครงาน</b></h1>
-          </ion-label>
-        </ion-list-header>
-        <ion-item lines="none" color="light">
-          <ion-col size="0.5"> </ion-col>
-          <ion-col>
-            <ion-item color="light" lines="inset">
-              <ion-input placeholder="เบอร์โทรผู้สมัคร"></ion-input>
-            </ion-item>
-            <ion-item color="light" lines="inset">
-              <ion-input placeholder="รหัสผู้สมัคร"></ion-input>
-            </ion-item>
-            <ion-item color="light" lines="none">
-              <img class="ion-margin-vertical"
-                src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-              <ion-button shape="round" size="default" color="secondary">
-                <!-- <ion-label color="light">เปลี่ยนรูป</ion-label> -->
-                <ion-input type="file" accept="photo" multiple="true" (ionChange)="selectPhoto($event)">
-                </ion-input>
-              </ion-button>
-            </ion-item>
-            <ion-item color="light" lines="inset">
-              <ion-input placeholder="ชื่อผู้สมัคร"></ion-input>
-            </ion-item>
-            <ion-item color="light" lines="inset">
-              <ion-input placeholder="ที่อยู่"></ion-input>
-            </ion-item>
-            <ion-item color="light" lines="inset">
-              <ion-input placeholder="บันทึกเพิ่มเติม"></ion-input>
-            </ion-item>
-            <ion-item lines="none" color="light">
-              <ion-button slot="end" color="danger" shape="round" class="buttonWidth" size="default">
-                <ion-label color="light">
-                  ยกเลิก
-                </ion-label>
-              </ion-button>
-              <ion-button slot="end" color="success" shape="round" class="buttonWidth" (click)="submit()"
-                size="default">
-                <ion-label color="light">
-                  บันทึก
-                </ion-label>
-              </ion-button>
-            </ion-item>
-          </ion-col>
-        </ion-item>
-      </ion-list>
+  <form [formGroup]="fg" (ngSubmit)="submit()">
 
-    </ion-card-content>
-  </ion-card>
+    <ion-card color="light">
+      <ion-card-content>
+        <ion-list color="light" class="ion-no-padding">
+          <ion-list-header color="light" mode="md">
+            <ion-label class="ion-margin-top">
+              <h1><b>คำขอสมัครงาน</b></h1>
+            </ion-label>
+          </ion-list-header>
+          <ion-item lines="none" color="light">
+            <ion-col size="0.5"> </ion-col>
+            <ion-col>
+              <ion-item color="light" lines="inset">
+                <ion-input formControlName="tel" type="tel" placeholder="เบอร์โทรผู้สมัคร"></ion-input>
+              </ion-item>
+              <ion-item color="light" lines="inset">
+                <ion-input formControlName="manaCode" placeholder="รหัสผู้สมัคร"></ion-input>
+              </ion-item>
+              <ion-item color="light" lines="none">
+                <img class="ion-margin-vertical"
+                  src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                <ion-button shape="round" size="default" color="secondary">
+                  <!-- <ion-label color="light">เปลี่ยนรูป</ion-label> -->
+                  <ion-input type="file" accept="photo" multiple="true" (ionChange)="selectPhoto($event)">
+                  </ion-input>
+                </ion-button>
+              </ion-item>
+              <ion-item color="light" lines="inset">
+                <ion-input formControlName="name" placeholder="ชื่อผู้สมัคร"></ion-input>
+              </ion-item>
+              <ion-item color="light" lines="inset">
+                <ion-input formControlName="address" placeholder="ที่อยู่"></ion-input>
+              </ion-item>
+              <ion-item color="light" lines="inset">
+                <ion-input formControlName="note" placeholder="บันทึกเพิ่มเติม"></ion-input>
+              </ion-item>
+              <ion-item lines="none" color="light">
+                <ion-button slot="end" color="danger" shape="round" class="buttonWidth" size="default">
+                  <ion-label color="light">
+                    ยกเลิก
+                  </ion-label>
+                </ion-button>
+                <ion-button type="submit()" slot="end" color="success" shape="round" class="buttonWidth" size="default">
+                  <ion-label color="light">
+                    บันทึก
+                  </ion-label>
+                </ion-button>
+              </ion-item>
+            </ion-col>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

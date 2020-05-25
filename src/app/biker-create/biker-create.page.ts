@@ -4,6 +4,7 @@ import { AdminService } from 'src/services/admin.service';
 import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
 import { Observable, from } from 'rxjs';
 import { combineAll, map } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-biker-create',
@@ -11,11 +12,21 @@ import { combineAll, map } from 'rxjs/operators';
   styleUrls: ['./biker-create.page.scss'],
 })
 export class BikerCreatePage implements OnInit {
+  fg: FormGroup;
   file: any;
   sas: any;
   config: any;
   uploadProgress$: Observable<IUploadProgress[]>;
-  constructor(private admindSvc: AdminService, private blobStorage: BlobStorageService) { }
+  constructor(private fb: FormBuilder, private admindSvc: AdminService, private blobStorage: BlobStorageService) {
+    this.fg = this.fb.group({
+      'manaCode': [null, Validators.required],
+      'name': [null, Validators.required],
+      "profileImage": '',
+      "address": [null, Validators.required],
+      "tel": [null, Validators.required],
+      "note": ''
+    });
+  }
 
   ngOnInit() {
   }
@@ -31,13 +42,17 @@ export class BikerCreatePage implements OnInit {
   }
 
   submit() {
-    this.admindSvc.getSasToken().then(it => {
-      this.sas = it;
-      this.uploadProgress$ = from(this.file as FileList).pipe(
-        map(file => this.uploadFile(file)),
-        combineAll(),
-      );
-    })
+    if (this.fg.valid) {
+      this.admindSvc.createAddBiker(this.fg.value).then(_ => {
+        this.admindSvc.getSasToken().then(it => {
+          this.sas = it;
+          this.uploadProgress$ = from(this.file as FileList).pipe(
+            map(file => this.uploadFile(file)),
+            combineAll(),
+          );
+        })
+      })
+    }
   }
 
   uploadFile(file: File): Observable<IUploadProgress> {
