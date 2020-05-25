@@ -48,7 +48,7 @@
             </ion-row>
 
             <ion-item color="light" lines="none" class="ion-padding">
-                <ion-button slot="end" size="default" shape="round" color="danger" class="buttonWidth" routerLink="/contract">ยกเลิก</ion-button>
+                <ion-button slot="end" size="default" shape="round" color="danger" class="buttonWidth" (click)="Back()">ยกเลิก</ion-button>
                 <ion-button slot="end" size="default" shape="round" color="success" class="buttonWidth" (click)="handleSubmit()">ยืนยัน</ion-button>
             </ion-item>
         </ion-card>

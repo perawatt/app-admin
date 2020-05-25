@@ -11,12 +11,16 @@ export class ContractPage implements OnInit {
   contactInfo$ = Promise.resolve([]);
   constructor(private adminSvc : AdminService) { }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.contactInfo$ = this.adminSvc.getContractCondition();
     this.contactInfo$.then((it:any)=>{
       console.log(it);
       console.log(JSON.stringify(it))
     });
+  }
+  
+  ngOnInit() {
+   
 
   }
 
