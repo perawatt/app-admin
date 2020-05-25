@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>แก้ไขหมวดหมู่</ion-title>
+    <ion-back-button mode="md"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +11,7 @@
 
       <ion-list class="ion-no-padding" color="light" lines="inset">
         <ion-item lines="none" color="light">
-          <ion-button class="buttonWidth" slot="end" (click)="createCategoty()" color="success" shape="round"
+          <ion-button [routerLink]="['restaurant-create-category']" class="buttonWidth" slot="end" (click)="createCategoty()" color="success" shape="round"
             size="default">
             <ion-label color="light">
               เพิ่มหมวดหมู่
