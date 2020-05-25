@@ -16,7 +16,7 @@
 
   <div *ngIf="messageTable == attention">
     <ng-container *ngIf="cancelRequestOrderinfo$ | async as data">
-      <ion-card color="light" *ngFor="let item of data">
+      <ion-card color="light" *ngFor="let item of data" [routerLink]="['operation-order-detail', item._id]">
         <ion-item button color="light" class="ion-text-center">
           <ion-col size="4">
             <ion-text color="primary">

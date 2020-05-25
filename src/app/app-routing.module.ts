@@ -96,7 +96,7 @@ const routes: Routes = [
     loadChildren: () => import('./operation-confirm-cancel-order/operation-confirm-cancel-order.module').then(m => m.OperationConfirmCancelOrderPageModule)
   },
   {
-    path: 'operation-attention-detail',
+    path: 'operation/operation-order-detail/:_id/operation-attention-detail',
     loadChildren: () => import('./operation-attention-detail/operation-attention-detail.module').then(m => m.OperationAttentionDetailPageModule)
   },
   {
