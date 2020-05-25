@@ -125,7 +125,7 @@
           <ion-label>
             <ion-text>
               <h3>เวลาประเมิน : ยังไม่ได้ binding</h3>
-              <h3>เวลาประจริง : -</h3>
+              <h3>เวลาที่ใช้จริง : -</h3>
             </ion-text>
           </ion-label>
         </ion-item>
@@ -212,12 +212,12 @@
                   <h2>คนส่งอาหาร</h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="data.orderDetail.delivery.name != null">
+              <ion-col size="3.5" *ngIf="data.orderDetail.delivery.name">
                 <ion-label>
                   <h2>{{ data.orderDetail.delivery.name }}</h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="data.orderDetail.delivery.name == null">
+              <ion-col size="3.5" *ngIf="!data.orderDetail.delivery.name">
                 <ion-label>
                   <h2>ยังไม่มีผู้รับงาน</h2>
                 </ion-label>

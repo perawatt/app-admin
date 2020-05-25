@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button mode="md"></ion-back-button>
     </ion-buttons>
     <ion-title>OrderID {{ orderId }}</ion-title>
   </ion-toolbar>
@@ -24,7 +24,7 @@
             <ion-label>
               <ion-text color="dark">
                 <ion-icon name="time-outline"></ion-icon>
-                15 พ.ค. 2563 (10:00 น.)
+                {{ data.orderDetail.createDate | date:'d MMM y (H:mm)'}}
               </ion-text>
             </ion-label>
             <br>
@@ -37,11 +37,9 @@
             <img src="https://cf.shopee.co.th/file/c0f005d6a465eb0813d6062467c9cd12_tn" />
           </ion-avatar>
           <ion-label>
-            <h3><b>ร้าน Wib cafe</b></h3>
+            <h3><b> {{ data.orderDetail.restaurant.name }} </b></h3>
             <ion-text color="secondary">
-              <p class="ion-text-wrap"> 147/2 นะจ๊ะ เเเเเเเเเเเเเเเเเเเเเเเเ เเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเ</p>
+              <p class="ion-text-wrap"> {{ data.orderDetail.restaurant.address }} </p>
             </ion-text>
           </ion-label>
         </ion-item>
@@ -51,11 +49,9 @@
             <img src="https://cf.shopee.co.th/file/c0f005d6a465eb0813d6062467c9cd12_tn" />
           </ion-avatar>
           <ion-label>
-            <h3><b>เอิร์นไง</b></h3>
+            <h3><b> {{ data.orderDetail.customer.name }} </b></h3>
             <ion-text color="secondary">
-              <p class="ion-text-wrap"> 147/2 นะจ๊ะ เเเเเเเเเเเเเเเเเเเเเเเเ เเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเเเเเเเ
-                เเเเเเเเเเเเเเเเ</p>
+              <p class="ion-text-wrap"> {{ data.orderDetail.customer.address }} </p>
             </ion-text>
           </ion-label>
         </ion-item>
@@ -72,27 +68,41 @@
           <ion-col size="0.75"></ion-col>
           <ion-label>
             <ion-text>
-              <h3>เวลาประเมิน : 20 นาที</h3>
-              <h3>เวลาประเมิน : 25 นาที</h3>
+              <h3>เวลาประเมิน : 20 นาที (ยังไม่ได้ binding)</h3>
+              <h3>เวลาที่ใช้จริง : 25 นาที (ยังไม่ได้ binding)</h3>
             </ion-text>
           </ion-label>
         </ion-item>
 
 
+        
+
          <ion-row class="boxStepProgressBar">
           <ion-col size="1.1"></ion-col>
           <div>
-            <li><div class="nodeSuccess "></div><p>ลูกค้าสั่งอาหาร</p></li>
+           
+            <li *ngIf="data.orderDetail.createDate"><div class="nodeSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.createDate"><div class="nodeUnSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
 
-            <li><div class="lineUnSuccess "></div></li>
-            <li><div class="nodeUnSuccess "></div><p>รับออเดอร์</p></li>
+            <li *ngIf="data.orderDetail.acceptRequestDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail.acceptRequestDate"><div class="nodeSuccess"></div><p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.acceptRequestDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail.acceptRequestDate"><div class="nodeUnSuccess"></div><p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p></li>
 
-            <li><div class="lineUnSuccess "></div></li>
-            <li><div class="nodeUnSuccess "></div><p>อยู่ระหว่างจัดส่ง</p></li>
-            <li><div class="lineUnSuccess "></div></li>
-            <li><div class="nodeUnSuccess "></div><p>ของถึงแล้ว</p></li>
-            <li><div class="lineUnSuccess "></div></li>
-            <li><div class="nodeUnSuccess "></div><p>ลูกค้าได้รับของแล้ว</p></li>
+            <li *ngIf="data.orderDetail.shippingDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail.shippingDate"><div class="nodeSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.shippingDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail.shippingDate"><div class="nodeUnSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p></li>
+
+            <li *ngIf="data.orderDetail.destinationDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail.destinationDate"><div class="nodeSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.destinationDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail.destinationDate"><div class="nodeUnSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p></li>
+
+            <li *ngIf="data.orderDetail.doneDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail.doneDate"><div class="nodeSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail.doneDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail.doneDate"><div class="nodeUnSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p></li>
             </div>
         </ion-row>
 
@@ -135,12 +145,12 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2>User displayName</h2>
+                  <h2> {{ data.orderDetail.customer.name }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2>085-632-1478</h2>
+                  <h2> {{ data.orderDetail.customer.tel }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
@@ -165,19 +175,19 @@
                   <h2>คนส่งอาหาร</h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="haveEmployee == true">
+              <ion-col size="3.5" *ngIf="data.orderDetail.delivery.name">
                 <ion-label>
-                  <h2>xxxx</h2>
+                  <h2> {{ data.orderDetail.delivery.name }} </h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="haveEmployee == false">
+              <ion-col size="3.5" *ngIf="!data.orderDetail.delivery.name">
                 <ion-label>
                   <h2>ยังไม่มีผู้รับงาน</h2>
                 </ion-label>
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2>085-632-1478</h2>
+                  <h2> {{ data.orderDetail.delivery.tel }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
@@ -204,12 +214,12 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2>Res.Name</h2>
+                  <h2> {{ data.orderDetail.restaurant.name }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2>096-324-2456</h2>
+                  <h2> {{ data.orderDetail.restaurant.tel }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">

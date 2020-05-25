@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-create',
@@ -14,7 +15,7 @@ export class RestaurantCreatePage implements OnInit {
   public commissionPercent: number;
   public deliveryPricePerOrder: number;
 
-  constructor(private fb: FormBuilder, private adminSvc: AdminService) {
+  constructor(private fb: FormBuilder, private adminSvc: AdminService, private navCtrl: NavController) {
     this.fg = this.fb.group({
       'tel': null,
       'manaCode': null,
@@ -43,7 +44,13 @@ export class RestaurantCreatePage implements OnInit {
 
   handleSubmit() {
     console.log(this.fg.value);
-    this.adminSvc.createAddRestaurant(this.fg.value);
+    this.adminSvc.createAddRestaurant(this.fg.value).then(it=>{
+      this.navCtrl.back();
+    });
+  }
+
+  cancel(){
+    this.navCtrl.back();
   }
 
 }

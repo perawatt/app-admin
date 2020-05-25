@@ -13,12 +13,12 @@ export class RestaurantProfilePage implements OnInit {
   public shopName: string;
   public shopInfo$ = Promise.resolve([]);
 
-  constructor(private route: ActivatedRoute, private adminSvc: AdminService) {
+  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(param => { this._idShop = param["_id"] });
-    this.route.params.subscribe(param => { this.shopName = param["shopName"] });
+    this._idShop = this.activatedRoute.snapshot.paramMap.get('shopId');
+    this.shopName = this.activatedRoute.snapshot.paramMap.get('shopName');
     console.log(this._idShop);
     this.getRestaurantById();
   }
