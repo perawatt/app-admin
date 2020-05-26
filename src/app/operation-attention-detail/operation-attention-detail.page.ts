@@ -8,6 +8,7 @@ import { AdminService } from 'src/services/admin.service';
   styleUrls: ['./operation-attention-detail.page.scss'],
 })
 export class OperationAttentionDetailPage implements OnInit {
+  title:string;
   public orderId: string;
   productList$ = Promise.resolve([]);
 
@@ -21,7 +22,7 @@ export class OperationAttentionDetailPage implements OnInit {
 
     this.productList$ = this.adminSvc.getOrderDetail(this.orderId);
     this.productList$.then((it: any) => {
-      console.log(it);
+     this.title = it.orderDetail._id;
     });
     
 
