@@ -14,6 +14,7 @@ export class OperationOrderDetailPage implements OnInit {
   public haveEmployee: boolean;
   public _id: string;
   orderdetail$ = Promise.resolve([]);
+  title:string;
 
   constructor(private modalController: ModalController, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
     this.haveEmployee = false
@@ -28,6 +29,7 @@ export class OperationOrderDetailPage implements OnInit {
     this.orderdetail$ = this.adminSvc.getOrderDetail(this._id);
     this.orderdetail$.then((it: any) => {
       console.log(it);
+      this.title = it?.orderDetail?._id;
     });
   }
 
@@ -70,7 +72,6 @@ export class OperationOrderDetailPage implements OnInit {
       this.adminSvc.updateSendCancelDeny(cancelRequestId).then((it: any) => {
         console.log(it);
         this.navCtrl.back();
-
       })
     }
   }
