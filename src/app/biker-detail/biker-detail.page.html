@@ -24,8 +24,11 @@
                 <h1><b>Biker ID : {{ data._id }}</b></h1>
                 <h1><b>Rating : ยังไม่เปิดบริการ</b></h1>
               </ion-label>
-              <ion-button slot="end" shape="round" class="buttonWidth" size="default">
+              <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="danger" *ngIf="!data.suspendedDate" (click)="Suspended()">
                 <ion-label> พักงาน</ion-label>
+              </ion-button>
+              <ion-button slot="end" shape="round" class="buttonWidth" size="default"  *ngIf="data.suspendedDate" (click)="UnSuspended()">
+                <ion-label> เลิกพักงาน</ion-label>
               </ion-button>
             </ion-item>
             <ion-item color="light">

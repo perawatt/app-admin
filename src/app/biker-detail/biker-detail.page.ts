@@ -15,6 +15,10 @@ export class BikerDetailPage implements OnInit {
 
   constructor(private route:ActivatedRoute,private adminSvc:AdminService) { }
 
+  IonViewDidEnter(){
+   
+  }
+
   ngOnInit() {
     this.route.params.subscribe(param=>{
       this.bikerId = param['bikerId'];
@@ -26,8 +30,21 @@ export class BikerDetailPage implements OnInit {
       this.title = it.name;
       console.log(it);
     });
-
-
   }
 
+  Suspended(){
+    this.adminSvc.updateSuspendBiker(this.bikerId).then(()=>{
+      this.Reload();
+    });
+  }
+
+  UnSuspended(){
+    this.adminSvc.updateUnsuspendBiker(this.bikerId).then(()=>{
+      this.Reload();
+    });
+  }
+
+  Reload(){
+    this.bikerInfo$ = this.adminSvc.getBikerById(this.bikerId);
+  }
 }
