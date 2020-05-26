@@ -32,7 +32,7 @@ export class OperationPage implements OnInit {
   }
 
   setStatus() {
-    this.cancelRequestOrderinfo$.then((it: any) => {
+    this.unFinishedOrderinfo$.then((it: any) => {
       console.log(it);
 
       it.forEach(i => {
