@@ -17,6 +17,7 @@ export class RestaurantCreatePage implements OnInit {
 
   constructor(private fb: FormBuilder, private adminSvc: AdminService, private navCtrl: NavController) {
     this.fg = this.fb.group({
+      'name': null,
       'tel': null,
       'manaCode': null,
       'note': null,

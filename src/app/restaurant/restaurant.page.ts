@@ -14,14 +14,13 @@ export class RestaurantPage implements OnInit {
   constructor(private adminSvc: AdminService) { }
 
   ionViewDidEnter() {
-    this.ngOnInit();
-  }
-
-  ngOnInit() {
     this.getRestaurant$ = this.adminSvc.getRestaurant();
     this.getRestaurant$.then(it => {
       console.log(it);
     })
+  }
+
+  ngOnInit() {
   }
 
 }

@@ -30,10 +30,17 @@
                 <h1><b>สถานะ</b></h1>
               </ion-label>
               <ion-note slot="end" class="ion-text-end">
-                <ion-label color="success">
+                <ion-label color="success" *ngIf="data.restaurantStandby">
                   <h2>
                     <b>
                       เปิดร้าน
+                    </b>
+                  </h2>
+                </ion-label>
+                <ion-label color="danger" *ngIf="!data.restaurantStandby">
+                  <h2>
+                    <b>
+                      ปิดร้าน
                     </b>
                   </h2>
                 </ion-label>

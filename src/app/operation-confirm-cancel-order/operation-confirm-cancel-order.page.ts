@@ -11,9 +11,14 @@ import { AdminService } from 'src/services/admin.service';
 export class OperationConfirmCancelOrderPage implements OnInit {
   @Input() cancelRequestId: string;
   public fg: FormGroup;
-  public refundAll: boolean = false;
+  public heading: any;
+  public info: any;
+  public refundAll: any;
+  public refundFood: any;
+  public noRefund: any;
+  public compensate: boolean;
 
-  constructor(private modalController: ModalController,public modalCtrl: ModalController, private fb: FormBuilder,  private adminSvc: AdminService) {
+  constructor(private modalController: ModalController, public modalCtrl: ModalController, private fb: FormBuilder, private adminSvc: AdminService) {
     this.fg = this.fb.group({
       'heading': null,
       'info': null,
@@ -28,18 +33,23 @@ export class OperationConfirmCancelOrderPage implements OnInit {
   }
 
   handleSubmit() {
+    this.fg.get('heading').setValue(this.heading);
+    this.fg.get('info').setValue(this.info);
+    this.fg.get('refundAll').setValue(this.refundAll);
+    this.fg.get('refundFood').setValue(this.refundFood);
+    this.fg.get('compensate').setValue(this.compensate);
+
     console.log('heading', this.fg.get('heading').value);
-    console.log('heading2', this.fg.get('info').value);
-    console.log('heading2', this.fg.get('refundAll').value);
-    console.log('heading2', this.fg.get('refundFood').value);
-    console.log('heading2', this.fg.get('compensate').value);
-
-
+    console.log('info', this.fg.get('info').value);
+    console.log('refundAll', this.fg.get('refundAll').value);
+    console.log('refundFood', this.fg.get('refundFood').value);
+    console.log('compensate', this.fg.get('compensate').value);
     console.log(this.fg.value);
     console.log(this.cancelRequestId);
-    if (this.cancelRequestId)
-    this.adminSvc.updateSendCancelComfirm(this.cancelRequestId, this.fg.value).then((it: any) => {
-      this.modalController.dismiss();
+    if (this.cancelRequestId && this.fg.get('heading').value && this.fg.get('info').value && (this.fg.get('refundAll').value 
+    || this.fg.get('refundFood').value || this.fg.get('compensate').value))
+      this.adminSvc.updateSendCancelComfirm(this.cancelRequestId, this.fg.value).then((it: any) => {
+        this.modalController.dismiss();
       })
   }
 
@@ -47,8 +57,11 @@ export class OperationConfirmCancelOrderPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  isChangeRefundAll() {
-    this.refundAll = !this.refundAll;
+  selected() {
+    this.refundAll = false;
+    this.refundFood = false;
+    this.noRefund = false;
+    this.compensate = false;
   }
 
 
