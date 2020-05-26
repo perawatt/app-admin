@@ -34,11 +34,11 @@
 
                <ion-text color="success">
                 <p><b>Driver Name {{item.delivery.name}}</b></p>
-                <p *ngIf="status = 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></p>
-                <p *ngIf="status = 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></p>
-                <p *ngIf="status = 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></p>
-                <p *ngIf="status = 'destinationDate'"><b>สถานะ : ของถึงแล้ว </b></p>
-                <p *ngIf="status = 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
+                <p *ngIf="status == 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></p>
+                <p *ngIf="status == 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></p>
+                <p *ngIf="status == 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></p>
+                <p *ngIf="status == 'destinationDate'"><b>สถานะ : ของถึงแล้ว </b></p>
+                <p *ngIf="status == 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
               </ion-text>
           </ion-col>
           <ion-col size="4">
@@ -142,11 +142,11 @@
 
               <ion-text>
                 <h3><b>Driver Name {{item.delivery.name}}</b></h3>
-                <h3 *ngIf="status = 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
-                <h3 *ngIf="status = 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></h3>
-                <h3 *ngIf="status = 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
-                <h3 *ngIf="status = 'destinationDate'"><b>สถานะ : ของถึงแล้ว </b></h3>
-                <h3 *ngIf="status = 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></h3>
+                <h3 *ngIf="status == 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
+                <h3 *ngIf="status == 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></h3>
+                <h3 *ngIf="status == 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
+                <h3 *ngIf="status == 'destinationDate'"><b>สถานะ : ของถึงแล้ว </b></h3>
+                <h3 *ngIf="status == 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></h3>
               </ion-text>
             </ion-label>
           </ion-item>
