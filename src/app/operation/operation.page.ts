@@ -36,39 +36,39 @@ export class OperationPage implements OnInit {
       console.log(it);
 
       it.forEach(i => {
-        console.log(i.acceptRequestDate);
-        console.log(i.createDate);
-        console.log(i.shippingDate);
-        console.log(i.destinationDate);
-        console.log(i.doneDate);
+        console.log(i?.acceptRequestDate);
+        console.log(i?.createDate);
+        console.log(i?.shippingDate);
+        console.log(i?.destinationDate);
+        console.log(i?.doneDate);
 
         if (
-          i.acceptRequestDate &&
-          i.createDate &&
-          i.shippingDate &&
-          i.destinationDate &&
-          i.doneDate) {
+          i?.acceptRequestDate &&
+          i?.createDate &&
+          i?.shippingDate &&
+          i?.destinationDate &&
+          i?.doneDate) {
           this.status = "doneDate";
           console.log('1');
 
         } else if (
-          i.acceptRequestDate &&
-          i.createDate &&
-          i.shippingDate &&
-          i.destinationDate) {
+          i?.acceptRequestDate &&
+          i?.createDate &&
+          i?.shippingDate &&
+          i?.destinationDate) {
           this.status = "destinationDate";
           console.log('2');
 
         } else if (
-          i.acceptRequestDate &&
-          i.createDate &&
-          i.shippingDate) {
+          i?.acceptRequestDate &&
+          i?.createDate &&
+          i?.shippingDate) {
           this.status = "shippingDate";
           console.log('3');
 
         } else if (
-          i.acceptRequestDate &&
-          i.createDate) {
+          i?.acceptRequestDate &&
+          i?.createDate) {
           this.status = "acceptRequestDate";
           console.log('4');
 
