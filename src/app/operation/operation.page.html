@@ -41,23 +41,11 @@
       </ion-card>
 
       <ion-card color="light" class="ion-text-center" *ngIf="!data || data.length == 0">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br><br>
         <ion-text class="ion-text-center" color="primary">
-          <h5>
-            <b>
-              ไม่มีรายการ
-            </b>
-          </h5>
+          <h5><b>ไม่มีรายการ</b></h5>
         </ion-text>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br><br>
       </ion-card>
     </ng-container>
   </div>
@@ -71,16 +59,13 @@
               <ion-label>
                 <h1><b>OrderID : {{item._id}}</b></h1>
                 <ion-text color="warning">
-                  <h3>{{item.commissionPrice.number}}{{item.commissionPrice.amountUnit}} (2 รายการ ยังไม่ได้ binding)
-                  </h3>
+                  <h3>฿{{item.totalPrice}} ({{ item.totalQuantity }} รายการ)</h3>
                 </ion-text>
               </ion-label>
               <ion-label>
                 <ion-note slot="end" class="ion-text-end">
                   <ion-text color="dark">
-                    <h3>
-                      <ion-icon name="time-outline"></ion-icon> {{ item.createDate | date:'d MMM y (H:mm)' }}
-                    </h3>
+                    <h3><ion-icon name="time-outline"></ion-icon> {{ item.createDate | date:'d MMM y (H:mm)' }}</h3>
                     <br>
                   </ion-text>
                 </ion-note>
@@ -91,8 +76,7 @@
         <ion-list>
           <ion-item color="light">
             <ion-avatar slot="start">
-              <img
-                src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
+              <img src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
             </ion-avatar>
             <ion-label>
               <h3><b>{{item.restaurant.name}}</b></h3>
@@ -104,26 +88,23 @@
 
           <ion-item color="light">
             <ion-avatar slot="start">
-              <img
-                src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
+              <img src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
             </ion-avatar>
             <ion-label>
-              <h3><b>{{item.customer.name}}</b></h3>
+              <h3><b>{{ item.customer.name }}</b></h3>
               <ion-text color="secondary">
-                <p class="ion-text-wrap">{{item.customer.address}}</p>
+                <p class="ion-text-wrap">{{ item.customer.address }}</p>
               </ion-text>
             </ion-label>
           </ion-item>
           <ion-item color="light" lines="none">
+            <ion-avatar slot="start"></ion-avatar>
             <ion-avatar slot="start">
-            </ion-avatar>
-            <ion-avatar slot="start">
-              <img
-                src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
+              <img src="https://image.shutterstock.com/image-vector/cartoon-cute-squid-bowtie-vector-260nw-740611582.jpg" />
             </ion-avatar>
             <ion-label>
               <ion-text>
-                <h3><b>Driver Name {{item.delivery.name}}</b></h3>
+                <h3><b>Driver Name {{ item.delivery.name }}</b></h3>
                 <h3 *ngIf="status == 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
                 <h3 *ngIf="status == 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></h3>
                 <h3 *ngIf="status == 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
@@ -137,23 +118,11 @@
       </ion-card>
 
       <ion-card color="light" class="ion-text-center" *ngIf="!data || data.length == 0">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br><br>
         <ion-text class="ion-text-center" color="primary">
-          <h5>
-            <b>
-              ไม่มีรายการ
-            </b>
-          </h5>
+          <h5><b>ไม่มีรายการ</b></h5>
         </ion-text>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br><br>
       </ion-card>
     </ng-container>
   </div>
