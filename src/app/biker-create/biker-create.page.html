@@ -28,13 +28,15 @@
               </ion-item>
               <ion-item color="light" lines="none">
                 <img class="ion-margin-vertical"
-                  src="https://www.stapaustral.catholic.edu.au/wp-content/uploads/sites/16/2019/05/Person-icon.jpg" height="100">
+                  src="https://www.stapaustral.catholic.edu.au/wp-content/uploads/sites/16/2019/05/Person-icon.jpg"
+                  height="100">
                 <ion-button shape="round" size="default" color="secondary">
                   <!-- <ion-label color="light">เปลี่ยนรูป</ion-label> -->
                   <ion-input type="file" accept="photo" multiple="true" (ionChange)="selectPhoto($event)">
                   </ion-input>
                 </ion-button>
               </ion-item>
+              <pre hidden="true">{{uploadProgress$ | async | json}}</pre>
               <ion-item color="light" lines="inset">
                 <ion-input formControlName="name" placeholder="ชื่อผู้สมัคร"></ion-input>
               </ion-item>

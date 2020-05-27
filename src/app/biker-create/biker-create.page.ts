@@ -49,12 +49,13 @@ export class BikerCreatePage implements OnInit {
     if (this.fg.valid) {
       this.adminSvc.getSasToken().then(it => {
         this.sas = it;
-        this.fg.get('profileImage').patchValue(this.sas.blobUrl + '/' + this.sas.containerName + '/' + this.file.name);
+        this.fg.get('profileImage').patchValue(this.sas.blobUrl + '/' + this.sas.containerName + '/' + this.file[0].name);
         this.adminSvc.createAddBiker(this.fg.value).then(_ => {
           this.uploadProgress$ = from(this.file as FileList).pipe(
             map(file => this.uploadFile(file)),
             combineAll(),
           );
+          this.navCtrl.back();
         })
       })
     }
