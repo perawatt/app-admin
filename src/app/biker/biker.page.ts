@@ -18,11 +18,7 @@ export class BikerPage implements OnInit {
       console.log(it);
     });
   }
-
-  getImage(image: string): string {
-    return "https://3rddeliverystorage.blob.core.windows.net/biker/" + image;
-  }
-
+  
   ngOnInit() {
 
   }
