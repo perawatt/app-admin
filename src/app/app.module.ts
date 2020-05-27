@@ -5,7 +5,6 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +12,7 @@ import { IAzureStorage, BLOB_STORAGE_TOKEN } from 'src/services/blob-storage/azu
 import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
 import { OperationOrderCancelPageModule } from './operation-order-cancel/operation-order-cancel.module';
 import { OperationConfirmCancelOrderPageModule } from './operation-confirm-cancel-order/operation-confirm-cancel-order.module';
+import { OperationPageModule } from './operation/operation.module';
 
 declare var AzureStorage: IAzureStorage;
 @NgModule({
@@ -22,9 +22,10 @@ declare var AzureStorage: IAzureStorage;
     BrowserModule,
     IonicModule.forRoot(),
     HttpClientModule,
+    AppRoutingModule,
+    OperationPageModule,
     OperationOrderCancelPageModule,
     OperationConfirmCancelOrderPageModule,
-    AppRoutingModule
   ],
   providers: [
     StatusBar,
