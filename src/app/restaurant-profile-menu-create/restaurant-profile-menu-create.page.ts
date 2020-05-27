@@ -24,6 +24,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   _id: string;
   catagory$ = Promise.resolve([]);
   uploadProgress$: Observable<IUploadProgress[]>;
+  imageIdForGet: string;
   constructor(private navCtrl: NavController, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
     this.fg = this.fb.group({
       'name': [null, Validators.required],
@@ -55,15 +56,17 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
 
   submit() {
     if (this.fg.valid) {
-      this.adminSvc.createProduct('1', this.fg.value).then(_ => {
-        this.adminSvc.getSasToken().then(it => {
-          this.sas = it;
+      this.adminSvc.getSasManaUpload().then(it => {
+        console.log(it);
+        this.sas = it;
+        this.fg.get('previewImageId').patchValue(this.sas.imageId);
+        this.adminSvc.createProduct('1', this.fg.value).then(_ => {
           this.uploadProgress$ = from(this.file as FileList).pipe(
             map(file => this.uploadFile(file)),
             combineAll(),
           );
+          this.navCtrl.back();
         })
-        this.navCtrl.back();
       });
     }
   }
@@ -71,9 +74,9 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   uploadFile(file: File): Observable<IUploadProgress> {
     var accessToken: ISasToken = {
       container: this.sas.containerName,
-      filename: file.name,
-      storageAccessToken: this.sas.complementary,
-      storageUri: this.sas.blobUrl
+      filename: this.sas.imageId,
+      storageAccessToken: this.sas.saS,
+      storageUri: this.sas.storageUri
     };
     return this.blobStorage
       .uploadToBlobStorage(accessToken, file)

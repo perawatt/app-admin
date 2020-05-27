@@ -35,6 +35,10 @@
             </ion-button>
           </ion-item>
           <ion-item color=" light" lines="inset">
+            <h2>Upload Progress</h2>
+            <pre>{{uploadProgress$ | async | json}}</pre>
+          </ion-item>
+          <ion-item color=" light" lines="inset">
             <ion-input formControlName="name" placeholder="กรุณาตั้งชื่อเมนูของคุณ"></ion-input>
           </ion-item>
           <ion-item color="light" lines="inset">
@@ -51,13 +55,12 @@
                 แสดงตัวอย่าง
               </ion-label>
             </ion-button>
-            <ion-button (click)="goBack()" slot="end"
-              color="danger" shape="round" class="buttonWidth" size="default">
+            <ion-button (click)="goBack()" slot="end" color="danger" shape="round" class="buttonWidth" size="default">
               <ion-label color="light">
                 ยกเลิก
               </ion-label>
             </ion-button>
-            <ion-button [routerLink]="['/restaurant-profile-menu']" slot="end" type="submit" color="success" shape="round" class="buttonWidth" size="default">
+            <ion-button slot="end" type="submit" color="success" shape="round" class="buttonWidth" size="default">
               <ion-label color="light">
                 บันทึก
               </ion-label>
