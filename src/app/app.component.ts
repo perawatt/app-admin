@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private route: Router
+    public route: Router
   ) {
     this.initializeApp();
   }
