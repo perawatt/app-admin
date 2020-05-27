@@ -35,6 +35,10 @@ export interface IAdminService {
     getContractConditionById(contractConditionId: string): Promise<any>;
 
     getSasToken(): Promise<any>;
+    
+    getSasManaUpload(): Promise<any>;
+
+    getImageUpload(imageId: string): Promise<any>; 
 
     createSendCancelRequest(orderId: string, data: any): Promise<any>;
 

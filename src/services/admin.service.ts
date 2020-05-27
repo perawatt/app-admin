@@ -160,7 +160,16 @@ export class AdminService implements IAdminService {
     return this.http.post(apiUrl, {}).toPromise();
   }
 
-  // https://manamockapi.azurewebsites.net/Image/sas?type=1&refid=1&serviceId=1&bizAccountId=1
+  getSasManaUpload(): Promise<any> {
+    let apiUrl = 'https://manamockapi.azurewebsites.net/Image/sas?type=1&refid=1&serviceId=1&bizAccountId=1';
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  getImageUpload(imageId: string): Promise<any> {
+    let apiUrl = 'https://manamockapi.azurewebsites.net/Image/' + imageId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
   // TODO adminId
   private baseUrl: string = API_URL;
   constructor(private http: HttpClient) { }

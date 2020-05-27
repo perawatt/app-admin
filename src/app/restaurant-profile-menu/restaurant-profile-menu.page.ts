@@ -15,14 +15,14 @@ export class RestaurantProfileMenuPage implements OnInit {
   _id: string;
   public category: any;
 
-  constructor(private route: ActivatedRoute, private admindSvc: AdminService, public modalController: ModalController) { }
+  constructor(private route: ActivatedRoute, private adminSvc: AdminService, public modalController: ModalController) { }
 
   ngOnInit() {
     this._id = this.route.snapshot.paramMap.get('shopId');
   }
 
   ionViewDidEnter() {
-    this.data$ = this.admindSvc.getRestaurantMenu(this._id);
+    this.data$ = this.adminSvc.getRestaurantMenu(this._id);
     this.data$.then(it => {
       console.log(it);
       let qry = it.filter(i => i.products.length > 0);
@@ -33,6 +33,10 @@ export class RestaurantProfileMenuPage implements OnInit {
 
   segmentChanged(id: any) {
     this.segmentValue = id;
+  }
+
+  getImage(imageId: string) {
+    return this.adminSvc.getImageUpload(imageId);
   }
 
   async presentModal() {

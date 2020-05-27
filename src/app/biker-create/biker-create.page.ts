@@ -21,7 +21,7 @@ export class BikerCreatePage implements OnInit {
   config: any;
   uploadProgress$: Observable<IUploadProgress[]>;
 
-  constructor(private navCtrl: NavController,private route: Router,private fb: FormBuilder, private admindSvc: AdminService, private blobStorage: BlobStorageService) {
+  constructor(private navCtrl: NavController, private route: Router, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
     this.fg = this.fb.group({
       'manaCode': [null, Validators.required],
       'name': [null, Validators.required],
@@ -47,15 +47,15 @@ export class BikerCreatePage implements OnInit {
 
   submit() {
     if (this.fg.valid) {
-      this.admindSvc.createAddBiker(this.fg.value).then(_ => {
-        this.admindSvc.getSasToken().then(it => {
-          this.sas = it;
+      this.adminSvc.getSasToken().then(it => {
+        this.sas = it;
+        this.fg.get('previewImageId').patchValue(this.file.name);
+        this.adminSvc.createAddBiker(this.fg.value).then(_ => {
           this.uploadProgress$ = from(this.file as FileList).pipe(
             map(file => this.uploadFile(file)),
             combineAll(),
           );
         })
-        this.route.navigate(['/biker']);
       })
     }
   }
@@ -78,7 +78,7 @@ export class BikerCreatePage implements OnInit {
     };
   }
 
-  Back(){
+  Back() {
     this.navCtrl.back();
   }
 }
