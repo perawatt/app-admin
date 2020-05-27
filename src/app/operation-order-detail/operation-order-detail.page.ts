@@ -55,13 +55,12 @@ export class OperationOrderDetailPage implements OnInit {
   async goConfirmCancelOrder(cancelRequestId: string) {
     const modal = await this.modalController.create({
       component: OperationConfirmCancelOrderPage,
-      // cssClass: 'dialog-modal-4-order-addcancel',
+      cssClass: 'dialog-modal-4-order-addcancel',
       componentProps: { 'cancelRequestId': cancelRequestId },
       backdropDismiss: false
     });
     modal.onDidDismiss().then(data => {
       this.navCtrl.back();
-
     })
     modal.present();
   }
