@@ -17,6 +17,7 @@ export class OperationConfirmCancelOrderPage implements OnInit {
   public refundFood: any;
   public noRefund: any;
   public compensate: boolean;
+  public isOk: boolean = true;
 
   constructor(private modalController: ModalController, public modalCtrl: ModalController, private fb: FormBuilder, private adminSvc: AdminService) {
     this.fg = this.fb.group({
@@ -49,7 +50,7 @@ export class OperationConfirmCancelOrderPage implements OnInit {
     if (this.cancelRequestId && this.fg.get('heading').value && this.fg.get('info').value && (this.fg.get('refundAll').value 
     || this.fg.get('refundFood').value || this.fg.get('compensate').value))
       this.adminSvc.updateSendCancelComfirm(this.cancelRequestId, this.fg.value).then((it: any) => {
-        this.modalController.dismiss();
+        this.modalController.dismiss(this.isOk);
       })
   }
 
