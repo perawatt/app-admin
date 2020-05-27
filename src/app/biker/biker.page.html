@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  mode="ios">
+<ion-content mode="ios">
   <ion-item lines="none" class="ion-margin-top">
     <ion-button slot="end" size="default" shape="round" color="success" [routerLink]="['biker-create']">
       <ion-icon name="add-outline" color="light"></ion-icon>
@@ -21,15 +21,15 @@
         <ion-avatar slot="start">
         </ion-avatar>
         <div slot="start">
-            <img src="assets/imgs/bikeorange.png" height="30" />
-          </div>
-          <ion-col size="7" class="ion-text-left">
-            <ion-text color="primary">
-              <p><b> {{data .name}}</b></p>
-            </ion-text>
-          </ion-col>
-          <ion-col size="5">
-            <ng-container *ngIf="data.acceptContractDate">
+          <img [src]="getImage(data.logoImage)" height="30" />
+        </div>
+        <ion-col size="7" class="ion-text-left">
+          <ion-text color="primary">
+            <p><b> {{data .name}}</b></p>
+          </ion-text>
+        </ion-col>
+        <ion-col size="5">
+          <ng-container *ngIf="data.acceptContractDate">
             <ion-text color="success">
               <p><b> สถานะ : เปิดรับงาน </b></p>
             </ion-text>
@@ -39,7 +39,7 @@
               <p><b> สถานะ : กำลังพิจารณา </b></p>
             </ion-text>
           </ng-container>
-          </ion-col>
+        </ion-col>
       </ion-item>
     </ion-card>
     <ng-container *ngIf="!bikerListInfo$">

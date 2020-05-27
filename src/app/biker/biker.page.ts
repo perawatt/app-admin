@@ -8,19 +8,23 @@ import { AdminService } from 'src/services/admin.service';
 })
 export class BikerPage implements OnInit {
 
-  bikerListInfo$ : Promise<any>;
+  bikerListInfo$: Promise<any>;
 
-  constructor(private adminSvc:AdminService) { }
+  constructor(private adminSvc: AdminService) { }
 
-  ionViewDidEnter(){
-    this. bikerListInfo$ = this.adminSvc.getBiker();
-    this. bikerListInfo$.then((it:any)=>{
+  ionViewDidEnter() {
+    this.bikerListInfo$ = this.adminSvc.getBiker();
+    this.bikerListInfo$.then((it: any) => {
       console.log(it);
     });
   }
 
+  getImage(image: string): string {
+    return "https://3rddeliverystorage.blob.core.windows.net/biker/" + image;
+  }
+
   ngOnInit() {
-    
+
   }
 
 
