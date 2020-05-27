@@ -13,6 +13,8 @@ export class RestaurantProfileMenuPage implements OnInit {
   data$ = Promise.resolve([]);
   segmentValue: any;
   _id: string;
+  public category: any;
+
   constructor(private route: ActivatedRoute, private admindSvc: AdminService, public modalController: ModalController) { }
 
   ngOnInit() {
@@ -22,13 +24,15 @@ export class RestaurantProfileMenuPage implements OnInit {
   ionViewDidEnter() {
     this.data$ = this.admindSvc.getRestaurantMenu(this._id);
     this.data$.then(it => {
-      console.log(JSON.stringify(it));
+      console.log(it);
+      let qry = it.filter(i => i.products.length > 0);
+      this.category = qry[0].categoryId;
+      this.segmentChanged(qry[0].categoryId);
     })
   }
 
-  segmentChanged(ev: any) {
-    console.log('Segment changed', ev.target.value);
-    this.segmentValue = ev.target.value;
+  segmentChanged(id: any) {
+    this.segmentValue = id;
   }
 
   async presentModal() {
