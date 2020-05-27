@@ -60,7 +60,10 @@ export class OperationOrderDetailPage implements OnInit {
       backdropDismiss: false
     });
     modal.onDidDismiss().then(data => {
-      this.navCtrl.back();
+      console.log(data);    
+      if(data.data){
+        this.navCtrl.back();
+      }
     })
     modal.present();
   }
