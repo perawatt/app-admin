@@ -11,15 +11,16 @@ import { NavController } from '@ionic/angular';
 export class FinanceDetailPage implements OnInit {
   financeDetail$ = Promise.resolve([]);
   public _id: string;
+  title:string;
   constructor(private activatedRoute: ActivatedRoute, private navCtrl: NavController, private adminSvc: AdminService, private router: Router) { }
 
   ngOnInit() {
     this._id = this.activatedRoute.snapshot.paramMap.get('_id');
     console.log(this._id);
-
     this.financeDetail$ = this.adminSvc.getFinanceById(this._id);
     this.financeDetail$.then((it: any) => {
-      console.log(it);
+      console.log(it[0].destinationName);
+      this.title = it[0]?.destinationName;
     });
   }
 
