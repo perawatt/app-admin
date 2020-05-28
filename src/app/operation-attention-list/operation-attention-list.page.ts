@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { OperationConfirmCancelOrderPage } from '../operation-confirm-cancel-order/operation-confirm-cancel-order.page';
+import { OperationConfirmCancelOrderPage } from '../../modals/operation-confirm-cancel-order/operation-confirm-cancel-order.page';
 
 @Component({
   selector: 'app-operation-attention-list',
