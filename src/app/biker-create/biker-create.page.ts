@@ -66,7 +66,6 @@ export class BikerCreatePage implements OnInit {
         });
         await loading.present();
         this.adminSvc.getSasToken().then(it => {
-          console.log(it);
           this.sas = it;
           this.uploadProgress$ = from(this.file as FileList).pipe(
             map(file => this.uploadFileSvc.uploadFile(file, this.sas)),
@@ -75,7 +74,6 @@ export class BikerCreatePage implements OnInit {
 
           this.uploadProgress$.subscribe(
             _ => {
-              console.log("process upload: ", _);
 
               if (_.find(it => it.progress >= 100)) {
                 formData.profileImage = _.find(it => it.progress >= 100).fileUrl;

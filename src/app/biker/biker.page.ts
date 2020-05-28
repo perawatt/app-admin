@@ -14,9 +14,6 @@ export class BikerPage implements OnInit {
 
   ionViewDidEnter() {
     this.bikerListInfo$ = this.adminSvc.getBiker();
-    this.bikerListInfo$.then((it: any) => {
-      console.log(it);
-    });
   }
   
   ngOnInit() {
