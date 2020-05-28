@@ -48,7 +48,7 @@ export class OperationConfirmCancelOrderPage implements OnInit {
     console.log(this.fg.value);
     console.log(this.cancelRequestId);
     if (this.cancelRequestId && this.fg.get('heading').value && this.fg.get('info').value && (this.fg.get('refundAll').value 
-    || this.fg.get('refundFood').value || this.fg.get('compensate').value))
+    || this.fg.get('refundFood').value || this.fg.get('compensate').value || this.noRefund))
       this.adminSvc.updateSendCancelComfirm(this.cancelRequestId, this.fg.value).then((it: any) => {
         this.modalController.dismiss(this.isOk);
       })
