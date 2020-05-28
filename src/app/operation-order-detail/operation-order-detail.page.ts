@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
-import { OperationOrderCancelPage } from '../operation-order-cancel/operation-order-cancel.page';
+import { OperationOrderCancelPage } from '../../modals/operation-order-cancel/operation-order-cancel.page';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
-import { OperationConfirmCancelOrderPage } from '../operation-confirm-cancel-order/operation-confirm-cancel-order.page';
+import { OperationConfirmCancelOrderPage } from '../../modals/operation-confirm-cancel-order/operation-confirm-cancel-order.page';
 
 @Component({
   selector: 'app-operation-order-detail',

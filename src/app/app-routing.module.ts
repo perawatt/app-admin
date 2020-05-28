@@ -92,10 +92,6 @@ const routes: Routes = [
     loadChildren: () => import('./contract-create/contract-create.module').then(m => m.ContractCreatePageModule)
   },
   {
-    path: 'operation-confirm-cancel-order',
-    loadChildren: () => import('./operation-confirm-cancel-order/operation-confirm-cancel-order.module').then(m => m.OperationConfirmCancelOrderPageModule)
-  },
-  {
     path: 'operation/operation-order-detail/:orderId/operation-attention-detail',
     loadChildren: () => import('./operation-attention-detail/operation-attention-detail.module').then(m => m.OperationAttentionDetailPageModule)
   },
@@ -130,10 +126,6 @@ const routes: Routes = [
   {
     path: 'operation/operation-order-detail/:_id',
     loadChildren: () => import('./operation-order-detail/operation-order-detail.module').then(m => m.OperationOrderDetailPageModule)
-  },
-  {
-    path: 'operation-order-cancel/:_id',
-    loadChildren: () => import('./operation-order-cancel/operation-order-cancel.module').then(m => m.OperationOrderCancelPageModule)
   },
   {
     path: 'biker/biker-detail/:bikerId/biker-history/biker-history-detail/:orderId/biker-history-detail-order-list',
