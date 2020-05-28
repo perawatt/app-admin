@@ -73,7 +73,6 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
         });
         await loading.present();
         this.adminSvc.getSasManaUpload().then(it => {
-          console.log(it);
           this.sas = it;
           this.uploadProgress$ = from(this.file as FileList).pipe(
             map(file => this.uploadFileSvc.uploadFile(file, this.sas)),
@@ -82,8 +81,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
 
           this.uploadProgress$.subscribe(
             _ => {
-              console.log("process upload: ", _);
-
+              
               if (_.find(it => it.progress >= 100)) {
                 formData.previewImageId = this.sas.imageId
                 this.adminSvc.createProduct('1', formData).then(_ => {

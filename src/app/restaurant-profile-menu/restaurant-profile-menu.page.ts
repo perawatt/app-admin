@@ -24,7 +24,6 @@ export class RestaurantProfileMenuPage implements OnInit {
   ionViewDidEnter() {
     this.data$ = this.adminSvc.getRestaurantMenu(this._id);
     this.data$.then(it => {
-      console.log(it);
       let qry = it.filter(i => i.products.length > 0);
       this.category = qry[0].categoryId;
       this.segmentChanged(qry[0].categoryId);
