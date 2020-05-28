@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { FinanceConfirmPage } from '../finance-confirm/finance-confirm.page';
+import { FinanceConfirmPage } from '../../modals/finance-confirm/finance-confirm.page';
 import { AdminService } from 'src/services/admin.service';
 import { Router } from '@angular/router';
 
