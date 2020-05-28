@@ -72,10 +72,6 @@ const routes: Routes = [
     loadChildren: () => import('./restaurant-profile-history/restaurant-profile-history.module').then(m => m.RestaurantProfileHistoryPageModule)
   },
   {
-    path: 'finance-confirm',
-    loadChildren: () => import('./finance-confirm/finance-confirm.module').then(m => m.FinanceConfirmPageModule)
-  },
-  {
     path: 'restaurant-create-qr',
     loadChildren: () => import('./restaurant-create-qr/restaurant-create-qr.module').then(m => m.RestaurantCreateQrPageModule)
   },
