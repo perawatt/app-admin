@@ -35,10 +35,6 @@ export class RestaurantProfileMenuPage implements OnInit {
     this.segmentValue = id;
   }
 
-  getImage(imageId: string) {
-    return this.adminSvc.getImageUpload(imageId);
-  }
-
   async presentModal() {
     const modal = await this.modalController.create({
       component: RestaurantCreateQrPage

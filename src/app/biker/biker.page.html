@@ -18,7 +18,9 @@
         <ion-avatar slot="start"></ion-avatar>
         <ion-avatar slot="start"></ion-avatar>
         <div slot="start">
-          <img src="assets/imgs/bikeorange.png" height="30" />
+          <img
+            [src]="data.logoImage ? data.logoImage :'https://www.stapaustral.catholic.edu.au/wp-content/uploads/sites/16/2019/05/Person-icon.jpg'"
+            height="30" />
         </div>
         <ion-col size="7" class="ion-text-left">
           <ion-text color="primary">
