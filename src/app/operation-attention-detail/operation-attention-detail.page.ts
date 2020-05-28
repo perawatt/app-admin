@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
+import { collectExternalReferences } from '@angular/compiler';
 
 @Component({
   selector: 'app-operation-attention-detail',
@@ -23,6 +24,7 @@ export class OperationAttentionDetailPage implements OnInit {
     this.productList$ = this.adminSvc.getOrderDetail(this.orderId);
     this.productList$.then((it: any) => {
      this.title = it.orderDetail._id;
+     console.log(it);
     });
     
 

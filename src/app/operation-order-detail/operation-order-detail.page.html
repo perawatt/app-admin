@@ -20,13 +20,14 @@
           </ion-item>
         </ion-col>
       </ion-row>
-  
+
       <ion-row>
         <ion-col size="1" class="ion-no-padding"></ion-col>
         <ion-col size="11" class="ion-no-padding">
           <ion-item color="light">
             <ion-label position="fixed"><b>ผู้แจ้ง : </b></ion-label>
-            <ion-input >{{ data.cancelRequest.request.senderName }} ({{data.cancelRequest.request.senderType}})</ion-input>
+            <ion-input>{{ data.cancelRequest.request.senderName }} ({{data.cancelRequest.request.senderType}})
+            </ion-input>
             <ion-label slot="end" color="dark">
               <ion-icon name="time-outline"></ion-icon>
               {{ data.cancelRequest.createDate | date:'d MMM y (H:mm)' }}
@@ -34,17 +35,17 @@
           </ion-item>
         </ion-col>
       </ion-row>
-  
+
       <ion-row>
         <ion-col size="1" class="ion-no-padding"></ion-col>
         <ion-col size="11" class="ion-no-padding">
           <ion-item color="light">
             <ion-label position="fixed"><b>สาเหตุ : </b></ion-label>
-            <ion-input >{{ data.cancelRequest.request.heading }}</ion-input>
+            <ion-input>{{ data.cancelRequest.request.heading }}</ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
-  
+
       <ion-row>
         <ion-col size="1" class="ion-no-padding"></ion-col>
         <ion-col size="11" class="ion-no-padding">
@@ -54,13 +55,15 @@
           </ion-item>
         </ion-col>
       </ion-row>
-  
+
       <ion-item color="light" lines="none" class="ion-padding">
-        <ion-button slot="end" size="default" shape="round" color="success" (click)="goConfirmCancelOrder(data.orderDetail.cancelRequestId)">อนุมัติการขอยกเลิก</ion-button>
-        <ion-button slot="end" size="default" shape="round" color="primary" (click)="goDenyCancelOrder(data.orderDetail.cancelRequestId)">ปฏิเสธการขอยกเลิก</ion-button>
+        <ion-button slot="end" size="default" shape="round" color="success"
+          (click)="goConfirmCancelOrder(data.orderDetail.cancelRequestId)">อนุมัติการขอยกเลิก</ion-button>
+        <ion-button slot="end" size="default" shape="round" color="primary"
+          (click)="goDenyCancelOrder(data.orderDetail.cancelRequestId)">ปฏิเสธการขอยกเลิก</ion-button>
       </ion-item>
     </ion-card>
-  
+
     <ion-card color="light" class="ion-no-margin ion-margin-horizontal ion-margin-top">
       <ion-card-header class="ion-no-padding ion-padding-horizontal ion-margin-top ion-margin-bottom">
         <ion-item color="light" lines="none">
@@ -68,7 +71,7 @@
             <h1><b>OrderID : {{ data.orderDetail._id }}</b></h1>
             <br>
             <ion-text color="warning">
-              <h3>฿{{ data.orderDetail.totalPrice }} ({{ data.orderDetail.totalQuantity }} รายการ)</h3>
+              <h3>฿{{ data.orderDetail?.totalPrice | number }} ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
             </ion-text>
           </ion-label>
 
@@ -76,14 +79,13 @@
             <ion-label>
               <ion-text color="dark">
                 <ion-icon name="time-outline"></ion-icon>
-                {{ data.orderDetail.createDate | date:'d MMM y (H:mm)' }}
+                {{ data.orderDetail?.createDate | date:'d MMM y (H:mm)' }}
               </ion-text>
             </ion-label>
             <br>
-            <ion-button *ngIf="!data.orderDetail.cancelRequestId" shape="round" color="secondary" type="submit" (click)="goOrderCancelModal()">
-              <ion-text color="light">
-                ยกเลิกคำสั่งซื้อ
-              </ion-text>
+            <ion-button *ngIf="!data.orderDetail.cancelRequestId" shape="round" color="secondary" type="submit"
+              (click)="goOrderCancelModal()">
+              <ion-text color="light">ยกเลิกคำสั่งซื้อ</ion-text>
             </ion-button>
           </ion-note>
         </ion-item>
@@ -133,28 +135,74 @@
         <ion-row class="boxStepProgressBar">
           <ion-col size="1.1"></ion-col>
           <div>
-            <li *ngIf="data.orderDetail.createDate"><div class="nodeSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.createDate"><div class="nodeUnSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail.createDate">
+              <div class="nodeSuccess"></div>
+              <p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p>
+            </li>
+            <li *ngIf="!data.orderDetail.createDate">
+              <div class="nodeUnSuccess"></div>
+              <p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p>
+            </li>
 
-            <li *ngIf="data.orderDetail.acceptRequestDate"><div class="lineSuccess"></div></li>
-            <li *ngIf="data.orderDetail.acceptRequestDate"><div class="nodeSuccess"></div><p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.acceptRequestDate"><div class="lineUnSuccess"></div></li>
-            <li *ngIf="!data.orderDetail.acceptRequestDate"><div class="nodeUnSuccess"></div><p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail.acceptRequestDate">
+              <div class="lineSuccess"></div>
+            </li>
+            <li *ngIf="data.orderDetail.acceptRequestDate">
+              <div class="nodeSuccess"></div>
+              <p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p>
+            </li>
+            <li *ngIf="!data.orderDetail.acceptRequestDate">
+              <div class="lineUnSuccess"></div>
+            </li>
+            <li *ngIf="!data.orderDetail.acceptRequestDate">
+              <div class="nodeUnSuccess"></div>
+              <p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p>
+            </li>
 
-            <li *ngIf="data.orderDetail.shippingDate"><div class="lineSuccess"></div></li>
-            <li *ngIf="data.orderDetail.shippingDate"><div class="nodeSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.shippingDate"><div class="lineUnSuccess"></div></li>
-            <li *ngIf="!data.orderDetail.shippingDate"><div class="nodeUnSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail.shippingDate">
+              <div class="lineSuccess"></div>
+            </li>
+            <li *ngIf="data.orderDetail.shippingDate">
+              <div class="nodeSuccess"></div>
+              <p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p>
+            </li>
+            <li *ngIf="!data.orderDetail.shippingDate">
+              <div class="lineUnSuccess"></div>
+            </li>
+            <li *ngIf="!data.orderDetail.shippingDate">
+              <div class="nodeUnSuccess"></div>
+              <p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p>
+            </li>
 
-            <li *ngIf="data.orderDetail.destinationDate"><div class="lineSuccess"></div></li>
-            <li *ngIf="data.orderDetail.destinationDate"><div class="nodeSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.destinationDate"><div class="lineUnSuccess"></div></li>
-            <li *ngIf="!data.orderDetail.destinationDate"><div class="nodeUnSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail.destinationDate">
+              <div class="lineSuccess"></div>
+            </li>
+            <li *ngIf="data.orderDetail.destinationDate">
+              <div class="nodeSuccess"></div>
+              <p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p>
+            </li>
+            <li *ngIf="!data.orderDetail.destinationDate">
+              <div class="lineUnSuccess"></div>
+            </li>
+            <li *ngIf="!data.orderDetail.destinationDate">
+              <div class="nodeUnSuccess"></div>
+              <p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p>
+            </li>
 
-            <li *ngIf="data.orderDetail.doneDate"><div class="lineSuccess"></div></li>
-            <li *ngIf="data.orderDetail.doneDate"><div class="nodeSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.doneDate"><div class="lineUnSuccess"></div></li>
-            <li *ngIf="!data.orderDetail.doneDate"><div class="nodeUnSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail.doneDate">
+              <div class="lineSuccess"></div>
+            </li>
+            <li *ngIf="data.orderDetail.doneDate">
+              <div class="nodeSuccess"></div>
+              <p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p>
+            </li>
+            <li *ngIf="!data.orderDetail.doneDate">
+              <div class="lineUnSuccess"></div>
+            </li>
+            <li *ngIf="!data.orderDetail.doneDate">
+              <div class="nodeUnSuccess"></div>
+              <p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p>
+            </li>
           </div>
         </ion-row>
 
@@ -163,13 +211,17 @@
           <ion-note class="ion-margin">
             <ion-button shape="round" color="medium" type="submit">
               <ion-label>
-                <h3><ion-icon slot="start" name="location-outline"></ion-icon>&nbsp;ดูตำแหน่งไบค์เกอร์</h3>
+                <h3>
+                  <ion-icon slot="start" name="location-outline"></ion-icon>&nbsp;ดูตำแหน่งไบค์เกอร์
+                </h3>
               </ion-label>
             </ion-button>
           </ion-note>
           <ion-note class="ion-margin">
-            <ion-button shape="round" color="medium"  [routerLink]="['operation-attention-detail']">
-              <ion-label><h3>รายการสั่งซื้อ</h3></ion-label>
+            <ion-button shape="round" color="medium" [routerLink]="['operation-attention-detail']">
+              <ion-label>
+                <h3>รายการสั่งซื้อ</h3>
+              </ion-label>
             </ion-button>
           </ion-note>
         </ion-item>
@@ -246,7 +298,9 @@
               <ion-col size="2">
                 <ion-text>
                   <ion-label color="success">
-                    <h2><ion-icon color="success" slot="start" name="call"></ion-icon>&nbsp;ติดต่อ</h2>
+                    <h2>
+                      <ion-icon color="success" slot="start" name="call"></ion-icon>&nbsp;ติดต่อ
+                    </h2>
                   </ion-label>
                 </ion-text>
               </ion-col>
@@ -276,7 +330,9 @@
               <ion-col size="2">
                 <ion-text>
                   <ion-label color="success">
-                    <h2><ion-icon color="success" slot="start" name="call"></ion-icon>&nbsp;ติดต่อ</h2>
+                    <h2>
+                      <ion-icon color="success" slot="start" name="call"></ion-icon>&nbsp;ติดต่อ
+                    </h2>
                   </ion-label>
                 </ion-text>
               </ion-col>
