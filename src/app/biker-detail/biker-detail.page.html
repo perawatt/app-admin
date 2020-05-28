@@ -22,7 +22,7 @@
               <ion-label>
                 <h1><b>ชื่อ : {{ data.name }}</b></h1>
                 <h1><b>Biker ID : {{ data._id }}</b></h1>
-                <h1><b>Rating : ยังไม่เปิดบริการ</b></h1>
+                <h1><b>Rating : ยังไม่มีระบบการให้คะแนน</b></h1>
               </ion-label>
               <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="danger" *ngIf="!data.suspendedDate" (click)="Suspended()">
                 <ion-label> พักงาน</ion-label>
