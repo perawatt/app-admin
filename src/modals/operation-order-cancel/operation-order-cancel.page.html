@@ -1,4 +1,4 @@
-<ion-content color="light">
+<ion-content color="light" mode="ios">
   <form [formGroup]="fg" (ngSubmit)="handleSubmit()">
   <ion-card-header class="ion-no-padding ion-padding-horizontal ion-margin-top">
     <ion-list-header color="light">
@@ -12,7 +12,7 @@
       <ion-col size="11" class="padding">
         <ion-item color="light">
           <ion-label color="dark">สาเหตุการยกเลิก</ion-label>
-          <ion-select formControlName="heading" interface="action-sheet" slot="end">
+          <ion-select formControlName="heading"  slot="end">
             <ion-select-option value="รถเสีย">รถเสีย</ion-select-option>
             <ion-select-option value="น้ำท่วม">น้ำท่วม</ion-select-option>
           </ion-select>

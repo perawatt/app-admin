@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content mode="ios">
   <form [formGroup]="fg" (ngSubmit)="handleSubmit()">
     <ion-card color="light">
       <ion-row>
@@ -74,8 +74,8 @@
           <ion-col size="7" class="padding">
             <ion-item color="light">
               <ion-label color="dark">เลือกสัญญา</ion-label>
-              <ion-select interface="popover" formControlName="contractConditionId" (ionChange)="getContractDetail()">
-                <ion-select-option *ngFor="let item of data" value="{{item._id}}"> {{item.name}} </ion-select-option>
+              <ion-select formControlName="contractConditionId" placeholder="เลือกหมวดหมู่" (ionChange)="getContractDetail()">
+                <ion-select-option *ngFor="let item of data" value="{{item._id}}" >{{item.name}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
