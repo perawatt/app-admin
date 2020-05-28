@@ -20,6 +20,7 @@ export class ContractDetailPage implements OnInit {
     this.contractConditionInfo$ = this.adminSvc.getContractConditionById(this.contractConditionId);
     this.contractConditionInfo$.then((it:any)=>{
      this.title = it.name;
+      console.log(it);
     });
   }
 

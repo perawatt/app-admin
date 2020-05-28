@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="/"></ion-back-button>
           </ion-buttons>
-        <ion-title> Contract {{ title }}</ion-title>
+        <ion-title> Contract : {{ title }}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -25,7 +25,7 @@
                                 </ion-col>
                                 <ion-col>
                                     <ion-label>
-                                        <h2><b>Contract : {{ data.name }}</b></h2>
+                                        <h2><b>{{ data.name }}</b></h2>
                                     </ion-label>
                                 </ion-col>
                             </ion-item>
@@ -120,8 +120,11 @@
                                     </ion-label>
                                 </ion-col>
                                 <ion-col size="2">
-                                    <ion-label>
+                                    <ion-label *ngIf="item.acceptContractDate">
                                         <h2><b>{{ item.acceptContractDate | date :'dd MMM y'}}</b></h2>
+                                    </ion-label>
+                                    <ion-label *ngIf="!item.acceptContractDate" color="danger">
+                                        <h2><b>กำลังพิจารณา</b></h2>
                                     </ion-label>
                                 </ion-col>
                             </ion-item>

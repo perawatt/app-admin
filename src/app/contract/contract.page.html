@@ -15,8 +15,8 @@
 
     <ng-container *ngIf="contactInfo$ | async as data">
         <ion-card color="light" *ngFor="let item of data" [routerLink]="['contract-detail',item._id]">
-            <ion-item button color="light" class="ion-text-center">
-                <ion-col size="4">
+            <ion-item button color="light" >
+                <ion-col size="4" class="ion-margin-start">
                     <ion-text color="primary">
                         <p><b>Contract : {{item.name}}</b></p>
                     </ion-text>
@@ -25,23 +25,11 @@
         </ion-card>
 
         <ion-card color="light" class="ion-text-center" *ngIf="!data">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br><br><br><br><br>
             <ion-text class="ion-text-center" color="primary">
-                <h5>
-                    <b>
-          ไม่มีรายการ
-        </b>
-                </h5>
+                <h5><b>ไม่มีรายการ</b></h5>
             </ion-text>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br><br><br><br><br>
         </ion-card>
     </ng-container>
 
