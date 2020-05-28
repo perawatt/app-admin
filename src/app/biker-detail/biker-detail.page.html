@@ -12,7 +12,8 @@
     <ion-card color="light" class="ion-padding">
       <ion-card-header>
         <ion-avatar class="avatar center">
-          <img src="{{data.profileImage}}">
+          <img
+            [src]="data.profileImage ? data.profileImage :'https://www.stapaustral.catholic.edu.au/wp-content/uploads/sites/16/2019/05/Person-icon.jpg'">
         </ion-avatar>
         <ion-item color="light" lines="none">
           <ion-col class="ion-no-padding" color="light" size="0.5">
@@ -24,10 +25,12 @@
                 <h1><b>Biker ID : {{ data._id }}</b></h1>
                 <h1><b>Rating : ยังไม่มีระบบการให้คะแนน</b></h1>
               </ion-label>
-              <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="danger" *ngIf="!data.suspendedDate" (click)="Suspended()">
+              <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="danger"
+                *ngIf="!data.suspendedDate" (click)="Suspended()">
                 <ion-label> พักงาน</ion-label>
               </ion-button>
-              <ion-button slot="end" shape="round" class="buttonWidth" size="default"  *ngIf="data.suspendedDate" (click)="UnSuspended()">
+              <ion-button slot="end" shape="round" class="buttonWidth" size="default" *ngIf="data.suspendedDate"
+                (click)="UnSuspended()">
                 <ion-label> เลิกพักงาน</ion-label>
               </ion-button>
             </ion-item>
@@ -36,12 +39,12 @@
                 <h1><b>สถานะ</b></h1>
               </ion-label>
               <ion-note slot="end" class="ion-text-end">
-                  <ion-label color="success" *ngIf="data.onWorkStatus">
-                    <h2><b>เปิดรับงาน</b></h2>
-                  </ion-label>
-                  <ion-label color="danger" *ngIf="!data.onWorkStatus">
-                    <h2><b>ปิดรับงาน</b></h2>
-                  </ion-label>
+                <ion-label color="success" *ngIf="data.onWorkStatus">
+                  <h2><b>เปิดรับงาน</b></h2>
+                </ion-label>
+                <ion-label color="danger" *ngIf="!data.onWorkStatus">
+                  <h2><b>ปิดรับงาน</b></h2>
+                </ion-label>
               </ion-note>
             </ion-item>
             <ion-item color="light">
@@ -63,22 +66,23 @@
             <ion-item color="light">
               <ion-label>
                 <h2><b>ที่อยู่</b></h2>
-                  <p class="ion-text-wrap" *ngIf="data.address">{{ data.address }}</p>
-                  <p class="ion-text-wrap" *ngIf="!data.address">-</p>
+                <p class="ion-text-wrap" *ngIf="data.address">{{ data.address }}</p>
+                <p class="ion-text-wrap" *ngIf="!data.address">-</p>
               </ion-label>
             </ion-item>
             <ion-item color="light">
               <ion-label>
                 <h2><b>บันทึกเพิ่มเติม</b></h2>
-                  <p *ngIf="data.note">{{ data.note }}</p>
-                  <p *ngIf="!data.note">-</p>
+                <p *ngIf="data.note">{{ data.note }}</p>
+                <p *ngIf="!data.note">-</p>
               </ion-label>
             </ion-item>
             <ion-item lines="none" color="light" class="ion-margin-top">
               <ion-button slot="start" color="medium" shape="round" size="default" [routerLink]="['biker-history']">
                 <ion-label>ประวัติการรับงาน</ion-label>
               </ion-button>
-              <ion-button slot="start" color="medium" class="buttonWidth" shape="round" size="default" [routerLink]="['biker-balance']">
+              <ion-button slot="start" color="medium" class="buttonWidth" shape="round" size="default"
+                [routerLink]="['biker-balance']">
                 <ion-label>การเงิน</ion-label>
               </ion-button>
             </ion-item>

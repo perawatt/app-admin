@@ -3,6 +3,7 @@ import { InjectionToken } from '@angular/core';
 export interface IUploadProgress {
     filename: string;
     progress: number;
+    fileUrl: string;
   }
 
 export interface IAzureStorage {

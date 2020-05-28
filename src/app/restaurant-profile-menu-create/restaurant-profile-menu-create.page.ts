@@ -2,12 +2,12 @@ import { AdminService } from './../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
-import { ISasToken } from 'src/services/blob-storage/azureStorage';
 import { map, combineAll } from 'rxjs/operators';
 import { IUploadProgress } from 'src/services/blob-storage/iblob-storage';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, LoadingController, AlertController } from '@ionic/angular';
+import { UploadFileService } from 'src/services/upload-file/upload-file.service';
 
 
 @Component({
@@ -21,23 +21,22 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   file: any;
   sas: any;
   config: any;
-  _id: string;
+  onAction: boolean;
   catagory$ = Promise.resolve([]);
   uploadProgress$: Observable<IUploadProgress[]>;
-  imageIdForGet: string;
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
+  constructor(private uploadFileSvc: UploadFileService, private alertCtr: AlertController, private loadingCtr: LoadingController, private navCtrl: NavController, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
     this.fg = this.fb.group({
       'name': [null, Validators.required],
       "categoryName": [null, Validators.required],
-      "previewImageId": '',
+      "previewImageId": null,
       "price": [0, Validators.required],
       "note": ''
     });
   }
 
   ngOnInit() {
-    this._id = this.route.snapshot.paramMap.get('shopId');
-    this.catagory$ = this.adminSvc.getCategoryList(this._id);
+    this.restaurantId = this.route.snapshot.paramMap.get('shopId');
+    this.catagory$ = this.adminSvc.getCategoryList(this.restaurantId);
   }
 
   selectPhoto(event) {
@@ -54,39 +53,58 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
     this.navCtrl.back();
   }
 
-  submit() {
+  async submit() {
     if (this.fg.valid) {
-      this.adminSvc.getSasManaUpload().then(it => {
-        console.log(it);
-        this.sas = it;
-        this.fg.get('previewImageId').patchValue(this.sas.imageId);
-        this.adminSvc.createProduct('1', this.fg.value).then(_ => {
+      this.onAction = true;
+      let formData = this.fg.value;
+      if (this.file == null) {
+        this.adminSvc.createProduct('1', formData).then(_ => {
+          this.navCtrl.back();
+        });
+      }
+      else {
+        const loading = await this.loadingCtr.create({
+          message: 'Image Uploading....'
+        });
+        const alert = await this.alertCtr.create({
+          header: 'Error',
+          message: 'Image Upload Failed.',
+          buttons: ['OK']
+        });
+        await loading.present();
+        this.adminSvc.getSasManaUpload().then(it => {
+          this.sas = it;
           this.uploadProgress$ = from(this.file as FileList).pipe(
-            map(file => this.uploadFile(file)),
+            map(file => this.uploadFileSvc.uploadFile(file, this.sas)),
             combineAll(),
           );
-          this.navCtrl.back();
-        })
-      });
+
+          this.uploadProgress$.subscribe(
+            _ => {
+              
+              if (_.find(it => it.progress >= 100)) {
+                formData.previewImageId = this.sas.imageId
+                this.adminSvc.createProduct('1', formData).then(_ => {
+                  loading.dismiss();
+                  this.navCtrl.back();
+                }, async _ => {
+                  const alert = await this.alertCtr.create({
+                    header: 'Error',
+                    message: _.error.message,
+                    buttons: ['ตกลง']
+                  });
+
+                  await alert.present();
+                  this.onAction = false;
+                });
+              }
+            }, error => {
+              loading.dismiss();
+              alert.present();
+              this.onAction = false;
+            })
+        });
+      }
     }
-  }
-
-  uploadFile(file: File): Observable<IUploadProgress> {
-    var accessToken: ISasToken = {
-      container: this.sas.containerName,
-      filename: this.sas.imageId,
-      storageAccessToken: this.sas.saS,
-      storageUri: this.sas.storageUri
-    };
-    return this.blobStorage
-      .uploadToBlobStorage(accessToken, file)
-      .pipe(map(progress => this.mapProgress(file, progress)));
-  }
-
-  private mapProgress(file: File, progress: number): IUploadProgress {
-    return {
-      filename: file.name,
-      progress: progress
-    };
   }
 }
