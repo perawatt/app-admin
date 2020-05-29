@@ -53,7 +53,6 @@ export class AdminService implements IAdminService {
     let apiUrl = this.baseUrl + "createProduct/" + AdminInfo.deliveryId + '/' + restaurantId;
     return this.http.post(apiUrl, data).toPromise();
   }
-  //
 
   getUnfinishedOrder(): Promise<any> {
     let apiUrl = this.baseUrl + "GetUnfinishedOrder/" + AdminInfo.deliveryId;
@@ -175,6 +174,21 @@ export class AdminService implements IAdminService {
    return this.http.get(apiUrl).toPromise();
   }
   
+  getAdmin(): Promise<any> {
+    let apiUrl = this.baseUrl + "GetAdmin/" + AdminInfo.deliveryId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  getAdminById(): Promise<any> {
+    let apiUrl = this.baseUrl + "GetAdmin/" + AdminInfo.deliveryId + "/" + AdminInfo.adminId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  createAdmin(data: any): Promise<any> {
+    let apiUrl = this.baseUrl + "AddAdmin/" + AdminInfo.deliveryId;
+    return this.http.post(apiUrl, data).toPromise();
+  }
+
   // TODO adminId
   private baseUrl: string = API_URL;
   constructor(private http: HttpClient) { }
