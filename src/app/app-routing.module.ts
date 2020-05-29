@@ -24,19 +24,19 @@ const routes: Routes = [
     loadChildren: () => import('./finance/finance.module').then(m => m.FinancePageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-menu',
+    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu',
     loadChildren: () => import('./restaurant-profile-menu/restaurant-profile-menu.module').then(m => m.RestaurantProfileMenuPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-menu/restaurant-profile-menu-create',
+    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu/restaurant-profile-menu-create',
     loadChildren: () => import('./restaurant-profile-menu-create/restaurant-profile-menu-create.module').then(m => m.RestaurantProfileMenuCreatePageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-menu/restaurant-edit-category',
+    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu/restaurant-edit-category',
     loadChildren: () => import('./restaurant-edit-category/restaurant-edit-category.module').then(m => m.RestaurantEditCategoryPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-menu/restaurant-edit-category/restaurant-create-category',
+    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu/restaurant-edit-category/restaurant-create-category',
     loadChildren: () => import('./restaurant-create-category/restaurant-create-category.module').then(m => m.RestaurantCreateCategoryPageModule)
   },
   {
@@ -126,7 +126,12 @@ const routes: Routes = [
   {
     path: 'biker/biker-detail/:bikerId/biker-history/biker-history-detail/:orderId/biker-history-detail-order-list',
     loadChildren: () => import('./biker-history-detail-order-list/biker-history-detail-order-list.module').then( m => m.BikerHistoryDetailOrderListPageModule)
+  },
+  {
+    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail',
+    loadChildren: () => import('./restaurant-profile-detail/restaurant-profile-detail.module').then( m => m.RestaurantProfileDetailPageModule)
   }
+
 
 
 ]

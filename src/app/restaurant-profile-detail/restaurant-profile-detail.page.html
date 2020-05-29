@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>เมนู</ion-title>
+    <ion-title>{{ title }}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button mode="md"></ion-back-button>
     </ion-buttons>
@@ -9,14 +9,8 @@
 
 <ion-content mode="ios" class="ion-padding">
   <ion-item lines="none" class="ion-margin-top">
-    <ion-button slot="end" shape="round" size="default" class="buttonWidth" color="success"
-      [routerLink]="['restaurant-edit-category']">แก้ไขหมวดหมู่
-    </ion-button>
-    <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="success"
-      [routerLink]="['restaurant-profile-menu-create']">เพิ่มเมนู
-    </ion-button>
-    <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="success" (click)="presentModal()">
-      สร้าง QR
+    <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="warning" [routerLink]="['restaurant-profile-menu']">
+      <ion-label color="light">จัดการร้านค้า</ion-label>
     </ion-button>
   </ion-item>
   <ion-card color="light">
@@ -46,8 +40,7 @@
                 <ion-col class="ion-no-padding" color="light">
                   <ion-item *ngFor="let menu of data.products " color="light">
                     <ion-thumbnail slot="start" class="ion-margin-vertical">
-                      <img
-                        [src]="menu.previewImageUrl != null ? menu.previewImageUrl :'https://images.assetsdelivery.com/compings_v2/themoderncanvas/themoderncanvas1602/themoderncanvas160200117.jpg'" />
+                      <img [src]="menu.previewImageUrl != null ? menu.previewImageUrl :'https://images.assetsdelivery.com/compings_v2/themoderncanvas/themoderncanvas1602/themoderncanvas160200117.jpg'" />
                     </ion-thumbnail>
                     <ion-text>
                       <ion-label>
@@ -58,13 +51,6 @@
                         <p></p>
                       </ion-label>
                     </ion-text>
-                    <ion-note slot="end">
-                      <ion-label color="dark">
-                        <h2>
-                          <ion-icon name="pencil-outline"></ion-icon>
-                        </h2>
-                      </ion-label>
-                    </ion-note>
                   </ion-item>
                 </ion-col>
               </ion-item>
