@@ -64,6 +64,8 @@ export interface IAdminService {
 
     deleteFinance(financeId: string): Promise<any>;
 
+    getRestaurantMenuById(restaurantId: string): Promise<any>;
+
 
 
 
