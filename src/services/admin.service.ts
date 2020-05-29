@@ -170,7 +170,7 @@ export class AdminService implements IAdminService {
   }
 
   getRestaurantMenuById(restaurantId:string):Promise<any>{
-   let apiUrl =  'http://delivery-3rd-api.azurewebsites.net/api/Restaurant/GetRestaurantMenu/'+restaurantId;
+   let apiUrl =  'https://delivery-3rd-api.azurewebsites.net/api/Restaurant/GetRestaurantMenu/'+restaurantId;
    return this.http.get(apiUrl).toPromise();
   }
   
