@@ -66,6 +66,19 @@ export interface IAdminService {
 
     getRestaurantMenuById(restaurantId: string): Promise<any>;
 
+    getAdmin(): Promise<any>;
+
+    getAdminById(): Promise<any>;
+
+    createAdmin(data: any) : Promise<any>;
+
+
+
+
+
+
+
+
 
 
 
