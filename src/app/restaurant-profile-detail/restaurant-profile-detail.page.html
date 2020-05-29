@@ -9,7 +9,8 @@
 
 <ion-content mode="ios" class="ion-padding">
   <ion-item lines="none" class="ion-margin-top">
-    <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="warning" [routerLink]="['restaurant-profile-menu']">
+    <ion-button slot="end" shape="round" class="buttonWidth" size="default" color="warning"
+      [routerLink]="['restaurant-profile-menu']">
       <ion-label color="light">จัดการร้านค้า</ion-label>
     </ion-button>
   </ion-item>
@@ -40,7 +41,7 @@
                 <ion-col class="ion-no-padding" color="light">
                   <ion-item *ngFor="let menu of data.products " color="light">
                     <ion-thumbnail slot="start" class="ion-margin-vertical">
-                      <img [src]="menu.previewImageUrl != null ? menu.previewImageUrl :'https://images.assetsdelivery.com/compings_v2/themoderncanvas/themoderncanvas1602/themoderncanvas160200117.jpg'" />
+                      <img [src]="menu.previewImageUrl != null ? menu.previewImageUrl :'assets/imgs/dfmenu@3x.png'" />
                     </ion-thumbnail>
                     <ion-text>
                       <ion-label>
