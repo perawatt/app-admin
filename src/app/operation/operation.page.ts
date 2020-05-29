@@ -36,7 +36,7 @@ export class OperationPage implements OnInit {
     })
 
     this.hubConnection.on("UpdateOrderStatus", (param: any) => {
-      if (param.Status == "CancelRequest") {
+      if (param.status == "CancelRequest") {
         console.log("order has cancel");
         this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
       }
