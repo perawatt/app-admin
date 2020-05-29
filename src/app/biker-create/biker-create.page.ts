@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IUploadProgress, ISasToken } from 'src/services/blob-storage/iblob-storage';
+import { IUploadProgress } from 'src/services/blob-storage/iblob-storage';
 import { AdminService } from 'src/services/admin.service';
-import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
 import { Observable, from } from 'rxjs';
 import { combineAll, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { UploadFileService } from 'src/services/upload-file/upload-file.service';
 
@@ -22,7 +20,7 @@ export class BikerCreatePage implements OnInit {
   config: any;
   uploadProgress$: Observable<IUploadProgress[]>;
 
-  constructor(private alertCtr: AlertController, private loadingCtr: LoadingController, private uploadFileSvc: UploadFileService, private navCtrl: NavController, private route: Router, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
+  constructor(private alertCtr: AlertController, private loadingCtr: LoadingController, private uploadFileSvc: UploadFileService, private navCtrl: NavController, private fb: FormBuilder, private adminSvc: AdminService) {
     this.fg = this.fb.group({
       'manaCode': [null, Validators.required],
       'name': null,
