@@ -39,7 +39,7 @@ export class OperatorCreatePage implements OnInit {
       this.onAction = true;
       let formData = this.fg.value;
       if (this.file == null) {
-        this.adminSvc.createAddBiker(formData).then(_ => {
+        this.adminSvc.createAdmin(formData).then(_ => {
           this.navCtrl.back();
         });
       }
@@ -65,7 +65,7 @@ export class OperatorCreatePage implements OnInit {
 
               if (_.find(it => it.progress >= 100)) {
                 formData.profileImage = _.find(it => it.progress >= 100).fileUrl;
-                this.adminSvc.createAddBiker(formData).then(_ => {
+                this.adminSvc.createAdmin(formData).then(_ => {
                   loading.dismiss();
                   this.navCtrl.back();
                 }, async _ => {
