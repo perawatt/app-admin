@@ -15,13 +15,11 @@ export class RestaurantProfileDetailPage implements OnInit {
   segmentValue: any;
   _id: string;
   public category: any;
-  title:string;
 
   constructor(private route: ActivatedRoute, private adminSvc: AdminService, public modalController: ModalController) { }
 
   ngOnInit() {
     this._id = this.route.snapshot.paramMap.get('shopId');
-    this.title = this.route.snapshot.paramMap.get('shopName');
   }
 
   ionViewDidEnter() {
