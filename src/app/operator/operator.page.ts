@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/services/admin.service';
 
 @Component({
   selector: 'app-operator',
@@ -6,8 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./operator.page.scss'],
 })
 export class OperatorPage implements OnInit {
+  admin$ = Promise.resolve([]);
 
-  constructor() { }
+  constructor(private adminSvc : AdminService) { }
+
+  ionViewDidEnter() {
+    this.admin$ = this.adminSvc.getAdmin();
+    this.admin$.then((it:any)=>{
+      console.log(it);
+    });
+  }
 
   ngOnInit() {
   }
