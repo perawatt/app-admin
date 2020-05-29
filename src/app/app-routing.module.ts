@@ -130,7 +130,19 @@ const routes: Routes = [
   {
     path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail',
     loadChildren: () => import('./restaurant-profile-detail/restaurant-profile-detail.module').then( m => m.RestaurantProfileDetailPageModule)
+  },  {
+    path: 'operator',
+    loadChildren: () => import('./operator/operator.module').then( m => m.OperatorPageModule)
+  },
+  {
+    path: 'operator-create',
+    loadChildren: () => import('./operator-create/operator-create.module').then( m => m.OperatorCreatePageModule)
+  },
+  {
+    path: 'operator-detail',
+    loadChildren: () => import('./operator-detail/operator-detail.module').then( m => m.OperatorDetailPageModule)
   }
+
 
 
 
