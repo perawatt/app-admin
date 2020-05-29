@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
@@ -14,9 +14,9 @@ export class ContractCreatePage implements OnInit {
   
   constructor(private navCtrl:NavController,private fb:FormBuilder,private adminSvc:AdminService,private route:Router) { 
     this.fg = this.fb.group({
-      'name':null,
-      'commissionPercent':null,
-      'deliveryPricePerOrder' : null
+      'name': [null, Validators.required],
+      'commissionPercent': [null, Validators.required],
+      'deliveryPricePerOrder': [null, Validators.required],
     });
   }
 

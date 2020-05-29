@@ -100,7 +100,7 @@
 
       <ion-item color="light" lines="none" class="ion-padding">
         <ion-button slot="end" size="default" shape="round" color="danger" (click)="cancel()">ยกเลิก</ion-button>
-        <ion-button slot="end" size="default" shape="round" color="success" type="submit">ยืนยัน</ion-button>
+        <ion-button slot="end" size="default" shape="round" color="success"  [disabled]="fg.invalid" type="submit">ยืนยัน</ion-button>
       </ion-item>
     </ion-card>
 

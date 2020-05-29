@@ -1,6 +1,6 @@
 import { ModalController } from '@ionic/angular';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
 
 @Component({
@@ -19,9 +19,9 @@ export class OperationConfirmCancelOrderPage implements OnInit {
   public compensate: boolean;
   public isOk: boolean = true;
 
-  constructor(private modalController: ModalController, public modalCtrl: ModalController, private fb: FormBuilder, private adminSvc: AdminService) {
+  constructor(public modalCtrl: ModalController, private fb: FormBuilder, private adminSvc: AdminService) {
     this.fg = this.fb.group({
-      'heading': null,
+      'heading': [null, Validators.required],
       'info': null,
       'refundAll': false,
       'refundFood': false,
@@ -34,23 +34,12 @@ export class OperationConfirmCancelOrderPage implements OnInit {
   }
 
   handleSubmit() {
-    this.fg.get('heading').setValue(this.heading);
-    this.fg.get('info').setValue(this.info);
     this.fg.get('refundAll').setValue(this.refundAll);
     this.fg.get('refundFood').setValue(this.refundFood);
     this.fg.get('compensate').setValue(this.compensate);
-
-    console.log('heading', this.fg.get('heading').value);
-    console.log('info', this.fg.get('info').value);
-    console.log('refundAll', this.fg.get('refundAll').value);
-    console.log('refundFood', this.fg.get('refundFood').value);
-    console.log('compensate', this.fg.get('compensate').value);
-    console.log(this.fg.value);
-    console.log(this.cancelRequestId);
-    if (this.cancelRequestId && this.fg.get('heading').value && this.fg.get('info').value && (this.fg.get('refundAll').value 
-    || this.fg.get('refundFood').value || this.fg.get('compensate').value || this.noRefund))
+    if (this.fg.valid)
       this.adminSvc.updateSendCancelComfirm(this.cancelRequestId, this.fg.value).then((it: any) => {
-        this.modalController.dismiss(this.isOk);
+        this.modalCtrl.dismiss(this.isOk);
       })
   }
 

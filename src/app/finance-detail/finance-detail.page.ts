@@ -16,11 +16,10 @@ export class FinanceDetailPage implements OnInit {
 
   ngOnInit() {
     this._id = this.activatedRoute.snapshot.paramMap.get('_id');
-    console.log(this._id);
     this.financeDetail$ = this.adminSvc.getFinanceById(this._id);
+    
     this.financeDetail$.then((it: any) => {
-      console.log(it[0].destinationName);
-      this.title = it[0]?.destinationName;
+      this.title = it?.destinationName;
     });
   }
 
