@@ -84,13 +84,14 @@ export class OperatorCreatePage implements OnInit {
                     buttons: ['ตกลง']
                   });
 
+                  loading.dismiss();
                   await alert.present();
                   this.onAction = false;
                 });
               }
-            }, error => {
+            }, async error => {
               loading.dismiss();
-              alert.present();
+              await alert.present();
               this.onAction = false;
             })
         });

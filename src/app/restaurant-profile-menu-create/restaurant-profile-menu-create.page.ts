@@ -81,7 +81,6 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
 
           this.uploadProgress$.subscribe(
             _ => {
-              
               if (_.find(it => it.progress >= 100)) {
                 formData.previewImageId = this.sas.imageId
                 this.adminSvc.createProduct('1', formData).then(_ => {
@@ -94,13 +93,14 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
                     buttons: ['ตกลง']
                   });
 
+                  loading.dismiss();
                   await alert.present();
                   this.onAction = false;
                 });
               }
-            }, error => {
+            }, async error => {
               loading.dismiss();
-              alert.present();
+              await alert.present();
               this.onAction = false;
             })
         });
