@@ -21,10 +21,10 @@
             <ion-col size="0.5"> </ion-col>
             <ion-col>
               <ion-item color="light" lines="inset">
-                <ion-input type="tel" placeholder="เบอร์โทรผู้สมัคร"></ion-input>
+                <ion-input formControlName="tel" type="tel" placeholder="เบอร์โทรผู้สมัคร"></ion-input>
               </ion-item>
               <ion-item color="light" lines="inset">
-                <ion-input placeholder="รหัสผู้สมัคร"></ion-input>
+                <ion-input formControlName="manaCode" placeholder="รหัสผู้สมัคร"></ion-input>
               </ion-item>
               <ion-item color="light" lines="none">
                 <img class="ion-margin-vertical" src="assets/imgs/dfprofile.png" height="100">
@@ -35,13 +35,13 @@
                 </ion-button>
               </ion-item>
               <ion-item color="light" lines="inset">
-                <ion-input placeholder="ชื่อผู้สมัคร"></ion-input>
+                <ion-input formControlName="name" placeholder="ชื่อผู้สมัคร"></ion-input>
               </ion-item>
               <ion-item color="light" lines="inset">
-                <ion-input placeholder="ที่อยู่"></ion-input>
+                <ion-input formControlName="address" placeholder="ที่อยู่"></ion-input>
               </ion-item>
               <ion-item color="light" lines="inset">
-                <ion-input placeholder="บันทึกเพิ่มเติม"></ion-input>
+                <ion-input formControlName="note" placeholder="บันทึกเพิ่มเติม"></ion-input>
               </ion-item>
               <ion-item lines="none" color="light">
                 <ion-button slot="end" (click)="Back()" color="danger" shape="round" class="buttonWidth" size="default">

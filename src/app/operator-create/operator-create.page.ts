@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, from } from 'rxjs';
 import { IUploadProgress } from 'src/services/blob-storage/iblob-storage';
 import { AdminService } from 'src/services/admin.service';
@@ -19,7 +19,16 @@ export class OperatorCreatePage implements OnInit {
   sas: any;
   config: any;
   uploadProgress$: Observable<IUploadProgress[]>;
-  constructor(private alertCtr: AlertController, private loadingCtr: LoadingController, private uploadFileSvc: UploadFileService, private navCtrl: NavController, private fb: FormBuilder, private adminSvc: AdminService) { }
+  constructor(private alertCtr: AlertController, private loadingCtr: LoadingController, private uploadFileSvc: UploadFileService, private navCtrl: NavController, private fb: FormBuilder, private adminSvc: AdminService) {
+    this.fg = this.fb.group({
+      'manaCode': [null, Validators.required],
+      'name': null,
+      "profileImage": null,
+      "address": null,
+      "tel": [null, Validators.required],
+      "note": null,
+    });
+  }
 
   ngOnInit() {
   }
@@ -39,7 +48,7 @@ export class OperatorCreatePage implements OnInit {
       this.onAction = true;
       let formData = this.fg.value;
       if (this.file == null) {
-        this.adminSvc.createAddBiker(formData).then(_ => {
+        this.adminSvc.createAdmin(formData).then(_ => {
           this.navCtrl.back();
         });
       }
@@ -65,7 +74,7 @@ export class OperatorCreatePage implements OnInit {
 
               if (_.find(it => it.progress >= 100)) {
                 formData.profileImage = _.find(it => it.progress >= 100).fileUrl;
-                this.adminSvc.createAddBiker(formData).then(_ => {
+                this.adminSvc.createAdmin(formData).then(_ => {
                   loading.dismiss();
                   this.navCtrl.back();
                 }, async _ => {
