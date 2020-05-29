@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/services/admin.service';
+import { HubConnection } from '@aspnet/signalr';
+import * as signalR from '@aspnet/signalr';
+import { AlertController } from '@ionic/angular';
+import { AdminInfo } from 'src/providers/adminInfo/admin-info.service';
 
 @Component({
   selector: 'app-operation',
@@ -14,12 +18,35 @@ export class OperationPage implements OnInit {
   attention: string = 'attention';
   order: string = 'order';
   public status: string;
+  private hubConnection:HubConnection;
 
-  constructor(private adminSvc: AdminService) { }
+  constructor(public alertController: AlertController,private adminSvc: AdminService) { }
 
   ngOnInit() {
     this.adminSvc.getAdminInfo();
     this.messageTable = "attention";
+
+    this.hubConnection = new signalR.HubConnectionBuilder()
+    .withUrl("https://localhost:5001/chatGroup")
+    .build();
+
+    this.hubConnection.start().then(()=>{
+      console.log("hub start");
+      this.Login();
+    })
+
+    
+    this.hubConnection.on("SendCancelOrderSuccess",( msg:string)=>{
+      console.log("order has cancel");
+      this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
+    });
+
+  }
+
+  Login(){
+    this.hubConnection.invoke("Login",AdminInfo.adminId).then(()=>{
+       console.log("login success");
+     });
   }
 
   ionViewDidEnter() {
