@@ -130,16 +130,17 @@ const routes: Routes = [
   {
     path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail',
     loadChildren: () => import('./restaurant-profile-detail/restaurant-profile-detail.module').then( m => m.RestaurantProfileDetailPageModule)
-  },  {
+  },
+  {
     path: 'operator',
     loadChildren: () => import('./operator/operator.module').then( m => m.OperatorPageModule)
   },
   {
-    path: 'operator-create',
+    path: 'operator/operator-create',
     loadChildren: () => import('./operator-create/operator-create.module').then( m => m.OperatorCreatePageModule)
   },
   {
-    path: 'operator-detail',
+    path: 'operator/operator-detail/:_id',
     loadChildren: () => import('./operator-detail/operator-detail.module').then( m => m.OperatorDetailPageModule)
   }
 

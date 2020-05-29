@@ -6,13 +6,14 @@
 
 <ion-content mode="ios">
   <ion-item lines="none" class="ion-margin-top">
-    <ion-button slot="end" size="default" shape="round" color="success" routerLink="/operator-create">
+    <ion-button slot="end" size="default" shape="round" color="success" [routerLink]="['operator-create']">
       <ion-icon name="add-outline" color="light"></ion-icon>
       เพิ่มคำขอ
     </ion-button>
   </ion-item>
 
-    <ion-card color="light" routerLink="/operator-detail">
+  <ng-container *ngIf="admin$ | async as data">
+    <ion-card color="light" [routerLink]="['operator-detail', item._id]" *ngFor="let item of data">
       <ion-item button color="light" class="ion-text-center">
         <ion-avatar slot="start"></ion-avatar>
         <ion-avatar slot="start"></ion-avatar>
@@ -20,21 +21,26 @@
        
         <ion-col size="7" class="ion-text-left">
           <ion-text color="primary">
-            <p><b> name</b></p>
+            <p><b> {{item.name}}</b></p>
           </ion-text>
         </ion-col>
         <ion-col size="5">
           <ion-text color="success">
-            <p><b>เปิดรับงาน</b></p>
+            <p><b>ยังไม่ได้ binding</b></p>
           </ion-text>
+          <!-- <ion-text color="success">
+            <p><b>ออฟไลน์</b></p>
+          </ion-text> -->
         </ion-col>
       </ion-item>
     </ion-card>
-    <ion-card color="light" class="ion-text-center">
+    <ion-card color="light" class="ion-text-center" *ngIf="data.length == 0">
       <br><br><br><br><br>
       <ion-text class="ion-text-center" color="primary">
         <h5><b>ไม่มีรายการ</b></h5>
       </ion-text>
       <br><br><br><br><br>
     </ion-card>
+  </ng-container>
+
 </ion-content>
