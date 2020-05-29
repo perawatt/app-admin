@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { ModalController } from '@ionic/angular';
@@ -13,9 +13,9 @@ export class OperationOrderCancelPage implements OnInit {
   public fg: FormGroup;
   @Input() _id: string;
 
-  constructor(private modalController: ModalController, private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
+  constructor(private modalCtrl: ModalController, private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
     this.fg = this.fb.group({
-      'heading': null,
+      'heading': [null, Validators.required],
       'info': null,
     })
   }
@@ -24,18 +24,14 @@ export class OperationOrderCancelPage implements OnInit {
   }
 
   handleSubmit() {
-    console.log('heading', this.fg.get('heading').value);
-    console.log('heading2', this.fg.get('info').value);
-    console.log(this.fg.value);
-    console.log(this._id);
-    if (this.fg.get('heading').value != null && this.fg.get('info').value != null)
+    if (this.fg.valid)
     this.adminSvc.createSendCancelRequest(this._id, this.fg.value).then((it: any) => {
-      this.modalController.dismiss(this._id);
+      this.modalCtrl.dismiss(this._id);
       })
   }
 
   cancalModal(){
-    this.modalController.dismiss();
+    this.modalCtrl.dismiss();
   }
 
 

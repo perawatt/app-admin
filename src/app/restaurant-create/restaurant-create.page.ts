@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
 import { NavController } from '@ionic/angular';
 
@@ -18,10 +18,10 @@ export class RestaurantCreatePage implements OnInit {
   constructor(private fb: FormBuilder, private adminSvc: AdminService, private navCtrl: NavController) {
     this.fg = this.fb.group({
       'name': null,
-      'tel': null,
-      'manaCode': null,
+      'tel': [null, Validators.required],
+      'manaCode': [null, Validators.required],
       'note': null,
-      'contractConditionId': null,
+      'contractConditionId': [null, Validators.required],
     });
   }
 

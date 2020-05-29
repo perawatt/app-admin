@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
@@ -15,8 +15,8 @@ export class FinanceCreatePage implements OnInit {
 
   constructor(private adminSvc: AdminService, private fb: FormBuilder, private router: Router, private navCtrl: NavController) {
     this.fg = this.fb.group({
-      'destinationId': null,
-      "amount": null,
+      'destinationId': [null, Validators.required],
+      "amount": [null, Validators.required],
       'note': null,
     })
   }
@@ -25,13 +25,8 @@ export class FinanceCreatePage implements OnInit {
   }
 
   handleSubmit() {
-    console.log('heading', this.fg.get('destinationId').value);
-    console.log('heading2', this.fg.get('amount').value);
-    console.log('heading3', this.fg.get('note').value);
-    console.log(this.fg.value);
     if (this.fg.valid) {
       this.adminSvc.createFinance(this.fg.value).then((it: any) => {
-        console.log("xxx: " + JSON.stringify(it));     
         this.navCtrl.back();
       })
     }

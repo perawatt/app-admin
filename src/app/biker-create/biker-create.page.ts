@@ -25,11 +25,11 @@ export class BikerCreatePage implements OnInit {
   constructor(private alertCtr: AlertController, private loadingCtr: LoadingController, private uploadFileSvc: UploadFileService, private navCtrl: NavController, private route: Router, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
     this.fg = this.fb.group({
       'manaCode': [null, Validators.required],
-      'name': [null, Validators.required],
+      'name': null,
       "profileImage": null,
-      "address": [null, Validators.required],
+      "address": null,
       "tel": [null, Validators.required],
-      "note": ''
+      "note": null,
     });
   }
 

@@ -57,7 +57,7 @@
           <ion-checkbox [(ngModel)]="canNote" slot="start" color="dark"></ion-checkbox>
         </ion-item>
         <ion-item lines="none" color="light">
-          <ion-button (click)="submit()" class="buttonWidth" slot="end" color="success" shape="round" size="default">
+          <ion-button (click)="submit()" class="buttonWidth" slot="end" color="success" [disabled]="fg.invalid" shape="round" size="default">
             <ion-label color="light">
               บันทึก
             </ion-label>

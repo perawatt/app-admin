@@ -9,7 +9,7 @@
 
 <ion-content mode="ios" class="ion-padding">
   <ng-container *ngIf="financeDetail$ | async as data">
-    <ion-card color="light" *ngFor="let item of data">
+    <ion-card color="light">
       <ion-row>
         <ion-col size="0.25"></ion-col>
         <ion-col size="11" class="ion-margin-top">
@@ -27,7 +27,7 @@
           <ion-item color="light">
             <ion-label>
               <b>วันที่สร้าง : </b>
-              <b>{{item.createDate | date:'d MMM y'}}</b>
+              <b>{{data.createDate | date:'d MMM y'}}</b>
             </ion-label>
           </ion-item>
         </ion-col>
@@ -39,7 +39,7 @@
           <ion-item color="light">
             <ion-label>
               <b>ชื่อ : </b>
-              <b>{{item.destinationName}}</b>
+              <b>{{data.destinationName}}</b>
             </ion-label>
           </ion-item>
         </ion-col>
@@ -51,7 +51,7 @@
           <ion-item color="light">
             <ion-label>
               <b>รหัส Biker : </b>
-              <b>{{item.destinationId}}</b>
+              <b>{{data.destinationId}}</b>
             </ion-label>
           </ion-item>
         </ion-col>
@@ -63,7 +63,7 @@
           <ion-item color="light">
             <ion-label>
               <b>จำนวนเงิน : </b>
-              <b>{{item.amount | number}}</b>
+              <b>{{data.amount | number}}</b>
             </ion-label>
           </ion-item>
         </ion-col>
@@ -75,7 +75,7 @@
           <ion-item color="light">
             <ion-label>
               <b>หมายเหตุ : </b>
-              <b>{{item.note}}</b>
+              <b>{{data.note}}</b>
             </ion-label>
           </ion-item>
         </ion-col>
