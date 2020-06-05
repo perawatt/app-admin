@@ -28,11 +28,8 @@
               </ion-item>
               <ion-item color="light" lines="none">
                 <img class="ion-margin-vertical" src="assets/imgs/dfprofile.png" height="100">
-                <ion-button shape="round" size="default" color="secondary">
-                  <!-- <ion-label color="light">เปลี่ยนรูป</ion-label> -->
-                  <ion-input type="file" accept="photo" multiple="true" (ionChange)="selectPhoto($event)">
-                  </ion-input>
-                </ion-button>
+                <ion-input type="file" name="file"id="file"class="file-input" accept="photo" multiple="false" (ionChange)="selectPhoto($event)"></ion-input>
+                <ion-label for="file" class="ion-text-center file-input-label">เปลี่ยนรูป</ion-label>
               </ion-item>
               <ion-item color="light" lines="inset">
                 <ion-input formControlName="name" placeholder="ชื่อผู้สมัคร"></ion-input>
