@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { collectExternalReferences } from '@angular/compiler';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-operation-attention-detail',
@@ -9,26 +10,44 @@ import { collectExternalReferences } from '@angular/compiler';
   styleUrls: ['./operation-attention-detail.page.scss'],
 })
 export class OperationAttentionDetailPage implements OnInit {
-  title:string;
+  title: string;
   public orderId: string;
   productList$ = Promise.resolve([]);
 
 
 
-  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService) { }
-
-  ngOnInit() {
+  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, public alertController: AlertController) {
     this.orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
-    console.log(this.orderId);
 
-    this.productList$ = this.adminSvc.getOrderDetail(this.orderId);
-    this.productList$.then((it: any) => {
-     this.title = it.orderDetail._id;
-     console.log(it);
-    });
-    
+   }
 
-
+  ionViewWillEnter() {
   }
 
+  ngOnInit() {
+    this.loadData();
+  }
+
+  async loadData() {
+    const alert = await this.alertController.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          // this.navCtrl.back();
+        },
+      }],
+      backdropDismiss: false
+    });
+    this.productList$ = this.adminSvc.getOrderDetail(this.orderId);
+    this.productList$.then((it: any) => {
+      this.title = it.orderDetail._id;
+      console.log(it);
+    }, async error => {
+      alert.message = error.error.message;
+      await alert.present();
+    });
+
+  }
 }
