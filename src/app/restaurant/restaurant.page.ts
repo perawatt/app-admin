@@ -9,11 +9,9 @@ import { AdminService } from 'src/services/admin.service';
 export class RestaurantPage implements OnInit {
 
   public getRestaurant$ = Promise.resolve([]);
-
-
   constructor(private adminSvc: AdminService) { }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.getRestaurant$ = this.adminSvc.getRestaurant();
     this.getRestaurant$.then(it => {
       console.log(it);

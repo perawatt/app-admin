@@ -14,37 +14,36 @@ export class RestaurantProfilePage implements OnInit {
   public shopName: string;
   public shopInfo$ = Promise.resolve([]);
 
-  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService,private alertCtr: AlertController) {
+  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController) {
+    this._idShop = this.activatedRoute.snapshot.paramMap.get('shopId');
+    this.shopName = this.activatedRoute.snapshot.paramMap.get('shopName');
   }
 
   ngOnInit() {
-    this._idShop = this.activatedRoute.snapshot.paramMap.get('shopId');
-    this.shopName = this.activatedRoute.snapshot.paramMap.get('shopName');
-    console.log(this._idShop);
-    this.getRestaurantById();
   }
 
   ionViewWillEnter() {
-    
+    this.getRestaurantById();
   }
 
-  getRestaurantById() {
+  async getRestaurantById() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          // DO SOMETHING
+        },
+      }],
+      backdropDismiss: false
+    });
+
     this.shopInfo$ = this.adminSvc.getRestaurantById(this._idShop);
     this.shopInfo$.then(it => {
       console.log(it);
     }, async error => {
-      const alert = await this.alertCtr.create({
-        header: 'เกิดข้อผิดพลาด',
-        message: error.error.message,
-        buttons: [{
-          text: 'ตกลง',
-          handler: () => {
-            // DO SOMETHING
-          },
-        }],
-        backdropDismiss: false
-      });
-
+      alert.message = error.error.message;
       await alert.present();
     });
   }

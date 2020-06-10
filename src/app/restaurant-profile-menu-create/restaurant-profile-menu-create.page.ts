@@ -25,6 +25,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   catagory$ = Promise.resolve([]);
   uploadProgress$: Observable<IUploadProgress[]>;
   constructor(private uploadFileSvc: UploadFileService, private alertCtr: AlertController, private loadingCtr: LoadingController, private navCtrl: NavController, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
+    this.restaurantId = this.route.snapshot.paramMap.get('shopId');
     this.fg = this.fb.group({
       'name': [null, Validators.required],
       "categoryName": [null, Validators.required],
@@ -35,8 +36,32 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   ngOnInit() {
-    this.restaurantId = this.route.snapshot.paramMap.get('shopId');
+  }
+
+  ionViewWillEnter() {
+    this.getCategoryList();
+  }
+
+  async getCategoryList() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          // DO SOMETHING
+        },
+      }],
+      backdropDismiss: false
+    });
+
     this.catagory$ = this.adminSvc.getCategoryList(this.restaurantId);
+    this.catagory$.then(it => {
+      console.log(it);
+    }, async error => {
+      alert.message = error.error.message;
+      await alert.present();
+    });
   }
 
   selectPhoto(event) {

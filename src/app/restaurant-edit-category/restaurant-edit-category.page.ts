@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-edit-category',
@@ -8,17 +9,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant-edit-category.page.scss'],
 })
 export class RestaurantEditCategoryPage implements OnInit {
-  data$ = Promise.resolve([]);
-  _id: string;
 
-  constructor(private route: ActivatedRoute, private adminSvc: AdminService) { }
+  public data$ = Promise.resolve([]);
+  public _id: string;
+  constructor(private route: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController) {
+    this._id = this.route.snapshot.paramMap.get('shopId');
+  }
 
   ngOnInit() {
-   
   }
-  
-  ionViewDidEnter(){
-    this._id = this.route.snapshot.paramMap.get('shopId');
+
+  ionViewWillEnter() {
+    this.getCategoryList();
+  }
+
+  async getCategoryList() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          // DO SOMETHING
+        },
+      }],
+      backdropDismiss: false
+    });
+
     this.data$ = this.adminSvc.getCategoryList(this._id);
+    this.data$.then(it => {
+      console.log(it);
+    }, async error => {
+      alert.message = error.error.message;
+      await alert.present();
+    });
   }
 }

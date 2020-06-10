@@ -12,15 +12,14 @@ export class RestaurantProfileHistoryPage implements OnInit {
   public _idShop: string;
   public shopHistory$ = Promise.resolve([]);
 
-  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService) { }
-
-  ngOnInit() {
+  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
     this._idShop = this.activatedRoute.snapshot.paramMap.get('shopId')
-    console.log(this._idShop);
-    this.getRestaurantOrderHistory()
   }
 
-  getRestaurantOrderHistory() {
+  ngOnInit() {
+  }
+
+  ionViewWillEnter() {
     this.shopHistory$ = this.adminSvc.getRestaurantOrderHistory(this._idShop);
     this.shopHistory$.then(it => {
       console.log(it);

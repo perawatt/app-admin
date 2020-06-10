@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button mode="md"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>OrderID {{ orderId }}</ion-title>
   </ion-toolbar>
@@ -24,7 +24,7 @@
             <ion-label>
               <ion-text color="dark">
                 <ion-icon name="time-outline"></ion-icon>
-                {{ data.orderDetail.createDate | date:'d MMM y (H:mm)'}}
+                {{ data.orderDetail?.createDate | date:'d MMM y (H:mm)'}}
               </ion-text>
             </ion-label>
             <br>
@@ -37,9 +37,9 @@
             <img src="assets/imgs/ordershop.png" />
           </ion-avatar>
           <ion-label>
-            <h3><b> {{ data.orderDetail.restaurant.name }} </b></h3>
+            <h3><b> {{ data.orderDetail?.restaurant.name }} </b></h3>
             <ion-text color="secondary">
-              <p class="ion-text-wrap"> {{ data.orderDetail.restaurant.address }} </p>
+              <p class="ion-text-wrap"> {{ data.orderDetail?.restaurant.address }} </p>
             </ion-text>
           </ion-label>
         </ion-item>
@@ -49,9 +49,9 @@
             <img src="assets/imgs/ordercustomer.png" />
           </ion-avatar>
           <ion-label>
-            <h3><b> {{ data.orderDetail.customer.name }} </b></h3>
+            <h3><b> {{ data.orderDetail?.customer.name }} </b></h3>
             <ion-text color="secondary">
-              <p class="ion-text-wrap"> {{ data.orderDetail.customer.address }} </p>
+              <p class="ion-text-wrap"> {{ data.orderDetail?.customer.address }} </p>
             </ion-text>
           </ion-label>
         </ion-item>
@@ -77,28 +77,28 @@
          <ion-row class="boxStepProgressBar">
           <ion-col size="1.1"></ion-col>
           <div>
-            <li *ngIf="data.orderDetail.createDate"><div class="nodeSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.createDate"><div class="nodeUnSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail.createDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail?.createDate"><div class="nodeSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail?.createDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail?.createDate"><div class="nodeUnSuccess"></div><p>ลูกค้าสั่งอาหาร {{ data.orderDetail?.createDate | date:'(H:mm)' }} </p></li>
 
-            <li *ngIf="data.orderDetail.acceptRequestDate"><div class="lineSuccess"></div></li>
-            <li *ngIf="data.orderDetail.acceptRequestDate"><div class="nodeSuccess"></div><p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.acceptRequestDate"><div class="lineUnSuccess"></div></li>
-            <li *ngIf="!data.orderDetail.acceptRequestDate"><div class="nodeUnSuccess"></div><p>รับออเดอร์ {{ data.orderDetail.acceptRequestDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail?.acceptRequestDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail?.acceptRequestDate"><div class="nodeSuccess"></div><p>รับออเดอร์ {{ data.orderDetail?.acceptRequestDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail?.acceptRequestDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail?.acceptRequestDate"><div class="nodeUnSuccess"></div><p>รับออเดอร์ {{ data.orderDetail?.acceptRequestDate | date:'(H:mm)' }} </p></li>
 
-            <li *ngIf="data.orderDetail.shippingDate"><div class="lineSuccess"></div></li>
-            <li *ngIf="data.orderDetail.shippingDate"><div class="nodeSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.shippingDate"><div class="lineUnSuccess"></div></li>
-            <li *ngIf="!data.orderDetail.shippingDate"><div class="nodeUnSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail.shippingDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail?.shippingDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail?.shippingDate"><div class="nodeSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail?.shippingDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail?.shippingDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail?.shippingDate"><div class="nodeUnSuccess"></div><p>อยู่ระหว่างจัดส่ง {{ data.orderDetail?.shippingDate | date:'(H:mm)' }} </p></li>
 
-            <li *ngIf="data.orderDetail.destinationDate"><div class="lineSuccess"></div></li>
-            <li *ngIf="data.orderDetail.destinationDate"><div class="nodeSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.destinationDate"><div class="lineUnSuccess"></div></li>
-            <li *ngIf="!data.orderDetail.destinationDate"><div class="nodeUnSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail.destinationDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail?.destinationDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail?.destinationDate"><div class="nodeSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail?.destinationDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail?.destinationDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail?.destinationDate"><div class="nodeUnSuccess"></div><p>ของถึงแล้ว {{ data.orderDetail?.destinationDate | date:'(H:mm)' }} </p></li>
 
-            <li *ngIf="data.orderDetail.doneDate"><div class="lineSuccess"></div></li>
-            <li *ngIf="data.orderDetail.doneDate"><div class="nodeSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p></li>
-            <li *ngIf="!data.orderDetail.doneDate"><div class="lineUnSuccess"></div></li>
-            <li *ngIf="!data.orderDetail.doneDate"><div class="nodeUnSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail.doneDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="data.orderDetail?.doneDate"><div class="lineSuccess"></div></li>
+            <li *ngIf="data.orderDetail?.doneDate"><div class="nodeSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail?.doneDate | date:'(H:mm)' }} </p></li>
+            <li *ngIf="!data.orderDetail?.doneDate"><div class="lineUnSuccess"></div></li>
+            <li *ngIf="!data.orderDetail?.doneDate"><div class="nodeUnSuccess"></div><p>ลูกค้าได้รับของแล้ว {{ data.orderDetail?.doneDate | date:'(H:mm)' }} </p></li>
             </div>
         </ion-row>
 
@@ -139,12 +139,12 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2> {{ data.orderDetail.customer.name }} </h2>
+                  <h2> {{ data.orderDetail?.customer.name }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2> {{ data.orderDetail.customer.tel }} </h2>
+                  <h2> {{ data.orderDetail?.customer.tel }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
@@ -169,19 +169,19 @@
                   <h2>คนส่งอาหาร</h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="data.orderDetail.delivery.name">
+              <ion-col size="3.5" *ngIf="data.orderDetail?.delivery.name">
                 <ion-label>
-                  <h2> {{ data.orderDetail.delivery.name }} </h2>
+                  <h2> {{ data.orderDetail?.delivery.name }} </h2>
                 </ion-label>
               </ion-col>
-              <ion-col size="3.5" *ngIf="!data.orderDetail.delivery.name">
+              <ion-col size="3.5" *ngIf="!data.orderDetail?.delivery.name">
                 <ion-label>
                   <h2>ยังไม่มีผู้รับงาน</h2>
                 </ion-label>
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2> {{ data.orderDetail.delivery.tel }} </h2>
+                  <h2> {{ data.orderDetail?.delivery.tel }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
@@ -208,12 +208,12 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2> {{ data.orderDetail.restaurant.name }} </h2>
+                  <h2> {{ data.orderDetail?.restaurant.name }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2> {{ data.orderDetail.restaurant.tel }} </h2>
+                  <h2> {{ data.orderDetail?.restaurant.tel }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
