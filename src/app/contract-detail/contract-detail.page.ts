@@ -14,11 +14,11 @@ export class ContractDetailPage implements OnInit {
   contractConditionInfo$ = Promise.resolve([]);
   title: string;
 
-  constructor(private route: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController) { }
+  constructor(private route: ActivatedRoute, private navCtrl: NavController, private adminSvc: AdminService, private alertCtr: AlertController) { }
 
   ngOnInit() {
     this.route.params.subscribe(param => { this.contractConditionId = param['contractConditionId'] });
-    // this.contractConditionId = "999";
+    this.contractConditionId = "999";
     this.contractConditionInfo$ = this.adminSvc.getContractConditionById(this.contractConditionId);
     this.contractConditionInfo$.then((it: any) => {
       this.title = it.name;
@@ -31,6 +31,7 @@ export class ContractDetailPage implements OnInit {
           text: 'ตกลง',
           handler: () => {
             // DO SOMETHING
+            this.navCtrl.back();
           },
         }],
         backdropDismiss: false
