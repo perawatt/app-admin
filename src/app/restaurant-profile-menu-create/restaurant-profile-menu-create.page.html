@@ -19,11 +19,13 @@
             </ion-label>
           </ion-list-header>
           <ion-item color="light">
-            <ion-select formControlName="categoryName" placeholder="เลือกหมวดหมู่">
-              <ion-select-option *ngFor="let data of catagory$ | async" [value]="data.categoryName">
+            <ng-container *ngIf="catagory$ | async as item">
+              <ion-select formControlName="categoryName" placeholder="เลือกหมวดหมู่">
+              <ion-select-option *ngFor="let data of item" [value]="data.categoryName">
                 {{data.categoryName}}
               </ion-select-option>
             </ion-select>
+          </ng-container>
           </ion-item>
           <ion-item color="light" lines="none">
             <img class="ion-margin-vertical" src="assets/imgs/dfmenu.png" height=" 120">

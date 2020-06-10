@@ -17,6 +17,7 @@ export class RestaurantCreateCategoryPage implements OnInit {
   _id: string;
   canNote = false;
   constructor(private navCtrl: NavController, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService) {
+    this._id = this.route.snapshot.paramMap.get('shopId');
     this.fg = this.fb.group({
       'name': [null, Validators.required],
       'canNote': false,
@@ -25,7 +26,6 @@ export class RestaurantCreateCategoryPage implements OnInit {
   }
 
   ngOnInit() {
-    this._id = this.route.snapshot.paramMap.get('shopId');
   }
 
   addOptions() {
