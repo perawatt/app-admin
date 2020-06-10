@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-profile',
@@ -14,7 +14,7 @@ export class RestaurantProfilePage implements OnInit {
   public shopName: string;
   public shopInfo$ = Promise.resolve([]);
 
-  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController) {
+  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController, private navCtrl: NavController) {
     this._idShop = this.activatedRoute.snapshot.paramMap.get('shopId');
     this.shopName = this.activatedRoute.snapshot.paramMap.get('shopName');
   }
@@ -33,12 +33,12 @@ export class RestaurantProfilePage implements OnInit {
       buttons: [{
         text: 'ตกลง',
         handler: () => {
-          // DO SOMETHING
+          this.navCtrl.back();
         },
       }],
       backdropDismiss: false
     });
-
+    
     this.shopInfo$ = this.adminSvc.getRestaurantById(this._idShop);
     this.shopInfo$.then(it => {
       console.log(it);

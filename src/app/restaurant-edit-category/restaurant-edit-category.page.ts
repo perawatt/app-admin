@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-edit-category',
@@ -12,7 +12,7 @@ export class RestaurantEditCategoryPage implements OnInit {
 
   public data$ = Promise.resolve([]);
   public _id: string;
-  constructor(private route: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController) {
+  constructor(private route: ActivatedRoute, private adminSvc: AdminService, private navCtrl: NavController, private alertCtr: AlertController) {
     this._id = this.route.snapshot.paramMap.get('shopId');
   }
 
@@ -30,12 +30,12 @@ export class RestaurantEditCategoryPage implements OnInit {
       buttons: [{
         text: 'ตกลง',
         handler: () => {
-          // DO SOMETHING
+          this.navCtrl.back();
         },
       }],
       backdropDismiss: false
     });
-
+    
     this.data$ = this.adminSvc.getCategoryList(this._id);
     this.data$.then(it => {
       console.log(it);

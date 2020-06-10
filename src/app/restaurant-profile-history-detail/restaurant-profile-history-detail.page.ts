@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-profile-history-detail',
@@ -12,7 +12,7 @@ export class RestaurantProfileHistoryDetailPage implements OnInit {
   
   public orderId: string;
   public orderDetail$ = Promise.resolve([]);
-  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController) {
+  constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController, private navCtrl: NavController) {
     this.orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
   }
 
@@ -30,12 +30,12 @@ export class RestaurantProfileHistoryDetailPage implements OnInit {
       buttons: [{
         text: 'ตกลง',
         handler: () => {
-          // DO SOMETHING
+          this.navCtrl.back();
         },
       }],
       backdropDismiss: false
     });
-
+    
     this.orderDetail$ = this.adminSvc.getOrderDetail(this.orderId);
     this.orderDetail$.then(it => {
       console.log(it);
