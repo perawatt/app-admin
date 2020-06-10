@@ -41,7 +41,6 @@ export class OperationPage implements OnInit {
         this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
       }
     });
-
   }
 
   Login() {
@@ -54,9 +53,6 @@ export class OperationPage implements OnInit {
     this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
     this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
     this.setStatus();
-    this.unFinishedOrderinfo$.then((it: any) => {
-      console.log(it);
-    });
   }
 
   setStatus() {

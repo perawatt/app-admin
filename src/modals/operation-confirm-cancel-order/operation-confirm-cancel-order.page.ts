@@ -1,4 +1,4 @@
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
@@ -19,7 +19,7 @@ export class OperationConfirmCancelOrderPage implements OnInit {
   public compensate: boolean;
   public isOk: boolean = true;
 
-  constructor(public modalCtrl: ModalController, private fb: FormBuilder, private adminSvc: AdminService) {
+  constructor(public modalCtrl: ModalController, public alertController: AlertController, private fb: FormBuilder, private adminSvc: AdminService) {
     this.fg = this.fb.group({
       'heading': [null, Validators.required],
       'info': null,
@@ -33,14 +33,28 @@ export class OperationConfirmCancelOrderPage implements OnInit {
     console.log(this.cancelRequestId);
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     this.fg.get('refundAll').setValue(this.refundAll);
     this.fg.get('refundFood').setValue(this.refundFood);
     this.fg.get('compensate').setValue(this.compensate);
+    const alert = await this.alertController.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          // this.navCtrl.back();
+        },
+      }],
+      backdropDismiss: false
+    });
     if (this.fg.valid)
       this.adminSvc.updateSendCancelComfirm(this.cancelRequestId, this.fg.value).then((it: any) => {
         this.modalCtrl.dismiss(this.isOk);
-      })
+      }, async error => {
+        alert.message = error.error.message;
+        await alert.present();
+      });
   }
 
   close() {
