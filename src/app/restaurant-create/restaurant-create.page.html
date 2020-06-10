@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button mode="md"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>เพิ่มคำขอ</ion-title>
   </ion-toolbar>
@@ -74,8 +74,8 @@
           <ion-col size="7" class="padding">
             <ion-item color="light">
               <ion-label color="dark">เลือกสัญญา</ion-label>
-              <ion-select formControlName="contractConditionId" placeholder="เลือกหมวดหมู่" (ionChange)="getContractDetail()">
-                <ion-select-option *ngFor="let item of data" value="{{item._id}}" >{{item.name}}</ion-select-option>
+              <ion-select formControlName="contractConditionId" placeholder="เลือกหมวดหมู่" [disabled]="data.length == 0" (ionChange)="getContractDetail()">
+                  <ion-select-option *ngFor="let item of data" value="{{item._id}}" >{{item.name}}</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
