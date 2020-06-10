@@ -46,19 +46,45 @@ export class BikerDetailPage implements OnInit {
     });
   }
 
-  Suspended() {
+  async Suspended() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.loadData();
+        },
+      }],
+      backdropDismiss: false
+    });
+
     this.adminSvc.updateSuspendBiker(this.bikerId).then(() => {
-      this.Reload();
+      this.loadData();
+    }, async error => {
+      alert.message = error.error.message;
+      await alert.present();
     });
   }
 
-  UnSuspended() {
+  async UnSuspended() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.loadData();
+        },
+      }],
+      backdropDismiss: false
+    });
+
     this.adminSvc.updateUnsuspendBiker(this.bikerId).then(() => {
-      this.Reload();
+      this.loadData();
+    }, async error => {
+      alert.message = error.error.message;
+      await alert.present();
     });
-  }
-
-  Reload() {
-    this.bikerInfo$ = this.adminSvc.getBikerById(this.bikerId);
   }
 }

@@ -11,7 +11,7 @@ export class OperatorPage implements OnInit {
 
   constructor(private adminSvc : AdminService) { }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.admin$ = this.adminSvc.getAdmin();
     this.admin$.then((it:any)=>{
       console.log(it);

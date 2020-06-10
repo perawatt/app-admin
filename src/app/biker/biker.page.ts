@@ -12,13 +12,8 @@ export class BikerPage implements OnInit {
 
   constructor(private adminSvc: AdminService) { }
 
-
-  ionViewDidEnter() {
+  ionViewWillEnter() {
    this.bikerListInfo$ = this.adminSvc.getBiker();
-    this.bikerListInfo$.then((it)=>{console.log(it);
-      if(!it){console.log('NO content');
-      }
-    });
   }
   
   ngOnInit() {}

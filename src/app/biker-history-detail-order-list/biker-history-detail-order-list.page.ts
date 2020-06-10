@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/services/admin.service';
 import { ActivatedRoute } from '@angular/router';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-biker-history-detail-order-list',
@@ -9,21 +10,38 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BikerHistoryDetailOrderListPage implements OnInit {
 
-  orderId:string;
-  productList$:Promise<any>;
-  title:string;
+  orderId: string;
+  productList$: Promise<any>;
+  title: string;
 
-  constructor(private adminSvc:AdminService,private activedRoute:ActivatedRoute) { }
+  constructor(private navCtrl:NavController,private adminSvc: AdminService, private activedRoute: ActivatedRoute,private alertCtr:AlertController) {
+    this.orderId = this.activedRoute.snapshot.paramMap.get('orderId');
+   }
 
   ngOnInit() {
-    this.orderId = this.activedRoute.snapshot.paramMap.get('orderId');
-    this.productList$ = this.adminSvc.getOrderDetail(this.orderId);
-    this.productList$.then((it:any)=>{
-      console.log(it);
-      this.title = it.orderDetail._id;
-    });
-    
+    this.loadData();
   }
 
+  async loadData() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.navCtrl.back();
+        },
+      }],
+      backdropDismiss: false
+    });
+
+    this.productList$ = this.adminSvc.getOrderDetail(this.orderId);
+    this.productList$.then((it: any) => {
+      this.title = it.orderDetail?._id;
+    }, async error => {
+      alert.message = error.error.message;
+      await alert.present();
+    });
+  }
 
 }

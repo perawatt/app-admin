@@ -6,6 +6,7 @@ import { combineAll, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { UploadFileService } from 'src/services/upload-file/upload-file.service';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-biker-create',
@@ -45,12 +46,27 @@ export class BikerCreatePage implements OnInit {
   }
 
   async submit() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          // this.navCtrl.back();
+        },
+      }],
+      backdropDismiss: false
+    });
+
     if (this.fg.valid) {
       this.onAction = true;
       let formData = this.fg.value;
       if (this.file == null) {
         this.adminSvc.createAddBiker(formData).then(_ => {
           this.navCtrl.back();
+        }, async error => {
+          alert.message = error.error.message;
+          await alert.present();
         });
       }
       else {

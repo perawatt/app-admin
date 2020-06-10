@@ -44,12 +44,26 @@ export class OperatorCreatePage implements OnInit {
   }
 
   async submit() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+        },
+      }],
+      backdropDismiss: false
+    });
+
     if (this.fg.valid) {
       this.onAction = true;
       let formData = this.fg.value;
       if (this.file == null) {
         this.adminSvc.createAdmin(formData).then(_ => {
           this.navCtrl.back();
+        }, async error => {
+          alert.message = error.error.message;
+          await alert.present();
         });
       }
       else {

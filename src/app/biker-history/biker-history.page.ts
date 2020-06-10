@@ -11,10 +11,12 @@ export class BikerHistoryPage implements OnInit {
 
   bikerId:string;
   bikerHistory$:Promise<any>;
-  constructor(private activedRoute:ActivatedRoute,private adminSvc:AdminService) { }
+  
+  constructor(private activedRoute:ActivatedRoute,private adminSvc:AdminService) { 
+    this.bikerId = this.activedRoute.snapshot.paramMap.get('bikerId');
+  }
 
   ngOnInit() {
-     this.bikerId = this.activedRoute.snapshot.paramMap.get('bikerId');
      console.log('biker id : '+this.bikerId);
       this.bikerHistory$ = this.adminSvc.getBikerOrderHistory(this.bikerId);
       this.bikerHistory$.then((it:any)=>{
