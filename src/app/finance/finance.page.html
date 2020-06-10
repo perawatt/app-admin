@@ -15,7 +15,7 @@
 
   <ng-container *ngIf="financeInfo$ | async as data">
     <ion-card color="light" *ngFor="let item of data">
-      <ion-item button color="light"  [routerLink]="['operator-detail', item._id]">
+      <ion-item button color="light"  [routerLink]="['finance-detail', item._id]">
         <ion-col size="4" class="ion-margin-start">
           <ion-text color="primary" >
             <p><b>{{item.name}}</b></p>

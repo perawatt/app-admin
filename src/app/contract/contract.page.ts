@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/services/admin.service';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-contract',
@@ -9,19 +10,35 @@ import { AdminService } from 'src/services/admin.service';
 export class ContractPage implements OnInit {
 
   contactInfo$ = Promise.resolve([]);
-  constructor(private adminSvc : AdminService) { }
+  constructor(private navCtrl: NavController, private alertCtr: AlertController, private adminSvc: AdminService) { }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
+    this.loadData();
+  }
+
+  async loadData() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.navCtrl.back();
+        },
+      }],
+      backdropDismiss: false
+    });
+
     this.contactInfo$ = this.adminSvc.getContractCondition();
-    this.contactInfo$.then((it:any)=>{
-      console.log(it);
-      console.log(JSON.stringify(it))
+    this.contactInfo$.then((it: any) => {
+    }, async error => {
+      alert.message = error.error.message;
+
+      await alert.present();
     });
   }
-  
-  ngOnInit() {
-   
 
+  ngOnInit() {
   }
 
 }

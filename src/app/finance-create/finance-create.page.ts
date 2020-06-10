@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
 import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-finance-create',
@@ -13,7 +13,7 @@ import { NavController } from '@ionic/angular';
 export class FinanceCreatePage implements OnInit {
   public fg: FormGroup;
 
-  constructor(private adminSvc: AdminService, private fb: FormBuilder, private router: Router, private navCtrl: NavController) {
+  constructor(private alertCtr: AlertController, private adminSvc: AdminService, private fb: FormBuilder, private router: Router, private navCtrl: NavController) {
     this.fg = this.fb.group({
       'destinationId': [null, Validators.required],
       "amount": [null, Validators.required],
@@ -26,13 +26,33 @@ export class FinanceCreatePage implements OnInit {
 
   handleSubmit() {
     if (this.fg.valid) {
-      this.adminSvc.createFinance(this.fg.value).then((it: any) => {
-        this.navCtrl.back();
-      })
+      this.loadData();
     }
   }
 
-  cancel(){
+  async loadData() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+        },
+      }],
+      backdropDismiss: false
+    });
+
+    this.adminSvc.createFinance(this.fg.value).then((it: any) => {
+      this.navCtrl.back();
+    }, async error => {
+      alert.message = error.error.message;
+      await alert.present();
+    })
+  }
+
+
+
+  cancel() {
     this.navCtrl.back();
   }
 }
