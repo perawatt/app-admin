@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, NavController } from '@ionic/angular';
 import { AdminService } from 'src/services/admin.service';
 import { ActivatedRoute } from '@angular/router';
 import { RestaurantCreateQrPage } from '../restaurant-create-qr/restaurant-create-qr.page';
@@ -15,7 +15,7 @@ export class RestaurantProfileDetailPage implements OnInit {
   public segmentValue: any;
   public _id: string;
   public category: any;
-  constructor(private route: ActivatedRoute, private alertCtr: AlertController, private adminSvc: AdminService) {
+  constructor(private route: ActivatedRoute, private alertCtr: AlertController, private adminSvc: AdminService, private navCtrl: NavController) {
     this._id = this.route.snapshot.paramMap.get('shopId');
   }
 
@@ -33,12 +33,12 @@ export class RestaurantProfileDetailPage implements OnInit {
       buttons: [{
         text: 'ตกลง',
         handler: () => {
-          // DO SOMETHING
+          this.navCtrl.back();
         },
       }],
       backdropDismiss: false
     });
-
+    
     this.data$ = this.adminSvc.getRestaurantMenuById(this._id);
     this.data$.then(it => {
       console.log(it);

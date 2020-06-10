@@ -49,12 +49,12 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
       buttons: [{
         text: 'ตกลง',
         handler: () => {
-          // DO SOMETHING
+          this.navCtrl.back();
         },
       }],
       backdropDismiss: false
     });
-
+    
     this.catagory$ = this.adminSvc.getCategoryList(this.restaurantId);
     this.catagory$.then(it => {
       console.log(it);
