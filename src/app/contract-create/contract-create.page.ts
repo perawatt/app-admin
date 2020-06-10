@@ -25,24 +25,29 @@ export class ContractCreatePage implements OnInit {
 
   handleSubmit() {
     if (this.fg.valid) {
-      this.adminSvc.createContractCondition(this.fg.value).then((it: any) => {
-        this.navCtrl.back();
-      }, async error => {
-        const alert = await this.alertCtr.create({
-          header: 'เกิดข้อผิดพลาด',
-          message: error.error.message,
-          buttons: [{
-            text: 'ตกลง',
-            handler: () => {
-              // DO SOMETHING
-            },
-          }],
-          backdropDismiss: false
-        });
-
-        await alert.present();
-      });
+      this.loadData();
     }
+  }
+
+  async loadData() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.navCtrl.back();
+        },
+      }],
+      backdropDismiss: false
+    });
+
+    this.adminSvc.createContractCondition(this.fg.value).then((it: any) => {
+      this.navCtrl.back();
+    }, async error => {
+      alert.message = error.error.message;
+      await alert.present();
+    });
   }
 
   Back() {
