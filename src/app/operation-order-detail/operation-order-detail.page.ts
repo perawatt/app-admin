@@ -57,14 +57,29 @@ export class OperationOrderDetailPage implements OnInit {
       componentProps: { '_id': this._id },
       backdropDismiss: false
     });
-    modal.onDidDismiss().then(data => {
+    modal.onDidDismiss().then(async data => {
       console.log(data.data);
       console.log('uuuuu', data.data);
-      if (data.data != null)
-        this.orderdetail$ = this.adminSvc.getOrderDetail(data.data);
-      this.orderdetail$.then((it: any) => {
-        console.log(it);
+      const alert = await this.alertCtr.create({
+        header: 'เกิดข้อผิดพลาด',
+        message: "",
+        buttons: [{
+          text: 'ตกลง',
+          handler: () => {
+            this.navCtrl.back();
+          },
+        }],
+        backdropDismiss: false
       });
+      if (data.data != null) {
+        this.orderdetail$ = this.adminSvc.getOrderDetail(data.data);
+        this.orderdetail$.then((it: any) => {
+          console.log(it);
+        }, async error => {
+          alert.message = error.error.message;
+          await alert.present();
+        });
+      }
     })
     modal.present();
   }
@@ -85,24 +100,25 @@ export class OperationOrderDetailPage implements OnInit {
     modal.present();
   }
 
-  goDenyCancelOrder(_id: string) {
+  async goDenyCancelOrder(_id: string) {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.navCtrl.back();
+        },
+      }],
+      backdropDismiss: false
+    });
     console.log(_id);
     if (_id) {
       this.adminSvc.updateSendCancelDeny(_id).then((it: any) => {
         console.log(it);
         this.navCtrl.back();
       }, async error => {
-        const alert = await this.alertCtr.create({
-          header: 'เกิดข้อผิดพลาด',
-          message: error.error.message,
-          buttons: [{
-            text: 'ตกลง',
-            handler: () => {
-              // DO SOMETHING
-            },
-          }],
-          backdropDismiss: false
-        });
+        alert.message = error.error.message;
         await alert.present();
       });
     }

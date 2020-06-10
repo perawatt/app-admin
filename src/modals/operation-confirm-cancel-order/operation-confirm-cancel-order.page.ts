@@ -1,4 +1,4 @@
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, NavController } from '@ionic/angular';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
@@ -30,7 +30,6 @@ export class OperationConfirmCancelOrderPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.cancelRequestId);
   }
 
   async handleSubmit() {
@@ -49,6 +48,7 @@ export class OperationConfirmCancelOrderPage implements OnInit {
       backdropDismiss: false
     });
     if (this.fg.valid)
+    console.log(this.fg.valid);
       this.adminSvc.updateSendCancelComfirm(this.cancelRequestId, this.fg.value).then((it: any) => {
         this.modalCtrl.dismiss(this.isOk);
       }, async error => {
@@ -67,6 +67,4 @@ export class OperationConfirmCancelOrderPage implements OnInit {
     this.noRefund = false;
     this.compensate = false;
   }
-
-
 }

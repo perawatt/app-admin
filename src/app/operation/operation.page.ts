@@ -49,7 +49,7 @@ export class OperationPage implements OnInit {
     });
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
     this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
     this.setStatus();
