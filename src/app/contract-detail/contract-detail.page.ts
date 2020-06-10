@@ -17,7 +17,7 @@ export class ContractDetailPage implements OnInit {
   constructor(private route: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController) { }
 
   ngOnInit() {
-    this.route.params.subscribe(param => { this.contractConditionId = param['contractConditionId'] });
+    this.contractConditionId = this.route.snapshot.paramMap.get('contractConditionId');
     // this.contractConditionId = "999";
     this.contractConditionInfo$ = this.adminSvc.getContractConditionById(this.contractConditionId);
     this.contractConditionInfo$.then((it: any) => {

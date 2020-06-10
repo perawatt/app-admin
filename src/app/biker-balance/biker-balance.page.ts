@@ -14,7 +14,6 @@ export class BikerBalancePage implements OnInit {
   constructor(private adminSvc:AdminService,private activedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-   // this.bikerId = this.route.params.subscribe(params=>{this.bikerId = params['bikerId']});
     this.bikerId = this.activedRoute.snapshot.paramMap.get('bikerId');
     console.log(this.bikerId);
     this.bikerFinanceList$ = this.adminSvc.getBikerFinance(this.bikerId);
