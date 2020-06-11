@@ -29,7 +29,7 @@
             <ion-input value="">{{ data.cancelRequest.request.senderName }} ({{data.cancelRequest.request.senderType}})</ion-input>
             <ion-label slot="end" color="dark" enabled>
               <ion-icon name="time-outline"></ion-icon>
-              {{ data.orderDetail.createDate | date : 'dd MMM yyyy (hh:mm น.)' }}
+              {{ data.orderDetail.createDate | date : 'dd MMM yyyy (H:mm น.)' }}
             </ion-label>
           </ion-item>
         </ion-col>
@@ -149,7 +149,7 @@
             <ion-label>
               <ion-text color="dark">
                 <ion-icon name="time-outline"></ion-icon>
-                {{ data.orderDetail.createDate | date : 'dd MMM yyyy (hh:mm น.)' }}
+                {{ data.orderDetail.createDate | date : 'dd MMM yyyy (H:mm น.)' }}
               </ion-text>
             </ion-label>
             <br>
