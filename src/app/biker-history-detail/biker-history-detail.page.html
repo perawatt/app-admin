@@ -29,7 +29,7 @@
             <ion-input value="">{{ data.cancelRequest.request.senderName }} ({{data.cancelRequest.request.senderType}})</ion-input>
             <ion-label slot="end" color="dark" enabled>
               <ion-icon name="time-outline"></ion-icon>
-              {{ data.orderDetail.createDate | date : 'dd MMM yyyy (H:mm น.)' }}
+              {{ data.orderDetail.createDate | date : 'dd MMM yyyy (hh:mm น.)' }}
             </ion-label>
           </ion-item>
         </ion-col>
@@ -84,8 +84,8 @@
         <ion-col size="2.2" class="ion-no-padding"></ion-col>
         <ion-col size="9" class="ion-no-padding">
           <ion-item color="light">
-              <ion-icon *ngIf="data.cancelRequest.compensate" color="success" name="checkmark-sharp"></ion-icon>
-              <ion-icon *ngIf="!data.cancelRequest.compensate" color="success"></ion-icon>
+            <ion-icon *ngIf="!data.cancelRequest.compensate && data.cancelRequest.refund=='All'" color="success"></ion-icon>
+            <ion-icon *ngIf="data.cancelRequest.compensate && data.cancelRequest.refund=='All'" color="success" name="checkmark-sharp"></ion-icon>
             <ion-label>
               <ion-note>
                 <h2>ชดเชยให้ร้าน</h2>
@@ -93,8 +93,8 @@
             </ion-label>
           </ion-item>
           <ion-item color="light">
-            <ion-icon *ngIf="!data.cancelRequest.compensate" color="success" name="checkmark-sharp"></ion-icon>
-            <ion-icon *ngIf="data.cancelRequest.compensate" color="success"></ion-icon>
+            <ion-icon *ngIf="data.cancelRequest.compensate && data.cancelRequest.refund=='All'" color="success" ></ion-icon>
+            <ion-icon *ngIf="!data.cancelRequest.compensate && data.cancelRequest.refund=='All'" color="success" name="checkmark-sharp"></ion-icon>
             <ion-label>
               <ion-note>
                 <h2>ไม่ชดเชยให้ร้าน</h2>
@@ -149,7 +149,7 @@
             <ion-label>
               <ion-text color="dark">
                 <ion-icon name="time-outline"></ion-icon>
-                {{ data.orderDetail.createDate | date : 'dd MMM yyyy (H:mm น.)' }}
+                {{ data.orderDetail.createDate | date : 'dd MMM yyyy (hh:mm น.)' }}
               </ion-text>
             </ion-label>
             <br>
