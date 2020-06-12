@@ -18,6 +18,7 @@ export class OperationPage implements OnInit {
   attention: string = 'attention';
   order: string = 'order';
   public status: string;
+  public showStatus: string[] = [];
   private hubConnection: HubConnection;
 
   constructor(public alertController: AlertController, private adminSvc: AdminService) { }
@@ -52,7 +53,8 @@ export class OperationPage implements OnInit {
   ionViewWillEnter() {
     this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
     this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
-    this.setStatus();
+    // this.setStatus();
+    // console.log('xxxxxxxxxxxxxx',this.showStatus);
   }
 
   setStatus() {
@@ -74,6 +76,7 @@ export class OperationPage implements OnInit {
           i?.doneDate) {
           this.status = "doneDate";
           console.log('1');
+          console.log(i.biker._id, i.biker.name);
 
         } else if (
           i?.acceptRequestDate &&
@@ -82,6 +85,7 @@ export class OperationPage implements OnInit {
           i?.destinationDate) {
           this.status = "destinationDate";
           console.log('2');
+          console.log(i.biker._id, i.biker.name);
 
         } else if (
           i?.acceptRequestDate &&
@@ -89,17 +93,22 @@ export class OperationPage implements OnInit {
           i?.shippingDate) {
           this.status = "shippingDate";
           console.log('3');
+          console.log(i.biker._id, i.biker.name);
 
         } else if (
           i?.acceptRequestDate &&
           i?.createDate) {
           this.status = "acceptRequestDate";
           console.log('4');
+          console.log(i.biker._id, i.biker.name);
 
         } else {
           this.status = "createDate";
           console.log('5');
+          console.log(i.biker._id, i.biker.name);
         }
+
+        this.showStatus.push(this.status)
       });
     });
   }
