@@ -11,16 +11,15 @@ import { AdminInfo } from 'src/providers/adminInfo/admin-info.service';
   styleUrls: ['./operation.page.scss'],
 })
 export class OperationPage implements OnInit {
-  unFinishedOrderinfo$ = Promise.resolve([]);
-  cancelRequestOrderinfo$ = Promise.resolve([]);
 
-  messageTable: string;
-  attention: string = 'attention';
-  order: string = 'order';
+  public unFinishedOrderinfo$ = Promise.resolve([]);
+  public cancelRequestOrderinfo$ = Promise.resolve([]);
+  public messageTable: string;
+  public attention: string = 'attention';
+  public order: string = 'order';
   public status: string;
   public showStatus: string[] = [];
   private hubConnection: HubConnection;
-
   constructor(public alertController: AlertController, private adminSvc: AdminService) { }
 
   ngOnInit() {
