@@ -55,6 +55,15 @@ export class OperationPage implements OnInit {
     // this.setStatus();
     // console.log('xxxxxxxxxxxxxx',this.showStatus);
   }
+  
+  refreshOrder(){
+    if(this.messageTable == "order"){
+      this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
+      this.unFinishedOrderinfo$.then((it: any) => {
+        console.log(it);
+      });
+    }
+  }
 
   setStatus() {
     this.unFinishedOrderinfo$.then((it: any) => {
