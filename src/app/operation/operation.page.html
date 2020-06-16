@@ -9,7 +9,7 @@
     <ion-segment-button [value]="attention">
       <ion-label>Need attention</ion-label>
     </ion-segment-button>
-    <ion-segment-button [value]="order">
+    <ion-segment-button (click)="refreshOrder()" [value]="order">
       <ion-label>Order</ion-label>
     </ion-segment-button>
   </ion-segment>
