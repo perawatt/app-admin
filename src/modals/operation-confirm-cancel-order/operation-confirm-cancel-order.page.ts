@@ -48,7 +48,6 @@ export class OperationConfirmCancelOrderPage implements OnInit {
       backdropDismiss: false
     });
     if (this.fg.valid)
-    console.log(this.fg.valid);
       this.adminSvc.updateSendCancelComfirm(this.cancelRequestId, this.fg.value).then((it: any) => {
         this.modalCtrl.dismiss(this.isOk);
       }, async error => {

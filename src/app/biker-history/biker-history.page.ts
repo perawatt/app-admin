@@ -17,11 +17,7 @@ export class BikerHistoryPage implements OnInit {
   }
 
   ngOnInit() {
-     console.log('biker id : '+this.bikerId);
       this.bikerHistory$ = this.adminSvc.getBikerOrderHistory(this.bikerId);
-      this.bikerHistory$.then((it:any)=>{
-        console.log(it);
-      });
      
 
   }

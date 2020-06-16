@@ -13,9 +13,6 @@ export class OperatorPage implements OnInit {
 
   ionViewWillEnter() {
     this.admin$ = this.adminSvc.getAdmin();
-    this.admin$.then((it:any)=>{
-      console.log(it);
-    });
   }
 
   ngOnInit() {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
-import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 import { NavController, AlertController } from '@ionic/angular';
 
@@ -14,7 +13,7 @@ export class FinanceCreatePage implements OnInit {
   public fg: FormGroup;
   biker$ = Promise.resolve([]);
   alert: any;
-  constructor(private alertCtr: AlertController, private adminSvc: AdminService, private fb: FormBuilder, private router: Router, private navCtrl: NavController) {
+  constructor(private alertCtr: AlertController, private adminSvc: AdminService, private fb: FormBuilder, private navCtrl: NavController) {
     this.fg = this.fb.group({
       'destinationId': [null, Validators.required],
       "amount": [null, Validators.required],

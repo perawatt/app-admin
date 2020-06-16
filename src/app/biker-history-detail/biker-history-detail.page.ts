@@ -40,7 +40,6 @@ export class BikerHistoryDetailPage implements OnInit {
     this.orderInfo$ = this.adminSvc.getOrderDetail(this.orderId);
     this.orderInfo$.then((it) => {
       this.title = it?.orderDetail?._id;
-      console.log(it);
     }, async error => {
       alert.message = error.error.message;
       await alert.present();

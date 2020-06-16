@@ -41,7 +41,6 @@ export class RestaurantProfileDetailPage implements OnInit {
     
     this.data$ = this.adminSvc.getRestaurantMenuById(this._id);
     this.data$.then(it => {
-      console.log(it);
       let qry = it.filter(i => i.products.length > 0);
       this.category = qry[0].categoryId;
       this.segmentChanged(qry[0].categoryId);

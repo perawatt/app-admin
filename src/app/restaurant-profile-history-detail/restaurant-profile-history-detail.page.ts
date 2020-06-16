@@ -38,7 +38,6 @@ export class RestaurantProfileHistoryDetailPage implements OnInit {
     
     this.orderDetail$ = this.adminSvc.getOrderDetail(this.orderId);
     this.orderDetail$.then(it => {
-      console.log(it);
     }, async error => {
       alert.message = error.error.message;
       await alert.present();
