@@ -25,7 +25,11 @@
         <ion-col size="1" class="ion-no-padding"></ion-col>
         <ion-col size="11" class="ion-no-padding">
           <ion-item color="light">
-            <ion-input placeholder="รหัส Biker" formControlName="destinationId"></ion-input>
+            <ion-select formControlName="destinationId" placeholder="รหัส Biker">
+              <ion-select-option *ngFor="let data of biker$ | async" [value]="data._id">
+                {{data._id}}
+              </ion-select-option>
+            </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -34,7 +38,7 @@
         <ion-col size="1" class="ion-no-padding"></ion-col>
         <ion-col size="11" class="ion-no-padding">
           <ion-item color="light">
-            <ion-input type="number" placeholder="จำนวนเงิน" formControlName="amount" ></ion-input>
+            <ion-input type="number" placeholder="จำนวนเงิน" formControlName="amount"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -49,8 +53,10 @@
       </ion-row>
 
       <ion-item color="light" lines="none" class="ion-padding">
-        <ion-button slot="end" size="default" shape="round" color="danger" class="buttonWidth" (click)="cancel()">ยกเลิก</ion-button>
-        <ion-button slot="end" size="default" shape="round" color="success" class="buttonWidth" [disabled]="fg.invalid"  type="submit">ยืนยัน</ion-button>
+        <ion-button slot="end" size="default" shape="round" color="danger" class="buttonWidth" (click)="cancel()">ยกเลิก
+        </ion-button>
+        <ion-button slot="end" size="default" shape="round" color="success" class="buttonWidth" [disabled]="fg.invalid"
+          type="submit">ยืนยัน</ion-button>
       </ion-item>
     </ion-card>
   </form>

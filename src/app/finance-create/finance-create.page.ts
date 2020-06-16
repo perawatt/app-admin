@@ -12,7 +12,8 @@ import { NavController, AlertController } from '@ionic/angular';
 })
 export class FinanceCreatePage implements OnInit {
   public fg: FormGroup;
-
+  biker$ = Promise.resolve([]);
+  alert: any;
   constructor(private alertCtr: AlertController, private adminSvc: AdminService, private fb: FormBuilder, private router: Router, private navCtrl: NavController) {
     this.fg = this.fb.group({
       'destinationId': [null, Validators.required],
@@ -22,6 +23,27 @@ export class FinanceCreatePage implements OnInit {
   }
 
   ngOnInit() {
+    this.loadBikerId();
+  }
+
+  async loadBikerId() {
+    this.alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.navCtrl.back();
+        },
+      }],
+      backdropDismiss: false
+    });
+    this.biker$ = this.adminSvc.getBiker();
+    this.biker$.then((it: any) => {
+    }, async error => {
+      this.alert.message = error.error.message;
+      await this.alert.present();
+    })
   }
 
   handleSubmit() {
@@ -31,26 +53,13 @@ export class FinanceCreatePage implements OnInit {
   }
 
   async loadData() {
-    const alert = await this.alertCtr.create({
-      header: 'เกิดข้อผิดพลาด',
-      message: "",
-      buttons: [{
-        text: 'ตกลง',
-        handler: () => {
-        },
-      }],
-      backdropDismiss: false
-    });
-
     this.adminSvc.createFinance(this.fg.value).then((it: any) => {
       this.navCtrl.back();
     }, async error => {
-      alert.message = error.error.message;
-      await alert.present();
+      this.alert.message = error.error.message;
+      await this.alert.present();
     })
   }
-
-
 
   cancel() {
     this.navCtrl.back();
