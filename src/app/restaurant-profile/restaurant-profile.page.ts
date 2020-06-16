@@ -41,7 +41,6 @@ export class RestaurantProfilePage implements OnInit {
     
     this.shopInfo$ = this.adminSvc.getRestaurantById(this._idShop);
     this.shopInfo$.then(it => {
-      console.log(it);
     }, async error => {
       alert.message = error.error.message;
       await alert.present();

@@ -21,9 +21,6 @@ export class RestaurantProfileHistoryPage implements OnInit {
 
   ionViewWillEnter() {
     this.shopHistory$ = this.adminSvc.getRestaurantOrderHistory(this._idShop);
-    this.shopHistory$.then(it => {
-      console.log(it);
-    })
   }
 
 }

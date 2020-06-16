@@ -27,19 +27,12 @@ export class RestaurantCreatePage implements OnInit {
 
   ngOnInit() {
     this.contactInfo$ = this.adminSvc.getContractCondition();
-    this.contactInfo$.then((it: any) => {
-      console.log(it);
-    });
   }
 
   getContractDetail() {
-    console.log(this.fg.get('contractConditionId').value);
     this.adminSvc.getContractConditionById(this.fg.get('contractConditionId').value).then(it => {
-      console.log(it);
       this.commissionPercent = it.commissionPercent;
       this.deliveryPricePerOrder = it.deliveryPricePerOrder;
-      console.log(this.commissionPercent);
-
     });
   }
 

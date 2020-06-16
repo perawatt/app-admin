@@ -13,9 +13,6 @@ export class RestaurantPage implements OnInit {
 
   ionViewWillEnter() {
     this.getRestaurant$ = this.adminSvc.getRestaurant();
-    this.getRestaurant$.then(it => {
-      console.log(it);
-    })
   }
 
   ngOnInit() {

@@ -57,7 +57,6 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
     
     this.catagory$ = this.adminSvc.getCategoryList(this.restaurantId);
     this.catagory$.then(it => {
-      console.log(it);
     }, async error => {
       alert.message = error.error.message;
       await alert.present();

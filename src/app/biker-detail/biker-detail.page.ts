@@ -39,7 +39,6 @@ export class BikerDetailPage implements OnInit {
     this.bikerInfo$ = this.adminSvc.getBikerById(this.bikerId);
     this.bikerInfo$.then((it: any) => {
       this.title = it.name;
-      console.log(it);
     }, async error => {
       alert.message = error.error.message;
       await alert.present();

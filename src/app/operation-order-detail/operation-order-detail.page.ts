@@ -39,7 +39,6 @@ export class OperationOrderDetailPage implements OnInit {
     });
     this.orderdetail$ = this.adminSvc.getOrderDetail(this._id);
     this.orderdetail$.then((it: any) => {
-      console.log(it);
       this.title = it?.orderDetail?._id;
     }, async error => {
       alert.message = error.error.message;
@@ -58,8 +57,6 @@ export class OperationOrderDetailPage implements OnInit {
       backdropDismiss: false
     });
     modal.onDidDismiss().then(async data => {
-      console.log(data.data);
-      console.log('uuuuu', data.data);
       const alert = await this.alertCtr.create({
         header: 'เกิดข้อผิดพลาด',
         message: "",
@@ -74,7 +71,6 @@ export class OperationOrderDetailPage implements OnInit {
       if (data.data != null) {
         this.orderdetail$ = this.adminSvc.getOrderDetail(data.data);
         this.orderdetail$.then((it: any) => {
-          console.log(it);
         }, async error => {
           alert.message = error.error.message;
           await alert.present();
@@ -92,7 +88,6 @@ export class OperationOrderDetailPage implements OnInit {
       backdropDismiss: false
     });
     modal.onDidDismiss().then(data => {
-      console.log(data);
       if (data.data) {
         this.navCtrl.back();
       }
@@ -112,10 +107,8 @@ export class OperationOrderDetailPage implements OnInit {
       }],
       backdropDismiss: false
     });
-    console.log(_id);
     if (_id) {
       this.adminSvc.updateSendCancelDeny(_id).then((it: any) => {
-        console.log(it);
         this.navCtrl.back();
       }, async error => {
         alert.message = error.error.message;

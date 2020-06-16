@@ -45,7 +45,6 @@ export class RestaurantCreateCategoryPage implements OnInit {
   submit() {
     this.fg.get('options').patchValue(this.lstOptions);
     this.fg.get('canNote').patchValue(this.canNote);
-    console.log(this.fg.value);
 
     if (this.fg.valid) {
       this.adminSvc.createCategory(this._id, this.fg.value).then(_ => {

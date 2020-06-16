@@ -33,7 +33,6 @@ export class OperatorDetailPage implements OnInit {
       backdropDismiss: false
     });
     this.adminDetail$ = this.adminSvc.getAdminById();
-    console.log(this.adminDetail$);
     this.adminDetail$.then((it:any)=>{
       this.title = it.name;
     }, async error => {
