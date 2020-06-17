@@ -38,7 +38,7 @@ export class RestaurantProfileMenuPage implements OnInit {
       }],
       backdropDismiss: false
     });
-    
+
     this.data$ = this.adminSvc.getRestaurantMenu(this._id);
     this.data$.then(it => {
       let qry = it.filter(i => i.products.length > 0);
@@ -52,6 +52,43 @@ export class RestaurantProfileMenuPage implements OnInit {
 
   segmentChanged(id: any) {
     this.segmentValue = id;
+  }
+
+  async deleteMenu(productId: string) {
+    const alertError = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+        },
+      }],
+      backdropDismiss: false
+    });
+
+    const alertConfirm = await this.alertCtr.create({
+      header: 'ยืนยันการลบ',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.adminSvc.deleteProduct(this._id, productId).then((it: any) => {
+            this.getRestaurantMenu();
+          }, async error => {
+            alertError.message = error.error.message;
+            await alertError.present();
+          });
+        },
+      },
+      {
+        text: 'ยกเลิก',
+        handler: () => {
+        },
+      }],
+      backdropDismiss: false
+    });
+
+    await alertConfirm.present();
   }
 
   async presentModal() {

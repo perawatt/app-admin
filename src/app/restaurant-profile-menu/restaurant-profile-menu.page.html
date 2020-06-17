@@ -46,8 +46,7 @@
                 <ion-col class="ion-no-padding" color="light">
                   <ion-item *ngFor="let menu of data.products " color="light">
                     <ion-thumbnail slot="start" class="ion-margin-vertical">
-                      <img
-                        [src]="menu.previewImageUrl != null ? menu.previewImageUrl :'assets/imgs/dfmenu.png'" />
+                      <img [src]="menu.previewImageUrl != null ? menu.previewImageUrl :'assets/imgs/dfmenu.png'" />
                     </ion-thumbnail>
                     <ion-text>
                       <ion-label>
@@ -58,13 +57,11 @@
                         <p></p>
                       </ion-label>
                     </ion-text>
-                    <ion-note slot="end">
-                      <ion-label color="dark">
-                        <h2>
-                          <ion-icon name="pencil-outline"></ion-icon>
-                        </h2>
-                      </ion-label>
-                    </ion-note>
+                    <ion-button expand="full" fill="clear" slot="end"
+                      [routerLink]="['restaurant-profile-menu-edit', menu._id]">
+                      <b>แก้ไข</b></ion-button>
+                    <ion-button expand="full" fill="clear" slot="end" (click)="deleteMenu(menu._id)"><b>ลบ</b>
+                    </ion-button>
                   </ion-item>
                 </ion-col>
               </ion-item>

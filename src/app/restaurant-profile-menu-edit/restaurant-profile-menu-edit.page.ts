@@ -1,24 +1,25 @@
-import { AdminService } from './../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
-import { map, combineAll } from 'rxjs/operators';
 import { IUploadProgress } from 'src/services/blob-storage/iblob-storage';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { NavController, LoadingController, AlertController } from '@ionic/angular';
+import { Observable, from } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UploadFileService } from 'src/services/upload-file/upload-file.service';
-
+import { AlertController, LoadingController, NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { AdminService } from 'src/services/admin.service';
+import { BlobStorageService } from 'src/services/blob-storage/blob-storage.service';
+import { combineAll, map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-restaurant-profile-menu-create',
-  templateUrl: './restaurant-profile-menu-create.page.html',
-  styleUrls: ['./restaurant-profile-menu-create.page.scss'],
+  selector: 'app-restaurant-profile-menu-edit',
+  templateUrl: './restaurant-profile-menu-edit.page.html',
+  styleUrls: ['./restaurant-profile-menu-edit.page.scss'],
 })
-export class RestaurantProfileMenuCreatePage implements OnInit {
+export class RestaurantProfileMenuEditPage implements OnInit {
   fg: FormGroup;
   restaurantId: string;
+  productId: string;
   file: any;
+  alert: any;
   sas: any;
   config: any;
   onAction: boolean;
@@ -27,6 +28,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   uploadProgress$: Observable<IUploadProgress[]>;
   constructor(private uploadFileSvc: UploadFileService, private alertCtr: AlertController, private loadingCtr: LoadingController, private navCtrl: NavController, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService, private blobStorage: BlobStorageService) {
     this.restaurantId = this.route.snapshot.paramMap.get('shopId');
+    this.productId = this.route.snapshot.paramMap.get('productId');
     this.fg = this.fb.group({
       'name': [null, Validators.required],
       "categoryName": [null, Validators.required],
@@ -41,10 +43,26 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
 
   ionViewWillEnter() {
     this.getCategoryList();
+    this.getData();
+  }
+
+  async getData() {
+    this.adminSvc.getProduct(this.restaurantId, this.productId).then((it: any) => {
+      console.log(it);
+      this.fg.patchValue(it);
+    }, async error => {
+      this.alert.message = error.error.message;
+      await this.alert.present();
+    });
+  }
+
+  getPhoto(): string {
+    let urlImage = this.fg.get('previewImageId').value != null ? this.fg.get('previewImageId').value : 'assets/imgs/dfmenu.png';
+    return "https://manamockapi.azurewebsites.net/Image/" + urlImage;
   }
 
   async getCategoryList() {
-    const alert = await this.alertCtr.create({
+    this.alert = await this.alertCtr.create({
       header: 'เกิดข้อผิดพลาด',
       message: "",
       buttons: [{
@@ -58,11 +76,11 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
 
     this.catagory$ = this.adminSvc.getCategoryList(this.restaurantId);
     this.catagory$.then((it: any) => {
+      console.log(it);
       this.catagory = it;
-
     }, async error => {
-      alert.message = error.error.message;
-      await alert.present();
+      this.alert.message = error.error.message;
+      await this.alert.present();
     });
   }
 
@@ -85,13 +103,11 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   async submit() {
-    console.log(this.fg.value);
-
     if (this.fg.valid) {
       this.onAction = true;
       let formData = this.fg.value;
       if (this.file == null) {
-        this.adminSvc.createProduct('1', formData).then(_ => {
+        this.adminSvc.updateProduct('1', this.productId, formData).then(_ => {
           this.navCtrl.back();
         });
       }
@@ -107,6 +123,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
         await loading.present();
         this.adminSvc.getSasManaUpload().then(it => {
           this.sas = it;
+          // this.sas.imageId = formData.previewImageId; todo 
           this.uploadProgress$ = from(this.file as FileList).pipe(
             map(file => this.uploadFileSvc.uploadFile(file, this.sas)),
             combineAll(),
@@ -115,8 +132,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
           this.uploadProgress$.subscribe(
             _ => {
               if (_.find(it => it.progress >= 100)) {
-                formData.previewImageId = this.sas.imageId
-                this.adminSvc.createProduct('1', formData).then(_ => {
+                this.adminSvc.updateProduct('1', this.productId, formData).then(_ => {
                   loading.dismiss();
                   this.navCtrl.back();
                 }, async _ => {
@@ -140,4 +156,5 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
       }
     }
   }
+
 }
