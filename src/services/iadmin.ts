@@ -18,6 +18,10 @@ export interface IAdminService {
 
     getRestaurantOrderHistory(restaurantId: string): Promise<any>;
 
+    getCategory(restaurantId: string, categoryId: string): Promise<any>;
+
+    getProduct(restaurantId: string, productId: string): Promise<any>;
+
     getBiker(): Promise<any>;
 
     getBikerById(bikerId: string): Promise<any>;
@@ -35,10 +39,10 @@ export interface IAdminService {
     getContractConditionById(contractConditionId: string): Promise<any>;
 
     getSasToken(): Promise<any>;
-    
+
     getSasManaUpload(): Promise<any>;
 
-    getImageUpload(imageId: string): Promise<any>; 
+    getImageUpload(imageId: string): Promise<any>;
 
     createSendCancelRequest(orderId: string, data: any): Promise<any>;
 
@@ -56,6 +60,10 @@ export interface IAdminService {
 
     updateSendCancelComfirm(cancelId: string, data: any): Promise<any>;
 
+    updateCategory(restaurantId: string, categoryId: string, data: any): Promise<any>;
+
+    updateProduct(restaurantId: string, productId: string, data: any): Promise<any>;
+
     updateSuspendBiker(bikerId: string): Promise<any>;
 
     updateSendCancelDeny(cancelId: string): Promise<any>;
@@ -70,8 +78,11 @@ export interface IAdminService {
 
     getAdminById(): Promise<any>;
 
-    createAdmin(data: any) : Promise<any>;
+    createAdmin(data: any): Promise<any>;
 
+    deleteCategory(restaurantId: string, categoryId: string): Promise<any>;
+
+    deleteProduct(restaurantId: string, productId: string): Promise<any>;
 
 
 

@@ -39,6 +39,16 @@ export class AdminService implements IAdminService {
     return this.http.get(apiUrl).toPromise();
   }
 
+  getCategory(restaurantId: string, categoryId: string): Promise<any> {
+    let apiUrl = this.baseUrl + "EditCategory/" + AdminInfo.deliveryId + '/' + restaurantId + '/' + categoryId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
+  getProduct(restaurantId: string, productId: string): Promise<any> {
+    let apiUrl = this.baseUrl + "EditProduct/" + AdminInfo.deliveryId + '/' + restaurantId + '/' + productId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
   createAddRestaurant(data: any): Promise<any> {
     let apiUrl = this.baseUrl + "AddRestaurant/" + AdminInfo.deliveryId;
     return this.http.post(apiUrl, data).toPromise();
@@ -52,6 +62,26 @@ export class AdminService implements IAdminService {
   createProduct(restaurantId: string, data: any): Promise<any> {
     let apiUrl = this.baseUrl + "createProduct/" + AdminInfo.deliveryId + '/' + restaurantId;
     return this.http.post(apiUrl, data).toPromise();
+  }
+
+  updateCategory(restaurantId: string, categoryId: string, data: any): Promise<any> {
+    let apiUrl = this.baseUrl + "EditCategory/" + AdminInfo.deliveryId + '/' + restaurantId + '/' + categoryId;
+    return this.http.put(apiUrl, data).toPromise();
+  }
+
+  updateProduct(restaurantId: string, productId: string, data: any): Promise<any> {
+    let apiUrl = this.baseUrl + "EditProduct/" + AdminInfo.deliveryId + '/' + restaurantId + '/' + productId;
+    return this.http.put(apiUrl, data).toPromise();
+  }
+
+  deleteCategory(restaurantId: string, categoryId: string): Promise<any> {
+    let apiUrl = this.baseUrl + "DeleteCategory/" + AdminInfo.deliveryId + '/' + restaurantId + '/' + categoryId;
+    return this.http.delete(apiUrl, {}).toPromise();
+  }
+
+  deleteProduct(restaurantId: string, productId: string): Promise<any> {
+    let apiUrl = this.baseUrl + "DeleteProduct/" + AdminInfo.deliveryId + '/' + restaurantId + '/' + productId;
+    return this.http.delete(apiUrl, {}).toPromise();
   }
 
   getUnfinishedOrder(): Promise<any> {
@@ -169,11 +199,11 @@ export class AdminService implements IAdminService {
     return this.http.get(apiUrl).toPromise();
   }
 
-  getRestaurantMenuById(restaurantId:string):Promise<any>{
-   let apiUrl =  'https://delivery-3rd-api.azurewebsites.net/api/Restaurant/GetRestaurantMenu/'+restaurantId;
-   return this.http.get(apiUrl).toPromise();
+  getRestaurantMenuById(restaurantId: string): Promise<any> {
+    let apiUrl = 'https://delivery-3rd-api.azurewebsites.net/api/Restaurant/GetRestaurantMenu/' + restaurantId;
+    return this.http.get(apiUrl).toPromise();
   }
-  
+
   getAdmin(): Promise<any> {
     let apiUrl = this.baseUrl + "GetAdmin/" + AdminInfo.deliveryId;
     return this.http.get(apiUrl).toPromise();

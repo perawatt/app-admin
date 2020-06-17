@@ -1,8 +1,8 @@
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AdminService } from 'src/services/admin.service';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-restaurant-create-category',
@@ -16,7 +16,7 @@ export class RestaurantCreateCategoryPage implements OnInit {
   price = 0;
   _id: string;
   canNote = false;
-  constructor(private navCtrl: NavController, private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService) {
+  constructor(private navCtrl: NavController, private alertCtr: AlertController, private route: ActivatedRoute, private fb: FormBuilder, private adminSvc: AdminService) {
     this._id = this.route.snapshot.paramMap.get('shopId');
     this.fg = this.fb.group({
       'name': [null, Validators.required],
@@ -26,6 +26,7 @@ export class RestaurantCreateCategoryPage implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   addOptions() {
@@ -42,13 +43,26 @@ export class RestaurantCreateCategoryPage implements OnInit {
     if (index != -1) this.lstOptions.splice(index, 1);
   }
 
-  submit() {
+  async submit() {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+        },
+      }],
+      backdropDismiss: false
+    });
     this.fg.get('options').patchValue(this.lstOptions);
     this.fg.get('canNote').patchValue(this.canNote);
 
     if (this.fg.valid) {
       this.adminSvc.createCategory(this._id, this.fg.value).then(_ => {
         this.navCtrl.back();
+      }, async error => {
+        alert.message = error.error.message;
+        await alert.present();
       });
     }
   }

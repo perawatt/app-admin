@@ -35,12 +35,51 @@ export class RestaurantEditCategoryPage implements OnInit {
       }],
       backdropDismiss: false
     });
-    
+
     this.data$ = this.adminSvc.getCategoryList(this._id);
     this.data$.then(it => {
+      console.log(it);
+
     }, async error => {
       alert.message = error.error.message;
       await alert.present();
     });
+  }
+
+  async deleteCategory(categoryId: string) {
+    const alert = await this.alertCtr.create({
+      header: 'เกิดข้อผิดพลาด',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+        },
+      }],
+      backdropDismiss: false
+    });
+
+    const alertConfirm = await this.alertCtr.create({
+      header: 'ยืนยันการลบ',
+      message: "",
+      buttons: [{
+        text: 'ตกลง',
+        handler: () => {
+          this.adminSvc.deleteCategory(this._id, categoryId).then((it: any) => {
+            this.getCategoryList();
+          }, async error => {
+            alert.message = error.error.message;
+            await alert.present();
+          });
+        },
+      },
+      {
+        text: 'ยกเลิก',
+        handler: () => {
+        },
+      }],
+      backdropDismiss: false
+    });
+
+    await alertConfirm.present();
   }
 }
