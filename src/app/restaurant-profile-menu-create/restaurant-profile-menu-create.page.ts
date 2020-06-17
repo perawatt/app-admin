@@ -67,7 +67,9 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
   }
 
   checkCategoryCanNote(): boolean {
-    return this.catagory && this.catagory.find((it: any) => it.categoryName == this.fg.get('categoryName').value).canNote;
+    let categorySelect = this.catagory && this.catagory.find((it: any) => it.categoryName == this.fg.get('categoryName').value);
+
+    return categorySelect && categorySelect.canNote;
   }
 
   selectPhoto(event) {
