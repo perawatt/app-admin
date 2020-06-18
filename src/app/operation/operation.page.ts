@@ -60,14 +60,12 @@ export class OperationPage implements OnInit {
     if(this.messageTable == "order"){
       this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
       this.unFinishedOrderinfo$.then((it: any) => {
-        console.log(it);
       });
     }
   }
 
   setStatus() {
     this.unFinishedOrderinfo$.then((it: any) => {
-      console.log(it);
 
       it.forEach(i => {
         console.log(i?.acceptRequestDate);

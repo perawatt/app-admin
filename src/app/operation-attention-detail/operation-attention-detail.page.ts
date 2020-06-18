@@ -42,7 +42,7 @@ export class OperationAttentionDetailPage implements OnInit {
     });
     this.productList$ = this.adminSvc.getOrderDetail(this.orderId);
     this.productList$.then((it: any) => {
-      this.title = it.orderDetail._id;
+      this.title = it.orderDetail.orderCode;
     }, async error => {
       alert.message = error.error.message;
       await alert.present();

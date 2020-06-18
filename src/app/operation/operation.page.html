@@ -20,7 +20,7 @@
         <ion-item button color="light" class="ion-text-center">
           <ion-col size="4">
             <ion-text color="primary">
-              <p><b>OrderID : {{item._id}}</b></p>
+              <p><b>OrderID : {{item.orderCode}}</b></p>
             </ion-text>
           </ion-col>
           <ion-col size="4" class="ion-text-left">
@@ -32,11 +32,11 @@
               <p *ngIf="status == 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
             </ion-text> -->
             <ion-text>
-              <h3 *ngIf="!item.acceptRequestDate && item.createDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
-              <h3 *ngIf="item.acceptRequestDate && item.createDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : รับออเดอร์ </b></h3>
-              <h3 *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
-              <h3 *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && item.destinationDate && !item.doneDate"><b>สถานะ : ของถึงแล้ว </b></h3>
-              <h3 *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && item.destinationDate && item.doneDate"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></h3>
+              <p *ngIf="!item.acceptRequestDate && item.createDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : ลูกค้าสั่งอาหาร</b></p>
+              <p *ngIf="item.acceptRequestDate && item.createDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : รับออเดอร์ </b></p>
+              <p *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></p>
+              <p *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && item.destinationDate && !item.doneDate"><b>สถานะ : ของถึงแล้ว </b></p>
+              <p *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && item.destinationDate && item.doneDate"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
             </ion-text>
           </ion-col>
           <ion-col size="4">
@@ -64,7 +64,7 @@
           <ion-label>
             <ion-item lines="none" color="light">
               <ion-label>
-                <h1><b>OrderID : {{item._id}}</b></h1>
+                <h1><b>OrderID : {{item.orderCode}}</b></h1>
                 <ion-text color="warning">
                   <h3>฿{{ item.totalPrice | number}} ({{ item.totalQuantity }} รายการ)</h3>
                 </ion-text>

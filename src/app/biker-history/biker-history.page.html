@@ -13,7 +13,7 @@
         <ion-item button color="light" class="ion-text-center" [routerLink]="['biker-history-detail',data._id]">
           <ion-col size="4">
             <ion-text color="primary">
-              <p><b>OrderID : {{ data._id }}</b></p>
+              <p><b>OrderID : {{ data.orderCode }}</b></p>
             </ion-text>
           </ion-col>
           <ng-container *ngIf="data.doneDate">
