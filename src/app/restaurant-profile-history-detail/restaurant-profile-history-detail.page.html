@@ -13,7 +13,7 @@
       <ion-card-header class="ion-no-padding ion-padding-horizontal ion-margin-top ion-margin-bottom">
         <ion-item color="light" lines="none">
           <ion-label>
-            <h1><b>OrderID : {{ data.orderDetail?._id }} </b></h1>
+            <h1><b>OrderID : {{ data.orderDetail?.orderCode }} </b></h1>
             <br>
             <ion-text color="warning">
               <h3>฿{{ data.orderDetail?.totalPrice | number }} ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
