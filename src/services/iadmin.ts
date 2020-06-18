@@ -40,7 +40,7 @@ export interface IAdminService {
 
     getSasToken(): Promise<any>;
 
-    getSasManaUpload(): Promise<any>;
+    getSasManaUpload(imageId?: string): Promise<any>;
 
     getImageUpload(imageId: string): Promise<any>;
 

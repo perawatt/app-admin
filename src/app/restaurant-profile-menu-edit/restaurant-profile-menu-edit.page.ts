@@ -122,9 +122,8 @@ export class RestaurantProfileMenuEditPage implements OnInit {
           buttons: ['OK']
         });
         await loading.present();
-        this.adminSvc.getSasManaUpload().then(it => {
+        this.adminSvc.getSasManaUpload(formData.previewImageId).then(it => {
           this.sas = it;
-          // this.sas.imageId = formData.previewImageId; todo 
           this.uploadProgress$ = from(this.file as FileList).pipe(
             map(file => this.uploadFileSvc.uploadFile(file, this.sas)),
             combineAll(),

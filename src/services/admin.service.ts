@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { IAdminService } from './iadmin';
 import { API_URL } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ThrowStmt } from '@angular/compiler';
 import { AdminInfo } from 'src/providers/adminInfo/admin-info.service';
 
 @Injectable({
@@ -189,8 +188,11 @@ export class AdminService implements IAdminService {
     return this.http.post(apiUrl, {}).toPromise();
   }
 
-  getSasManaUpload(): Promise<any> {
+  getSasManaUpload(imageId?: string): Promise<any> {
+    console.log(imageId);
     let apiUrl = 'https://manamockapi.azurewebsites.net/Image/sas?type=1&refid=1&serviceId=1&bizAccountId=1';
+    if (imageId) apiUrl += "&imageId=" + imageId;
+    console.log(apiUrl);
     return this.http.get(apiUrl).toPromise();
   }
 
