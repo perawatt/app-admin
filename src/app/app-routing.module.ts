@@ -24,31 +24,31 @@ const routes: Routes = [
     loadChildren: () => import('./finance/finance.module').then(m => m.FinancePageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-detail/restaurant-profile-menu',
     loadChildren: () => import('./restaurant-profile-menu/restaurant-profile-menu.module').then(m => m.RestaurantProfileMenuPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu/restaurant-profile-menu-edit/:productId',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-detail/restaurant-profile-menu/restaurant-profile-menu-edit/:productId',
     loadChildren: () => import('./restaurant-profile-menu-edit/restaurant-profile-menu-edit.module').then(m => m.RestaurantProfileMenuEditPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu/restaurant-profile-menu-create',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-detail/restaurant-profile-menu/restaurant-profile-menu-create',
     loadChildren: () => import('./restaurant-profile-menu-create/restaurant-profile-menu-create.module').then(m => m.RestaurantProfileMenuCreatePageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu/restaurant-edit-category',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-detail/restaurant-profile-menu/restaurant-edit-category',
     loadChildren: () => import('./restaurant-edit-category/restaurant-edit-category.module').then(m => m.RestaurantEditCategoryPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu/restaurant-edit-category/restaurant-edit-category-detail/:categoryId',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-detail/restaurant-profile-menu/restaurant-edit-category/restaurant-edit-category-detail/:categoryId',
     loadChildren: () => import('./restaurant-edit-category-detail/restaurant-edit-category-detail.module').then(m => m.RestaurantEditCategoryDetailPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail/restaurant-profile-menu/restaurant-edit-category/restaurant-create-category',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-detail/restaurant-profile-menu/restaurant-edit-category/restaurant-create-category',
     loadChildren: () => import('./restaurant-create-category/restaurant-create-category.module').then(m => m.RestaurantCreateCategoryPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName',
+    path: 'restaurant/restaurant-profile/:shopId',
     loadChildren: () => import('./restaurant-profile/restaurant-profile.module').then(m => m.RestaurantProfilePageModule)
   },
   {
