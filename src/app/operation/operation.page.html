@@ -24,24 +24,17 @@
             </ion-text>
           </ion-col>
           <ion-col size="4" class="ion-text-left">
-            <!-- <ion-text color="success">
-              <p *ngIf="status == 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></p>
-              <p *ngIf="status == 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></p>
-              <p *ngIf="status == 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></p>
-              <p *ngIf="status == 'destinationDate'"><b>สถานะ : ของถึงแล้ว </b></p>
-              <p *ngIf="status == 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
-            </ion-text> -->
             <ion-text>
-              <p *ngIf="!item.acceptRequestDate && item.createDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : ลูกค้าสั่งอาหาร</b></p>
-              <p *ngIf="item.acceptRequestDate && item.createDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : รับออเดอร์ </b></p>
-              <p *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></p>
-              <p *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && item.destinationDate && !item.doneDate"><b>สถานะ : ของถึงแล้ว </b></p>
-              <p *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && item.destinationDate && item.doneDate"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
+                <p *ngIf="item.createDate && !item.acceptRequestDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : ลูกค้าสั่งอาหาร</b></p>
+                <p *ngIf="item.createDate && item.acceptRequestDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : รับออเดอร์ </b></p>
+                <p *ngIf="item.createDate && item.acceptRequestDate && item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></p>
+                <p *ngIf="item.createDate && item.acceptRequestDate && item.shippingDate && item.destinationDate && !item.doneDate"><b>สถานะ : ของถึงแล้ว </b></p>
+                <p *ngIf="item.createDate && item.acceptRequestDate && item.shippingDate && item.destinationDate && item.doneDate"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></p>
             </ion-text>
           </ion-col>
           <ion-col size="4">
             <ion-text color="primary">
-              <p><b>{{item.createDate | date:'d MMM y (H:mm)'}}</b></p>
+              <p><b>{{item.createDate | date:'d MMM y (H:mm น.)'}}</b></p>
             </ion-text>
           </ion-col>
         </ion-item>
@@ -73,7 +66,7 @@
                 <ion-note slot="end" class="ion-text-end">
                   <ion-text color="dark">
                     <h3>
-                      <ion-icon name="time-outline"></ion-icon> {{ item.createDate | date:'d MMM y (H:mm)' }}
+                      <ion-icon name="time-outline"></ion-icon> {{ item.createDate | date:'d MMM y (H:mm น.)' }}
                     </h3>
                     <br>
                   </ion-text>
@@ -119,19 +112,12 @@
               <ion-text  *ngIf="!item.biker">
                 <h3><b>Driver Name   ยังไม่มีผู้รับงาน</b></h3>
               </ion-text>
-              <!-- <ion-text>
-                <h3 *ngIf="status == 'createDate'"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
-                <h3 *ngIf="status == 'acceptRequestDate'"><b>สถานะ : รับออเดอร์ </b></h3>
-                <h3 *ngIf="status == 'shippingDate'"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
-                <h3 *ngIf="status == 'destinationDate'"><b>สถานะ : ของถึงแล้ว </b></h3>
-                <h3 *ngIf="status == 'doneDate'"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></h3>
-              </ion-text> -->
               <ion-text>
-                <h3 *ngIf="!item.acceptRequestDate && item.createDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
-                <h3 *ngIf="item.acceptRequestDate && item.createDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : รับออเดอร์ </b></h3>
-                <h3 *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
-                <h3 *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && item.destinationDate && !item.doneDate"><b>สถานะ : ของถึงแล้ว </b></h3>
-                <h3 *ngIf="item.acceptRequestDate && item.createDate && item.shippingDate && item.destinationDate && item.doneDate"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></h3>
+                <h3 *ngIf="item.createDate && !item.acceptRequestDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : ลูกค้าสั่งอาหาร</b></h3>
+                <h3 *ngIf="item.createDate && item.acceptRequestDate && !item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : รับออเดอร์ </b></h3>
+                <h3 *ngIf="item.createDate && item.acceptRequestDate && item.shippingDate && !item.destinationDate && !item.doneDate"><b>สถานะ : อยู่ระหว่างจัดส่ง </b></h3>
+                <h3 *ngIf="item.createDate && item.acceptRequestDate && item.shippingDate && item.destinationDate && !item.doneDate"><b>สถานะ : ของถึงแล้ว </b></h3>
+                <h3 *ngIf="item.createDate && item.acceptRequestDate && item.shippingDate && item.destinationDate && item.doneDate"><b>สถานะ : ลูกค้าได้รับของแล้ว </b></h3>
               </ion-text>
             </ion-label>
           </ion-item>
