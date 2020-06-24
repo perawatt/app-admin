@@ -93,7 +93,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
       this.onAction = true;
       let formData = this.fg.value;
       if (this.file == null) {
-        this.adminSvc.createProduct('1', formData).then(_ => {
+        this.adminSvc.createProduct(this.restaurantId, formData).then(_ => {
           this.navCtrl.back();
         });
       }
@@ -118,7 +118,7 @@ export class RestaurantProfileMenuCreatePage implements OnInit {
             _ => {
               if (_.find(it => it.progress >= 100)) {
                 formData.previewImageId = this.sas.imageId
-                this.adminSvc.createProduct('1', formData).then(_ => {
+                this.adminSvc.createProduct(this.restaurantId, formData).then(_ => {
                   loading.dismiss();
                   this.navCtrl.back();
                 }, async _ => {
