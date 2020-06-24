@@ -30,7 +30,7 @@
             </ion-input>
             <ion-label slot="end" color="dark">
               <ion-icon name="time-outline"></ion-icon>
-              {{ data.cancelRequest.createDate | date:'d MMM y (H:mm)' }}
+              {{ data.cancelRequest.createDate | date:'d MMM y (H:mm น.)' }}
             </ion-label>
           </ion-item>
         </ion-col>
@@ -79,7 +79,7 @@
             <ion-label>
               <ion-text color="dark">
                 <ion-icon name="time-outline"></ion-icon>
-                {{ data.orderDetail?.createDate | date:'d MMM y (H:mm)' }}
+                {{ data.orderDetail?.createDate | date:'d MMM y (H:mm น.)' }}
               </ion-text>
             </ion-label>
             <br>
@@ -137,11 +137,11 @@
           <div>
             <li *ngIf="data.orderDetail?.createDate">
               <div class="nodeSuccess"></div>
-              <p>ลูกค้าสั่งอาหาร {{ data.orderDetail?.createDate | date:'(H:mm)' }} </p>
+              <p>ลูกค้าสั่งอาหาร {{ data.orderDetail?.createDate | date:'(H:mm น.)' }} </p>
             </li>
             <li *ngIf="!data.orderDetail?.createDate">
               <div class="nodeUnSuccess"></div>
-              <p>ลูกค้าสั่งอาหาร {{ data.orderDetail?.createDate | date:'(H:mm)' }} </p>
+              <p>ลูกค้าสั่งอาหาร {{ data.orderDetail?.createDate | date:'(H:mm น.)' }} </p>
             </li>
 
             <li *ngIf="data.orderDetail?.acceptRequestDate">
@@ -149,14 +149,14 @@
             </li>
             <li *ngIf="data.orderDetail?.acceptRequestDate">
               <div class="nodeSuccess"></div>
-              <p>รับออเดอร์ {{ data.orderDetail?.acceptRequestDate | date:'(H:mm)' }} </p>
+              <p>รับออเดอร์ {{ data.orderDetail?.acceptRequestDate | date:'(H:mm น.)' }} </p>
             </li>
             <li *ngIf="!data.orderDetail?.acceptRequestDate">
               <div class="lineUnSuccess"></div>
             </li>
             <li *ngIf="!data.orderDetail?.acceptRequestDate">
               <div class="nodeUnSuccess"></div>
-              <p>รับออเดอร์ {{ data.orderDetail?.acceptRequestDate | date:'(H:mm)' }} </p>
+              <p>รับออเดอร์ {{ data.orderDetail?.acceptRequestDate | date:'(H:mm น.)' }} </p>
             </li>
 
             <li *ngIf="data.orderDetail?.shippingDate">
@@ -164,14 +164,14 @@
             </li>
             <li *ngIf="data.orderDetail?.shippingDate">
               <div class="nodeSuccess"></div>
-              <p>อยู่ระหว่างจัดส่ง {{ data.orderDetail?.shippingDate | date:'(H:mm)' }} </p>
+              <p>อยู่ระหว่างจัดส่ง {{ data.orderDetail?.shippingDate | date:'(H:mm น.)' }} </p>
             </li>
             <li *ngIf="!data.orderDetail?.shippingDate">
               <div class="lineUnSuccess"></div>
             </li>
             <li *ngIf="!data.orderDetail?.shippingDate">
               <div class="nodeUnSuccess"></div>
-              <p>อยู่ระหว่างจัดส่ง {{ data.orderDetail?.shippingDate | date:'(H:mm)' }} </p>
+              <p>อยู่ระหว่างจัดส่ง {{ data.orderDetail?.shippingDate | date:'(H:mm น.)' }} </p>
             </li>
 
             <li *ngIf="data.orderDetail?.destinationDate">
@@ -179,14 +179,14 @@
             </li>
             <li *ngIf="data.orderDetail?.destinationDate">
               <div class="nodeSuccess"></div>
-              <p>ของถึงแล้ว {{ data.orderDetail?.destinationDate | date:'(H:mm)' }} </p>
+              <p>ของถึงแล้ว {{ data.orderDetail?.destinationDate | date:'(H:mm น.)' }} </p>
             </li>
             <li *ngIf="!data.orderDetail?.destinationDate">
               <div class="lineUnSuccess"></div>
             </li>
             <li *ngIf="!data.orderDetail?.destinationDate">
               <div class="nodeUnSuccess"></div>
-              <p>ของถึงแล้ว {{ data.orderDetail?.destinationDate | date:'(H:mm)' }} </p>
+              <p>ของถึงแล้ว {{ data.orderDetail?.destinationDate | date:'(H:mm น.)' }} </p>
             </li>
 
             <li *ngIf="data.orderDetail?.doneDate">
@@ -194,14 +194,14 @@
             </li>
             <li *ngIf="data.orderDetail?.doneDate">
               <div class="nodeSuccess"></div>
-              <p>ลูกค้าได้รับของแล้ว {{ data.orderDetail?.doneDate | date:'(H:mm)' }} </p>
+              <p>ลูกค้าได้รับของแล้ว {{ data.orderDetail?.doneDate | date:'(H:mm น.)' }} </p>
             </li>
             <li *ngIf="!data.orderDetail?.doneDate">
               <div class="lineUnSuccess"></div>
             </li>
             <li *ngIf="!data.orderDetail?.doneDate">
               <div class="nodeUnSuccess"></div>
-              <p>ลูกค้าได้รับของแล้ว {{ data.orderDetail?.doneDate | date:'(H:mm)' }} </p>
+              <p>ลูกค้าได้รับของแล้ว {{ data.orderDetail?.doneDate | date:'(H:mm น.)' }} </p>
             </li>
           </div>
         </ion-row>

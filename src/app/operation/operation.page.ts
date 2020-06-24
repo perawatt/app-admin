@@ -17,8 +17,6 @@ export class OperationPage implements OnInit {
   public messageTable: string;
   public attention: string = 'attention';
   public order: string = 'order';
-  public status: string;
-  public showStatus: string[] = [];
   private hubConnection: HubConnection;
   constructor(public alertController: AlertController, private adminSvc: AdminService) { }
 
@@ -52,8 +50,6 @@ export class OperationPage implements OnInit {
   ionViewWillEnter() {
     this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
     this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
-    // this.setStatus();
-    // console.log('xxxxxxxxxxxxxx',this.showStatus);
   }
   
   refreshOrder(){
@@ -64,58 +60,4 @@ export class OperationPage implements OnInit {
     }
   }
 
-  setStatus() {
-    this.unFinishedOrderinfo$.then((it: any) => {
-
-      it.forEach(i => {
-        console.log(i?.acceptRequestDate);
-        console.log(i?.createDate);
-        console.log(i?.shippingDate);
-        console.log(i?.destinationDate);
-        console.log(i?.doneDate);
-
-        if (
-          i?.acceptRequestDate &&
-          i?.createDate &&
-          i?.shippingDate &&
-          i?.destinationDate &&
-          i?.doneDate) {
-          this.status = "doneDate";
-          console.log('1');
-          console.log(i.biker._id, i.biker.name);
-
-        } else if (
-          i?.acceptRequestDate &&
-          i?.createDate &&
-          i?.shippingDate &&
-          i?.destinationDate) {
-          this.status = "destinationDate";
-          console.log('2');
-          console.log(i.biker._id, i.biker.name);
-
-        } else if (
-          i?.acceptRequestDate &&
-          i?.createDate &&
-          i?.shippingDate) {
-          this.status = "shippingDate";
-          console.log('3');
-          console.log(i.biker._id, i.biker.name);
-
-        } else if (
-          i?.acceptRequestDate &&
-          i?.createDate) {
-          this.status = "acceptRequestDate";
-          console.log('4');
-          console.log(i.biker._id, i.biker.name);
-
-        } else {
-          this.status = "createDate";
-          console.log('5');
-          console.log(i.biker._id, i.biker.name);
-        }
-
-        this.showStatus.push(this.status)
-      });
-    });
-  }
 }
