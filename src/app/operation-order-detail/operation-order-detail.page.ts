@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController, AlertController } from '@ionic/angular';
 import { OperationOrderCancelPage } from '../../modals/operation-order-cancel/operation-order-cancel.page';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { OperationConfirmCancelOrderPage } from '../../modals/operation-confirm-cancel-order/operation-confirm-cancel-order.page';
 
@@ -16,7 +16,7 @@ export class OperationOrderDetailPage implements OnInit {
   public orderdetail$ = Promise.resolve([]);
   title: string;
 
-  constructor(public alertCtr: AlertController, private modalController: ModalController, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
+  constructor(public alertCtr: AlertController,private route: Router, private modalController: ModalController, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
     this.haveEmployee = false
     this._id = this.activatedRoute.snapshot.paramMap.get('_id');
   }
@@ -89,7 +89,8 @@ export class OperationOrderDetailPage implements OnInit {
     });
     modal.onDidDismiss().then(data => {
       if (data.data) {
-        this.navCtrl.back();
+        this.navCtrl.setDirection('back');
+        this.route.navigateByUrl("/operation");
       }
     })
     modal.present();
@@ -109,7 +110,8 @@ export class OperationOrderDetailPage implements OnInit {
     });
     if (_id) {
       this.adminSvc.updateSendCancelDeny(_id).then((it: any) => {
-        this.navCtrl.back();
+        this.navCtrl.setDirection('back');
+        this.route.navigateByUrl("/operation");
       }, async error => {
         alert.message = error.error.message;
         await alert.present();
