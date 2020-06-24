@@ -108,7 +108,7 @@ export class RestaurantProfileMenuEditPage implements OnInit {
       this.onAction = true;
       let formData = this.fg.value;
       if (this.file == null) {
-        this.adminSvc.updateProduct('1', this.productId, formData).then(_ => {
+        this.adminSvc.updateProduct(this.restaurantId, this.productId, formData).then(_ => {
           this.navCtrl.back();
         });
       }
@@ -132,7 +132,7 @@ export class RestaurantProfileMenuEditPage implements OnInit {
           this.uploadProgress$.subscribe(
             _ => {
               if (_.find(it => it.progress >= 100)) {
-                this.adminSvc.updateProduct('1', this.productId, formData).then(_ => {
+                this.adminSvc.updateProduct(this.restaurantId, this.productId, formData).then(_ => {
                   loading.dismiss();
                   this.navCtrl.back();
                 }, async _ => {
