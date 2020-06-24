@@ -13,7 +13,7 @@
   </ion-item>
 
   <ng-container *ngIf="getRestaurant$ | async as data">
-    <ion-card color="light" *ngFor="let item of data" [routerLink]="['restaurant-profile', item._id, item.name]" [disabled]="!item.acceptContractDate">
+    <ion-card color="light" *ngFor="let item of data" [routerLink]="['restaurant-profile', item._id]" [disabled]="!item.acceptContractDate">
       <ion-item button color="light" class="ion-text-center">
         <ion-avatar slot="start"></ion-avatar>
         <ion-avatar slot="start"></ion-avatar>

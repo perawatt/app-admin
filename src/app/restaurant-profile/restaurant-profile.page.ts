@@ -11,12 +11,11 @@ import { AlertController, NavController } from '@ionic/angular';
 export class RestaurantProfilePage implements OnInit {
 
   public _idShop: string;
-  public shopName: string;
+  title: string;
   public shopInfo$ = Promise.resolve([]);
 
   constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController, private navCtrl: NavController) {
     this._idShop = this.activatedRoute.snapshot.paramMap.get('shopId');
-    this.shopName = this.activatedRoute.snapshot.paramMap.get('shopName');
   }
 
   ngOnInit() {
@@ -40,7 +39,8 @@ export class RestaurantProfilePage implements OnInit {
     });
     
     this.shopInfo$ = this.adminSvc.getRestaurantById(this._idShop);
-    this.shopInfo$.then(it => {
+    this.shopInfo$.then((it: any) => {
+      this.title = it.restaurant.name    
     }, async error => {
       alert.message = error.error.message;
       await alert.present();
