@@ -16,7 +16,7 @@ export class OperationOrderDetailPage implements OnInit {
   public orderdetail$ = Promise.resolve([]);
   title: string;
 
-  constructor(public alertCtr: AlertController, private modalController: ModalController, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
+  constructor(public alertCtrl: AlertController, private modalController: ModalController, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService) {
     this.haveEmployee = false
     this._id = this.activatedRoute.snapshot.paramMap.get('_id');
   }
@@ -26,7 +26,7 @@ export class OperationOrderDetailPage implements OnInit {
   }
 
   async loadData() {
-    const alert = await this.alertCtr.create({
+    const alert = await this.alertCtrl.create({
       header: 'เกิดข้อผิดพลาด',
       message: "",
       buttons: [{
@@ -57,7 +57,7 @@ export class OperationOrderDetailPage implements OnInit {
       backdropDismiss: false
     });
     modal.onDidDismiss().then(async data => {
-      const alert = await this.alertCtr.create({
+      const alert = await this.alertCtrl.create({
         header: 'เกิดข้อผิดพลาด',
         message: "",
         buttons: [{
@@ -96,7 +96,7 @@ export class OperationOrderDetailPage implements OnInit {
   }
 
   async goDenyCancelOrder(_id: string) {
-    const alert = await this.alertCtr.create({
+    const alert = await this.alertCtrl.create({
       header: 'เกิดข้อผิดพลาด',
       message: "",
       buttons: [{
@@ -108,12 +108,27 @@ export class OperationOrderDetailPage implements OnInit {
       backdropDismiss: false
     });
     if (_id) {
-      this.adminSvc.updateSendCancelDeny(_id).then((it: any) => {
-        this.navCtrl.back();
-      }, async error => {
-        alert.message = error.error.message;
-        await alert.present();
+      const alert = await this.alertCtrl.create({
+        header: 'ยืนยันการปฏิเสธ',
+        buttons: [
+          {
+            text: 'ยกเลิก',
+            role: 'cancel',
+            handler: (blah) => {}
+          }, {
+            text: 'ตกลง',
+            handler: () => {
+              this.adminSvc.updateSendCancelDeny(_id).then((it: any) => {
+                this.navCtrl.back();
+              }, async error => {
+                alert.message = error.error.message;
+                await alert.present();
+              });
+            }
+          }
+        ]
       });
+      await alert.present();
     }
   }
 }

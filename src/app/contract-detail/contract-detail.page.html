@@ -25,7 +25,7 @@
                                 </ion-col>
                                 <ion-col>
                                     <ion-label>
-                                        <h2><b>{{ data.name }}</b></h2>
+                                        <h1>{{ data.name }}</h1>
                                     </ion-label>
                                 </ion-col>
                             </ion-item>
@@ -45,7 +45,7 @@
                                 </ion-col>
                                 <ion-col>
                                     <ion-label>
-                                        <h2><b>{{ data.commissionPercent }}%</b></h2>
+                                        <h1>{{ data.commissionPercent }}%</h1>
                                     </ion-label>
                                 </ion-col>
                             </ion-item>
@@ -65,17 +65,16 @@
                                 </ion-col>
                                 <ion-col>
                                     <ion-label>
-                                        <h2><b>{{ data.deliveryPricePerOrder | number }} บาท</b></h2>
+                                        <h1>{{ data.deliveryPricePerOrder | number }} บาท</h1>
                                     </ion-label>
                                 </ion-col>
                             </ion-item>
                         </ion-col>
                     </ion-row>
-
                     <ion-item color="light" lines="none"> </ion-item>
                     <ion-list-header color="light" mode="md">
                         <ion-label class="ion-margin-top">
-                            <h1><b>รายการร้านค้า</b></h1>
+                            <h1 class="list-margin-left"><b>รายการร้านค้า</b></h1>
                         </ion-label>
                     </ion-list-header>
                     <ion-row>
@@ -85,18 +84,18 @@
                         <ion-col class="ion-no-padding" color="light">
                             <ion-item color="light">
                                 <ion-col size="5">
-                                    <ion-label>
-                                        <h2><b>ลำดับ</b></h2>
+                                    <ion-label color="secondary">
+                                        <h1>ลำดับ</h1>
                                     </ion-label>
                                 </ion-col>
                                 <ion-col>
-                                    <ion-label>
-                                        <h2><b>ชื่อร้าน</b></h2>
+                                    <ion-label color="secondary">
+                                        <h1>ชื่อร้าน</h1>
                                     </ion-label>
                                 </ion-col>
                                 <ion-col size="2">
-                                    <ion-label>
-                                        <h2><b>วันที่</b></h2>
+                                    <ion-label color="secondary">
+                                        <h1>วันที่</h1>
                                     </ion-label>
                                 </ion-col>
                             </ion-item>
@@ -110,21 +109,20 @@
                             <ion-item color="light">
                                 <ion-col size="5">
                                     <ion-label>
-                                        <h2><b>{{ i+1 }}.</b></h2>
+                                        <h1>{{ i+1 }}.</h1>
                                     </ion-label>
                                 </ion-col>
                                 <ion-col>
                                     <ion-label>
-                                        <h2><b>{{ item.name }}</b>
-                                        </h2>
+                                        <h1>{{ item.name }}</h1>
                                     </ion-label>
                                 </ion-col>
                                 <ion-col size="2">
                                     <ion-label *ngIf="item.acceptContractDate">
-                                        <h2><b>{{ item.acceptContractDate | date :'dd MMM y'}}</b></h2>
+                                        <h1>{{ item.acceptContractDate | date :'dd MMM y'}}</h1>
                                     </ion-label>
                                     <ion-label *ngIf="!item.acceptContractDate" color="danger">
-                                        <h2><b>กำลังพิจารณา</b></h2>
+                                        <h1><b>กำลังพิจารณา</b></h1>
                                     </ion-label>
                                 </ion-col>
                             </ion-item>

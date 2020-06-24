@@ -12,7 +12,7 @@ export class FinanceDetailPage implements OnInit {
   financeDetail$ = Promise.resolve([]);
   public _id: string;
   title: string;
-  constructor(private alertCtr: AlertController, private activatedRoute: ActivatedRoute, private navCtrl: NavController, private adminSvc: AdminService, private router: Router) {
+  constructor(private alertCtrl: AlertController, private activatedRoute: ActivatedRoute, private navCtrl: NavController, private adminSvc: AdminService, private router: Router) {
     this._id = this.activatedRoute.snapshot.paramMap.get('_id');
   }
 
@@ -21,7 +21,7 @@ export class FinanceDetailPage implements OnInit {
   }
 
   async loadData() {
-    const alert = await this.alertCtr.create({
+    const alert = await this.alertCtrl.create({
       header: 'เกิดข้อผิดพลาด',
       message: "",
       buttons: [{
@@ -42,9 +42,27 @@ export class FinanceDetailPage implements OnInit {
     });
   }
 
-  deleteFinanceDetail() {
-    this.adminSvc.deleteFinance(this._id).then((it: any) => {
-      this.navCtrl.back();
+  async deleteFinanceDetail() {
+    const alert = await this.alertCtrl.create({
+      header: 'ยืนยันการลบ',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'ตกลง',
+          handler: () => {
+            this.adminSvc.deleteFinance(this._id).then((it: any) => {
+              this.navCtrl.back();
+            });
+          }
+        }
+      ]
     });
+    await alert.present();
   }
 }
