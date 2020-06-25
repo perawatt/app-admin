@@ -9,17 +9,17 @@ import { AdminService } from 'src/services/admin.service';
 })
 export class BikerHistoryPage implements OnInit {
 
-  bikerId:string;
-  bikerHistory$:Promise<any>;
-  
-  constructor(private activedRoute:ActivatedRoute,private adminSvc:AdminService) { 
+  bikerId: string;
+  bikerHistory$: Promise<any>;
+  constructor(private activedRoute: ActivatedRoute, private adminSvc: AdminService) {
     this.bikerId = this.activedRoute.snapshot.paramMap.get('bikerId');
   }
 
   ngOnInit() {
-      this.bikerHistory$ = this.adminSvc.getBikerOrderHistory(this.bikerId);
-     
-
+    this.bikerHistory$ = this.adminSvc.getBikerOrderHistory(this.bikerId);
+    this.bikerHistory$.then((it) => {
+      it.sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime());
+    });
   }
 
 }
