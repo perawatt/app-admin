@@ -50,8 +50,7 @@ export class OperationPage implements OnInit {
   ionViewWillEnter() {
     this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
     this.cancelRequestOrderinfo$.then((it) => {
-      console.log(it);
-      it.sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime());
+      it.sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime())
     });
     this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
   }
