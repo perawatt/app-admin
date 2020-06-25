@@ -62,6 +62,11 @@ export class RestaurantEditCategoryPage implements OnInit {
       header: 'ยืนยันการลบ',
       message: "",
       buttons: [{
+        text: 'ยกเลิก',
+        handler: () => {
+        },
+      },
+      {
         text: 'ตกลง',
         handler: () => {
           this.adminSvc.deleteCategory(this._id, categoryId).then((it: any) => {
@@ -70,11 +75,6 @@ export class RestaurantEditCategoryPage implements OnInit {
             alert.message = error.error.message;
             await alert.present();
           });
-        },
-      },
-      {
-        text: 'ยกเลิก',
-        handler: () => {
         },
       }],
       backdropDismiss: false
