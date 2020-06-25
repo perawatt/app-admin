@@ -44,8 +44,8 @@
           <ion-label color="primary">
             <p><b>x{{ item.quantity}} {{ item.name }}</b></p>
             <ion-text color="dark" >
-              <p>{{ item.option }}</p>
-              <p>&nbsp;</p>
+              <p *ngIf="item.option">{{ item.option }}</p>
+              <p *ngIf="!item.option">&nbsp;</p>
             </ion-text>
           </ion-label>
           <ion-label>
