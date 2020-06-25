@@ -70,6 +70,12 @@ export class RestaurantProfileMenuPage implements OnInit {
       header: 'ยืนยันการลบ',
       message: "",
       buttons: [{
+        text: 'ยกเลิก',
+        handler: () => {
+
+        },
+      },
+      {
         text: 'ตกลง',
         handler: () => {
           this.adminSvc.deleteProduct(this._id, productId).then((it: any) => {
@@ -78,11 +84,6 @@ export class RestaurantProfileMenuPage implements OnInit {
             alertError.message = error.error.message;
             await alertError.present();
           });
-        },
-      },
-      {
-        text: 'ยกเลิก',
-        handler: () => {
         },
       }],
       backdropDismiss: false

@@ -76,7 +76,7 @@ const routes: Routes = [
     loadChildren: () => import('./biker-create/biker-create.module').then(m => m.BikerCreatePageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-history',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-history',
     loadChildren: () => import('./restaurant-profile-history/restaurant-profile-history.module').then(m => m.RestaurantProfileHistoryPageModule)
   },
   {
@@ -100,7 +100,7 @@ const routes: Routes = [
     loadChildren: () => import('./operation-attention-detail/operation-attention-detail.module').then(m => m.OperationAttentionDetailPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-history/restaurant-profile-history-detail/:orderId/operation-attention-detail',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-history/restaurant-profile-history-detail/:orderId/operation-attention-detail',
     loadChildren: () => import('./operation-attention-detail/operation-attention-detail.module').then(m => m.OperationAttentionDetailPageModule)
   },
   {
@@ -124,7 +124,7 @@ const routes: Routes = [
     loadChildren: () => import('./biker-history-detail/biker-history-detail.module').then(m => m.BikerHistoryDetailPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-history/restaurant-profile-history-detail/:orderId',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-history/restaurant-profile-history-detail/:orderId',
     loadChildren: () => import('./restaurant-profile-history-detail/restaurant-profile-history-detail.module').then(m => m.RestaurantProfileHistoryDetailPageModule)
   },
   {
@@ -136,7 +136,7 @@ const routes: Routes = [
     loadChildren: () => import('./biker-history-detail-order-list/biker-history-detail-order-list.module').then(m => m.BikerHistoryDetailOrderListPageModule)
   },
   {
-    path: 'restaurant/restaurant-profile/:shopId/:shopName/restaurant-profile-detail',
+    path: 'restaurant/restaurant-profile/:shopId/restaurant-profile-detail',
     loadChildren: () => import('./restaurant-profile-detail/restaurant-profile-detail.module').then(m => m.RestaurantProfileDetailPageModule)
   },
   {

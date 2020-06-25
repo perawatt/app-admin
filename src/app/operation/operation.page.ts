@@ -49,13 +49,18 @@ export class OperationPage implements OnInit {
 
   ionViewWillEnter() {
     this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
+    this.cancelRequestOrderinfo$.then((it) => {
+      console.log(it);
+      it.sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime());
+    });
     this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
   }
-  
-  refreshOrder(){
-    if(this.messageTable == "order"){
+
+  refreshOrder() {
+    if (this.messageTable == "order") {
       this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
       this.unFinishedOrderinfo$.then((it: any) => {
+        it.sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime());
       });
     }
   }
