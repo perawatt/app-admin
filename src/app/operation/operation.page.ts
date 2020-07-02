@@ -37,6 +37,10 @@ export class OperationPage implements OnInit {
       if (param.status == "CancelRequest") {
         console.log("order has cancel");
         this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
+        this.cancelRequestOrderinfo$.then((it: any) => {
+          console.log(it);
+          it.sort((a, b) => new Date(a.createDate).getTime() - new Date(b.createDate).getTime());
+        });
       }
     });
   }
@@ -50,7 +54,7 @@ export class OperationPage implements OnInit {
   ionViewWillEnter() {
     this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
     this.cancelRequestOrderinfo$.then((it) => {
-      it.sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime())
+      it.sort((a, b) => new Date(a.createDate).getTime() - new Date(b.createDate).getTime())
     });
     this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
   }
@@ -59,7 +63,7 @@ export class OperationPage implements OnInit {
     if (this.messageTable == "order") {
       this.unFinishedOrderinfo$ = this.adminSvc.getUnfinishedOrder();
       this.unFinishedOrderinfo$.then((it: any) => {
-        it.sort((a, b) => new Date(b.createDate).getTime() - new Date(a.createDate).getTime());
+        it.sort((a, b) => new Date(a.createDate).getTime() - new Date(b.createDate).getTime());
       });
     }
   }
