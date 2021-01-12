@@ -72,7 +72,7 @@
             <h1><b>OrderID : {{ data.orderDetail?.orderCode }}</b></h1>
             <br>
             <ion-text color="warning">
-              <h3>฿{{ data.orderDetail?.totalPrice | number }} ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
+              <h3> {{ data.orderDetail?.totalPrice | number }} THB ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
             </ion-text>
           </ion-label>
 
@@ -251,7 +251,7 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2>{{ data.orderDetail?.customer.tel }}</h2>
+                  <h2>{{ data.orderDetail?.customer.phoneNumber }}</h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
@@ -288,7 +288,7 @@
               </ion-col>
               <ion-col size="3.5" *ngIf="data.orderDetail?.biker">
                 <ion-label>
-                  <h2>{{ data.orderDetail?.biker.tel }}</h2>
+                  <h2>{{ data.orderDetail?.biker.phoneNumber }}</h2>
                 </ion-label>
               </ion-col>
               <ion-col size="3.5" *ngIf="!data.orderDetail?.biker">
@@ -325,7 +325,7 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2>{{ data.orderDetail?.restaurant.tel }}</h2>
+                  <h2>{{ data.orderDetail?.restaurant.phoneNumber }}</h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">

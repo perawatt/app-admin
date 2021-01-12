@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>OrderID {{ orderId }}</ion-title>
+    <ion-title>OrderID {{ title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
             <h1><b>OrderID : {{ data.orderDetail?.orderCode }} </b></h1>
             <br>
             <ion-text color="warning">
-              <h3>฿{{ data.orderDetail?.totalPrice | number }} ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
+              <h3> {{ data.orderDetail?.totalPrice | number }} THB ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
             </ion-text>
           </ion-label>
 

@@ -11,7 +11,9 @@ import { AlertController, NavController } from '@ionic/angular';
 export class RestaurantProfileHistoryDetailPage implements OnInit {
   
   public orderId: string;
+  title: string;
   public orderDetail$ = Promise.resolve([]);
+
   constructor(private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private alertCtr: AlertController, private navCtrl: NavController) {
     this.orderId = this.activatedRoute.snapshot.paramMap.get('orderId');
   }
@@ -37,7 +39,9 @@ export class RestaurantProfileHistoryDetailPage implements OnInit {
     });
     
     this.orderDetail$ = this.adminSvc.getOrderDetail(this.orderId);
-    this.orderDetail$.then(it => {
+    this.orderDetail$.then((it: any) => {
+      this.title = it.orderDetail.orderCode;
+
     }, async error => {
       alert.message = error.error.message;
       await alert.present();
