@@ -28,8 +28,12 @@
           </ion-item>
           <ion-item color="light" lines="none">
             <img class="ion-margin-vertical" src="assets/imgs/dfmenu.png" height=" 120">
-            <ion-input type="file" name="file"id="file"class="file-input" accept="photo" multiple="false" (ionChange)="selectPhoto($event)"></ion-input>
-            <ion-label for="file" class="ion-text-center file-input-label ion-margin-start" color="light">เปลี่ยนรูป</ion-label>
+          </ion-item>
+          <ion-item color="light" lines="none" class="ion-no-padding">
+            <ion-input type="file" name="file" id="file" class="file-input" accept="photo" multiple="false"
+              (ionChange)="selectPhoto($event)"></ion-input>
+            <ion-label for="file" class="ion-text-center file-input-label ion-margin-start" color="light">เปลี่ยนรูป
+            </ion-label>
           </ion-item>
           <ion-item color=" light" lines="inset">
             <ion-input formControlName="name" placeholder="กรุณาตั้งชื่อเมนูของคุณ"></ion-input>
@@ -44,11 +48,11 @@
             </ion-input>
           </ion-item>
           <ion-item lines="none" color="light">
-            <ion-button slot="start" color="secondary" shape="round" size="default" class="button-margin">
+            <!-- <ion-button slot="start" color="secondary" shape="round" size="default" class="button-margin">
               <ion-label color="light" >
                 แสดงตัวอย่าง
               </ion-label>
-            </ion-button>
+            </ion-button> -->
             <ion-button (click)="goBack()" slot="end" color="danger" shape="round" class="buttonWidth button-margin" size="default">
               <ion-label color="light">
                 ยกเลิก
