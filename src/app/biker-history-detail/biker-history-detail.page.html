@@ -10,6 +10,7 @@
 <ion-content mode="ios" class="ion-padding">
   <ng-container *ngIf="orderInfo$ | async as data">
     <ion-card color="light"*ngIf="data.orderDetail.cancelDate">
+
       <ion-row>
         <ion-col size="0.4"></ion-col>
         <ion-col size="11" class="ion-margin-top">
@@ -20,40 +21,42 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <div color="light" *ngFor="let item of data.cancelRequest?.request">
+        <ion-row>
+          <ion-col size="1" class="ion-no-padding"></ion-col>
+          <ion-col size="11" class="ion-no-padding">
+            <ion-item color="light">
+              <ion-label position="fixed"><b>ผู้แจ้ง : </b></ion-label>
+              <ion-input>{{ item.senderName }} ({{item.senderType}})
+              </ion-input>
+              <ion-label slot="end" color="dark">
+                <ion-icon name="time-outline"></ion-icon>
+                {{ data.cancelRequest.createDate | date:'d MMM y (H:mm น.)' }}
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col size="1.3" class="ion-no-padding"></ion-col>
-        <ion-col size="10" class="ion-no-padding">
-          <ion-item color="light" *ngFor="let item of data.cancelRequest.request">
-            <ion-label position="fixed"><b>ผู้แจ้ง : </b></ion-label>
-            <ion-input value="">{{ item.senderName }} ({{ item.senderType }})</ion-input>
-            <ion-label slot="end" color="dark" enabled>
-              <ion-icon name="time-outline"></ion-icon>
-              {{ data.orderDetail.createDate | date : 'dd MMM yyyy (hh:mm น.)' }}
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col size="1" class="ion-no-padding"></ion-col>
+          <ion-col size="11" class="ion-no-padding">
+            <ion-item color="light">
+              <ion-label position="fixed"><b>สาเหตุ : </b></ion-label>
+              <ion-input>{{ item.heading }}</ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
-      <ion-row>
-        <ion-col size="1.3" class="ion-no-padding"></ion-col>
-        <ion-col size="10" class="ion-no-padding">
-          <ion-item color="light" *ngFor="let item of data.cancelRequest.request">
-            <ion-label position="fixed"><b>สาเหตุ : </b></ion-label>
-            <ion-input>{{item.heading}}</ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col size="1.3" class="ion-no-padding"></ion-col>
-        <ion-col size="10" class="ion-no-padding">
-          <ion-item color="light"  *ngFor="let item of data.cancelRequest.request">
-            <ion-label><b>บันทึกเพิ่มเติม : </b></ion-label>
-            <ion-input>{{item.info}}</ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+        <ion-row>
+          <ion-col size="1" class="ion-no-padding"></ion-col>
+          <ion-col size="11" class="ion-no-padding">
+            <ion-item color="light">
+              <ion-label><b>บันทึกเพิ่มเติม : </b></ion-label>
+              <ion-input> {{ item.info }}</ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </div>
 
       <ion-row>
         <ion-col size="0.4"></ion-col>
@@ -149,7 +152,7 @@
             <ion-label>
               <ion-text color="dark">
                 <ion-icon name="time-outline"></ion-icon>
-                {{ data.orderDetail.createDate | date : 'dd MMM yyyy (hh:mm น.)' }}
+                {{ data.orderDetail.createDate | date : 'dd MMM yyyy (H:mm น.)' }}
               </ion-text>
             </ion-label>
             <br>

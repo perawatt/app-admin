@@ -38,7 +38,6 @@ export class RestaurantEditCategoryPage implements OnInit {
 
     this.data$ = this.adminSvc.getCategoryList(this._id);
     this.data$.then(it => {
-      console.log(it);
 
     }, async error => {
       alert.message = error.error.message;

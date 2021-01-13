@@ -13,7 +13,7 @@ export class BikerPage implements OnInit {
   constructor(private adminSvc: AdminService) { }
 
   ionViewWillEnter() {
-   this.bikerListInfo$ = this.adminSvc.getBiker();
+    this.bikerListInfo$ = this.adminSvc.getBiker();   
   }
   
   ngOnInit() {}
