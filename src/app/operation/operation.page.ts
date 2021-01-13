@@ -38,7 +38,6 @@ export class OperationPage implements OnInit {
         console.log("order has cancel");
         this.cancelRequestOrderinfo$ = this.adminSvc.getCancelRequest();
         this.cancelRequestOrderinfo$.then((it: any) => {
-          console.log(it);
           it.sort((a, b) => new Date(a.createDate).getTime() - new Date(b.createDate).getTime());
         });
       }

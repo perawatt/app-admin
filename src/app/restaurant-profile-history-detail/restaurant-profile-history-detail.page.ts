@@ -9,7 +9,7 @@ import { AlertController, NavController } from '@ionic/angular';
   styleUrls: ['./restaurant-profile-history-detail.page.scss'],
 })
 export class RestaurantProfileHistoryDetailPage implements OnInit {
-  
+
   public orderId: string;
   title: string;
   public orderDetail$ = Promise.resolve([]);
@@ -37,7 +37,7 @@ export class RestaurantProfileHistoryDetailPage implements OnInit {
       }],
       backdropDismiss: false
     });
-    
+
     this.orderDetail$ = this.adminSvc.getOrderDetail(this.orderId);
     this.orderDetail$.then((it: any) => {
       this.title = it.orderDetail.orderCode;
