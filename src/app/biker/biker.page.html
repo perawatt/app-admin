@@ -27,9 +27,14 @@
           </ion-text>
         </ion-col>
         <ion-col size="5">
-          <ng-container *ngIf="item.acceptContractDate">
+          <ng-container *ngIf="item.acceptContractDate && item.onWorkStatus">
             <ion-text color="success">
               <p><b>เปิดรับงาน</b></p>
+            </ion-text>
+          </ng-container>
+          <ng-container *ngIf="item.acceptContractDate && !item.onWorkStatus">
+            <ion-text color="dark">
+              <p><b>ปิดรับงาน</b></p>
             </ion-text>
           </ng-container>
           <ng-container *ngIf="!item.acceptContractDate">
