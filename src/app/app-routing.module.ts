@@ -150,7 +150,15 @@ const routes: Routes = [
   {
     path: 'operator/operator-detail/:_id',
     loadChildren: () => import('./operator-detail/operator-detail.module').then(m => m.OperatorDetailPageModule)
+  },  {
+    path: 'delivery',
+    loadChildren: () => import('./delivery/delivery.module').then( m => m.DeliveryPageModule)
   },
+  {
+    path: 'delivery-edit',
+    loadChildren: () => import('./delivery-edit/delivery-edit.module').then( m => m.DeliveryEditPageModule)
+  },
+
 
 
 
