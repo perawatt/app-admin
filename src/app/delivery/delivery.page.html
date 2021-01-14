@@ -1,9 +1,49 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>delivery</ion-title>
+    <ion-title>Delivery</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ng-container>
+    <ion-card color="light">
+      <ion-card-header>
+        <ion-item color="light" lines="none">
+          <ion-label><h1><b>ที่อยู่ของบริษัทคุณ</b></h1></ion-label>
+        </ion-item>
+        
+        <ion-item color="light" lines="none">
+          <ion-item color="light" lines="none">
+          </ion-item>
+          <ion-col class="ion-no-padding" color="light">
+            
+            <ion-item color="light">
+              <ion-label>
+                <h2><b>ที่อยู่</b></h2>
+                <p>147/2 พิมานคอนโดปาร์ค, ตำบล ศิลา, อำเภอ เมืองขอนแก่น, </p>
+                <p>ขอนแก่น, 40000</p>
+              </ion-label>
+              <ion-button slot="end" color="medium" shape="round" size="default">
+                <ion-label>ดูตำแหน่ง</ion-label>
+              </ion-button>
+            </ion-item>
 
+            <ion-item color="light" line="none">
+                <ion-label size="11">
+                  <h2><b>รัศมีการให้บริการ</b></h2>
+                  <p> 20 กิโลเมตร </p>
+                </ion-label>
+                <!-- <ion-note slot="end" class="ion-text-end" [routerLink]="['delivery-edit']">
+                  <ion-label><h2>แก้ไข</h2></ion-label>
+                </ion-note> -->
+                <ion-tex [routerLink]="['delivery-edit']">
+                  แก้ไข
+                </ion-tex>
+            </ion-item>
+
+          </ion-col>
+        </ion-item>
+      </ion-card-header>
+    </ion-card>
+  </ng-container>
 </ion-content>
