@@ -36,6 +36,8 @@ export interface IAdminService {
 
     getContractCondition(): Promise<any>;
 
+    getClassificationAndContract(): Promise<any>;
+
     getContractConditionById(contractConditionId: string): Promise<any>;
 
     getSasToken(): Promise<any>;

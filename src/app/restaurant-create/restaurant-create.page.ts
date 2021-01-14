@@ -14,6 +14,7 @@ export class RestaurantCreatePage implements OnInit {
   public contactInfo$ = Promise.resolve([]);
   public commissionPercent: number;
   public deliveryPricePerOrder: number;
+  public contracts: any;
 
   constructor(private fb: FormBuilder, private adminSvc: AdminService, private navCtrl: NavController, private alertCtr: AlertController) {
     this.fg = this.fb.group({
@@ -22,18 +23,21 @@ export class RestaurantCreatePage implements OnInit {
       'manaCode': [null, Validators.required],
       'note': null,
       'contractConditionId': [null, Validators.required],
+      'classification': [null, Validators.required],
     });
   }
 
   ngOnInit() {
-    this.contactInfo$ = this.adminSvc.getContractCondition();
+    this.contactInfo$ = this.adminSvc.getClassificationAndContract();
+    this.contactInfo$.then((it: any) => {
+      this.contracts = it.contracts;
+    });
   }
 
-  getContractDetail() {
-    this.adminSvc.getContractConditionById(this.fg.get('contractConditionId').value).then(it => {
-      this.commissionPercent = it.commissionPercent;
-      this.deliveryPricePerOrder = it.deliveryPricePerOrder;
-    });
+  getContractDetail(event) {
+    let contractsDetail = this.contracts.find(it => it._id == event.detail.value)
+    this.commissionPercent = contractsDetail.commissionPercent;
+    this.deliveryPricePerOrder = contractsDetail.deliveryPricePerOrder  
   }
 
   async handleSubmit() {
@@ -48,7 +52,6 @@ export class RestaurantCreatePage implements OnInit {
       }],
       backdropDismiss: false
     });
-
     this.adminSvc.createAddRestaurant(this.fg.value).then(it => {
       this.navCtrl.back();
     }, async error => {
