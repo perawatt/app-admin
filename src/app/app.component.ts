@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
     { name: 'Biker Management', path: '/biker' },
     { name: 'Finance', path: '/finance' },
     { name: 'Contract', path: '/contract' },
+    { name: 'Delivery', path: '/delivery' },
     { name: 'Operator Management', path: '/operator' },
   ]
   selectedItemColor: string = 'primary';
