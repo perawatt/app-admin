@@ -199,7 +199,7 @@
           <ion-label>
             <ion-text>
               <h3>เวลาประเมิน : 20 นาที (ยังไม่ได้ binding)</h3>
-              <h3>เวลาที่ใช้จริง : 25 นาที (ยังไม่ได้ binding)</h3>
+              <h3>เวลาที่ใช้จริง : {{ data.orderDetail?.deliveryTotalMinutes }}</h3>
             </ion-text>
           </ion-label>
         </ion-item>
@@ -274,7 +274,7 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2> {{ data.orderDetail?.customer.tel }} </h2>
+                  <h2> {{ data.orderDetail?.customer.phoneNumber }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
@@ -311,7 +311,7 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2> {{ data.orderDetail?.delivery.tel }} </h2>
+                  <h2> {{ data.orderDetail?.delivery.phoneNumber }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
@@ -343,7 +343,7 @@
               </ion-col>
               <ion-col size="3.5">
                 <ion-label>
-                  <h2> {{ data.orderDetail?.restaurant.tel }} </h2>
+                  <h2> {{ data.orderDetail?.restaurant.phoneNumber }} </h2>
                 </ion-label>
               </ion-col>
               <ion-col size="2">
