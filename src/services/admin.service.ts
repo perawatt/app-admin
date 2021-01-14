@@ -173,6 +173,11 @@ export class AdminService implements IAdminService {
     return this.http.get(apiUrl).toPromise();
   }
 
+  getClassificationAndContract(): Promise<any> {
+    let apiUrl = this.baseUrl + "getClassificationAndContract/" + AdminInfo.deliveryId;
+    return this.http.get(apiUrl).toPromise();
+  }
+
   createContractCondition(data: any): Promise<any> {
     let apiUrl = this.baseUrl + "CreateContractCondition/" + AdminInfo.deliveryId;
     return this.http.post(apiUrl, data).toPromise();
