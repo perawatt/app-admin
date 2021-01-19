@@ -144,7 +144,7 @@
             <h1><b>OrderID : {{ data.orderDetail?.orderCode }}</b></h1>
             <br>
             <ion-text color="warning">
-              <h3>{{ data.orderDetail?.totalPrice | number }} THB ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
+              <h3>{{ data.orderDetail?.totalPrice | number }} <small>THB</small> ({{ data.orderDetail?.totalQuantity }} รายการ)</h3>
             </ion-text>
           </ion-label>
 
@@ -198,8 +198,8 @@
           <ion-col size="0.75"></ion-col>
           <ion-label>
             <ion-text>
-              <h3>เวลาประเมิน : 20 นาที (ยังไม่ได้ binding)</h3>
-              <h3>เวลาที่ใช้จริง : {{ data.orderDetail?.deliveryTotalMinutes }}</h3>
+              <h3>เวลาประเมิน : {{ data.orderDetail?.predictDeliveryTotalMinutes }} นาที</h3>
+              <h3>เวลาที่ใช้จริง : {{ data.orderDetail?.deliveryTotalMinutes }} นาที</h3>
             </ion-text>
           </ion-label>
         </ion-item>

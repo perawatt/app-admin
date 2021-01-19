@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController, AlertController } from '@ionic/angular';
 import { OperationOrderCancelPage } from '../../modals/operation-order-cancel/operation-order-cancel.page';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/services/admin.service';
 import { OperationConfirmCancelOrderPage } from '../../modals/operation-confirm-cancel-order/operation-confirm-cancel-order.page';
 
@@ -16,7 +16,7 @@ export class OperationOrderDetailPage implements OnInit {
   public orderdetail$ = Promise.resolve([]);
   title: string;
 
-  constructor(public alertCtrl: AlertController, private modalController: ModalController, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService,private route:Router) {
+  constructor(public alertCtrl: AlertController, private modalController: ModalController, private navCtrl: NavController, private activatedRoute: ActivatedRoute, private adminSvc: AdminService, private route: Router) {
     this.haveEmployee = false
     this._id = this.activatedRoute.snapshot.paramMap.get('_id');
   }
@@ -39,7 +39,6 @@ export class OperationOrderDetailPage implements OnInit {
     });
     this.orderdetail$ = this.adminSvc.getOrderDetail(this._id);
     this.orderdetail$.then((it: any) => {
-      
       this.title = it?.orderDetail?.orderCode;
     }, async error => {
       alert.message = error.error.message;
