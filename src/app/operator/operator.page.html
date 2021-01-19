@@ -14,17 +14,11 @@
 
   <ng-container *ngIf="admin$ | async as data">
     <ion-card color="light" [routerLink]="['operator-detail', item._id]" *ngFor="let item of data">
-      <ion-item button color="light" class="ion-text-center">
-        <ion-avatar slot="start"></ion-avatar>
-        <ion-avatar slot="start"></ion-avatar>
-        <ion-avatar slot="start"></ion-avatar>
-       
-        <ion-col size="7" class="ion-text-left">
-          <ion-text color="primary">
-            <p><b> {{item.name}}</b></p>
+      <ion-item button color="light">       
+        <ion-col size="4" class="ion-margin-start">
+          <ion-text color="primary" >
+            <p><b>{{item.name}}</b></p>
           </ion-text>
-        </ion-col>
-        <ion-col size="5">        
         </ion-col>
       </ion-item>
     </ion-card>
