@@ -41,7 +41,7 @@
           <ion-item color="light" lines="inset">
             <ion-input type="number" (ionFocus)="fg.get('price').setValue(null)" formControlName="price"
               placeholder="กรุณาระบุราคา"></ion-input>
-            <ion-label slot="end">THB</ion-label>
+            <ion-label slot="end"><small>THB</small></ion-label>
           </ion-item>
           <ion-item color="light" lines="inset">
             <ion-input formControlName="note" [disabled]="!checkCategoryCanNote()" placeholder="ใส่คำอธิบาย">
