@@ -25,7 +25,7 @@ export class OperatorCreatePage implements OnInit {
       'name': null,
       "profileImage": null,
       "address": null,
-      "tel": [null, Validators.required],
+      "phoneNumber": [null, Validators.required],
       "note": null,
     });
   }
