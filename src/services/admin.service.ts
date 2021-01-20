@@ -189,7 +189,7 @@ export class AdminService implements IAdminService {
   }
 
   getSasToken(): Promise<any> {
-    let apiUrl = 'https://delivery-3rd-api.azurewebsites.net/api/Storage/Up2Cloud';
+    let apiUrl = 'https://delivery-3rd-api.azurewebsites.net/api/Storage/UpBiker2Cloud';
     return this.http.post(apiUrl, {}).toPromise();
   }
 
