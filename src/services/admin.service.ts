@@ -216,8 +216,8 @@ export class AdminService implements IAdminService {
     return this.http.get(apiUrl).toPromise();
   }
 
-  getAdminById(): Promise<any> {
-    let apiUrl = this.baseUrl + "GetAdmin/" + AdminInfo.deliveryId + "/" + AdminInfo.adminId;
+  getAdminById(id: string): Promise<any> {
+    let apiUrl = this.baseUrl + "GetAdminInfo/" + id;
     return this.http.get(apiUrl).toPromise();
   }
 

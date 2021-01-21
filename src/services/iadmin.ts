@@ -78,7 +78,7 @@ export interface IAdminService {
 
     getAdmin(): Promise<any>;
 
-    getAdminById(): Promise<any>;
+    getAdminById(id: string): Promise<any>;
 
     createAdmin(data: any): Promise<any>;
 
