@@ -197,9 +197,13 @@
         <ion-item color="light" lines="none">
           <ion-col size="0.75"></ion-col>
           <ion-label>
-            <ion-text>
+            <ion-text *ngIf="data.orderDetail?.deliveryTotalMinutes != '-'">
               <h3>เวลาประเมิน : {{ data.orderDetail?.predictDeliveryTotalMinutes }} นาที</h3>
               <h3>เวลาที่ใช้จริง : {{ data.orderDetail?.deliveryTotalMinutes }} นาที</h3>
+            </ion-text>
+            <ion-text *ngIf="data.orderDetail?.deliveryTotalMinutes == '-'">
+              <h3>เวลาประเมิน : {{ data.orderDetail?.predictDeliveryTotalMinutes }} นาที</h3>
+              <h3>เวลาที่ใช้จริง : {{ data.orderDetail?.deliveryTotalMinutes }}</h3>
             </ion-text>
           </ion-label>
         </ion-item>
